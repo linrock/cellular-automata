@@ -7,8 +7,6 @@ canvas.width = C_WIDTH;
 canvas.height = C_HEIGHT;
 const ctx = canvas.getContext('2d');
 
-let iterNum = 1;
-
 // initialize the bottom row with random numbers
 let bottomRow = [];
 for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
@@ -76,5 +74,4 @@ setInterval(() => {
   }
 
   bottomRow = nextRow.slice();
-  iterNum += 1;
 }, 500);
