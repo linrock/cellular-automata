@@ -33,17 +33,21 @@ for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
   }
 }
 
-// rule 30
-const NEXT_ITER = {
-  '111': '0',
-  '110': '0',
-  '101': '0',
-  '100': '1',
-  '011': '1',
-  '010': '1',
-  '001': '1',
-  '000': '0',
-};
+const RULE_30  = '00011110';
+const RULE_126 = '01111110';
+
+const ITER_KEYS = [
+  '111',
+  '110',
+  '101',
+  '100',
+  '011',
+  '010',
+  '001',
+  '000',
+];
+const ITER_MAP = {};
+ITER_KEYS.forEach((k, i) => ITER_MAP[k] = RULE_30[i]);
 
 // calculate the values of the next row based on the previous row
 function calculateNextRow(prevRow) {
@@ -58,7 +62,7 @@ function calculateNextRow(prevRow) {
     } else {
       nextKey = prevRow[i - 1] + prevRow[i] + prevRow[i + 1];
     }
-    nextRow.push(NEXT_ITER[nextKey]);
+    nextRow.push(ITER_MAP[nextKey]);
   }
   return nextRow;
 }
