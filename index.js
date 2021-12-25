@@ -1,7 +1,7 @@
 const C_WIDTH = 600;
 const C_HEIGHT = 400;
 const GRID_SIZE = 2;
-const UPDATE_INTERVAL_MS = 100;
+const UPDATE_INTERVAL_MS = 50;
 
 const canvas = document.getElementById("world");
 canvas.width = C_WIDTH;
@@ -79,11 +79,9 @@ function drawNextIter(nextRow) {
 
 function updateForever() {
   const nextRow = calculateNextRow(bottomRow);
-  drawNextIter(nextRow);
+  requestAnimationFrame(() => drawNextIter(nextRow));
   bottomRow = nextRow;
-  setTimeout(() => {
-    requestAnimationFrame(updateForever);
-  }, UPDATE_INTERVAL_MS);
+  setTimeout(() => updateForever(), UPDATE_INTERVAL_MS);
 }
 
 updateForever();
