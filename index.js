@@ -11,8 +11,9 @@ const ctx = canvas.getContext('2d');
 // initialize the bottom row with random numbers
 let bottomRow = [];
 for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
-  bottomRow.push(Math.round(Math.random()));
+  bottomRow.push(Math.random() > 0.5 ? '1' : '0');
 }
+
 // initialize the bottom row with a single pixel in the middle
 for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
   bottomRow[i] = '0';
@@ -31,7 +32,6 @@ for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
       GRID_SIZE);
   }
 }
-ctx.fill();
 
 // rule 30
 const NEXT_ITER = {
