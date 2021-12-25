@@ -1,6 +1,7 @@
 const C_WIDTH = 600;
 const C_HEIGHT = 400;
-const GRID_SIZE = 10;
+const GRID_SIZE = 2;
+const UPDATE_INTERVAL_MS = 100;
 
 const canvas = document.getElementById("world");
 canvas.width = C_WIDTH;
@@ -44,22 +45,24 @@ const NEXT_ITER = {
   '000': 0,
 };
 
-setInterval(() => {
+// calculate the values of the next row based on the previous row
+function calculateNextRow(prevRow) {
+  const nextRow = [];
+  for (i = 0, n = C_WIDTH / GRID_SIZE; i < n; i++) {
+    const nextKey =
+      (prevRow[i - 1] || 0).toString() +
+      prevRow[i].toString() +
+      (prevRow[i + 1] || 0).toString();
+    nextRow.push(NEXT_ITER[nextKey]);
+  }
+  return nextRow;
+}
+
+function drawNextIter(nextRow) {
   // move all the previously-calculated rows up a row
   const data = ctx.getImageData(
     0, GRID_SIZE, C_WIDTH, C_HEIGHT - GRID_SIZE);
   ctx.putImageData(data, 0, 0);
-
-  // calculate the values of the row in the next iteration
-  const nextRow = [];
-  for (i = 0, n = C_WIDTH / GRID_SIZE; i < n; i++) {
-    const nextKey =
-      (bottomRow[i - 1] || 0).toString() +
-      bottomRow[i].toString() +
-      (bottomRow[i + 1] || 0).toString();
-    nextRow.push(NEXT_ITER[nextKey]);
-  }
-  // console.log(nextRow);
 
   // draw the new bottom row with the values of the new iteration
   ctx.clearRect(0, C_HEIGHT - GRID_SIZE, C_WIDTH, GRID_SIZE);
@@ -72,6 +75,15 @@ setInterval(() => {
         GRID_SIZE);
     }
   }
+}
 
-  bottomRow = nextRow.slice();
-}, 500);
+function updateForever() {
+  const nextRow = calculateNextRow(bottomRow);
+  drawNextIter(nextRow);
+  bottomRow = nextRow;
+  setTimeout(() => {
+    requestAnimationFrame(updateForever);
+  }, UPDATE_INTERVAL_MS);
+}
+
+updateForever();
