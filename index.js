@@ -1,4 +1,4 @@
-const C_WIDTH = 600;
+const C_WIDTH = 602;
 const C_HEIGHT = 400;
 const GRID_SIZE = 2;
 const UPDATE_INTERVAL_MS = 50;
@@ -15,15 +15,15 @@ for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
 }
 // initialize the bottom row with a single pixel in the middle
 for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
-  bottomRow[i] = 0;
+  bottomRow[i] = '0';
   if (i === ~~(C_WIDTH / GRID_SIZE / 2)) {
-    bottomRow[i] = 1;
+    bottomRow[i] = '1';
   }
 }
 
 // draw the bottom row
 for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
-  if (bottomRow[i]) {
+  if (bottomRow[i] === '1') {
     ctx.fillRect(
       i * GRID_SIZE,
       C_HEIGHT - GRID_SIZE,
@@ -35,24 +35,29 @@ ctx.fill();
 
 // rule 30
 const NEXT_ITER = {
-  '111': 0,
-  '110': 0,
-  '101': 0,
-  '100': 1,
-  '011': 1,
-  '010': 1,
-  '001': 1,
-  '000': 0,
+  '111': '0',
+  '110': '0',
+  '101': '0',
+  '100': '1',
+  '011': '1',
+  '010': '1',
+  '001': '1',
+  '000': '0',
 };
 
 // calculate the values of the next row based on the previous row
 function calculateNextRow(prevRow) {
   const nextRow = [];
-  for (i = 0, n = C_WIDTH / GRID_SIZE; i < n; i++) {
-    const nextKey =
-      (prevRow[i - 1] || 0).toString() +
-      prevRow[i].toString() +
-      (prevRow[i + 1] || 0).toString();
+  const n = C_WIDTH / GRID_SIZE;
+  for (i = 0; i < n; i++) {
+    let nextKey;
+    if (i === 0) {
+      nextKey = prevRow[n - 1] + prevRow[i] + prevRow[i + 1];
+    } else if (i === n - 1) {
+      nextKey = prevRow[i - 1] + prevRow[i] + prevRow[0];
+    } else {
+      nextKey = prevRow[i - 1] + prevRow[i] + prevRow[i + 1];
+    }
     nextRow.push(NEXT_ITER[nextKey]);
   }
   return nextRow;
@@ -67,7 +72,7 @@ function drawNextIter(nextRow) {
   // draw the new bottom row with the values of the new iteration
   ctx.clearRect(0, C_HEIGHT - GRID_SIZE, C_WIDTH, GRID_SIZE);
   for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
-    if (nextRow[i] === 1) {
+    if (nextRow[i] === '1') {
       ctx.fillRect(
         i * GRID_SIZE,
         C_HEIGHT - GRID_SIZE,
