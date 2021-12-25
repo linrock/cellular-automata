@@ -1,7 +1,9 @@
 const C_WIDTH = 602;
 const C_HEIGHT = 400;
 const GRID_SIZE = 2;
+
 const UPDATE_INTERVAL_MS = 50;
+const RULE_NUM = 30;
 
 const canvas = document.getElementById("world");
 canvas.width = C_WIDTH;
@@ -33,9 +35,8 @@ for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
   }
 }
 
-const RULE_30  = '00011110';
-const RULE_126 = '01111110';
-
+// converts a rule number to a 8-digit binary string
+const RULE_BIN = RULE_NUM.toString(2).padStart(8, '0');
 const ITER_KEYS = [
   '111',
   '110',
@@ -47,7 +48,7 @@ const ITER_KEYS = [
   '000',
 ];
 const ITER_MAP = {};
-ITER_KEYS.forEach((k, i) => ITER_MAP[k] = RULE_30[i]);
+ITER_KEYS.forEach((k, i) => ITER_MAP[k] = RULE_BIN[i]);
 
 // calculate the values of the next row based on the previous row
 function calculateNextRow(prevRow) {
