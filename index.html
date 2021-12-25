@@ -21,6 +21,7 @@
       canvas.height = C_HEIGHT;
       const ctx = canvas.getContext('2d');
 
+      // initialize the bottom row with random numbers
       const bottomRowInit = [];
       for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
         bottomRowInit.push(Math.round(Math.random()));
@@ -35,6 +36,11 @@
         }
       }
       ctx.fill();
+
+      // copy the previous row higher after the next iteration
+      const data = ctx.getImageData(
+        0, C_HEIGHT - GRID_SIZE, C_WIDTH, GRID_SIZE);
+      ctx.putImageData(data, 0, C_HEIGHT - 2 * GRID_SIZE);
     </script>
   </body>
 </html>
