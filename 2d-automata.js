@@ -17,13 +17,40 @@
   for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
     const row = [];
     for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
-      row.push(Math.random() > 0.5 ? 1 : 0);
+      row.push(Math.random() > 0.8 ? 1 : 0);
     }
     world.push(row);
   }
 
+  // naive way of calculating the next iteration of the world
   function calculateNewWorld(world) {
-    return world;
+    const newWorld = [];
+    for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
+      newWorld.push([]);
+      for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
+        let numLiveNeighbors = 0;
+        if (y > 0) {
+          numLiveNeighbors +=
+            (world[y - 1][x - 1] || 0) + world[y - 1][x] + (world[y - 1][x + 1] || 0);
+        }
+        numLiveNeighbors += world[y][x - 1] || 0 + world[y][x + 1] || 0;
+        if (y < C_HEIGHT / GRID_SIZE - 1) {
+          numLiveNeighbors +=
+            (world[y + 1][x - 1] || 0) + world[y + 1][x] + (world[y + 1][x + 1] || 0);
+        }
+        newWorld[y][x] = world[y][x];
+        if (newWorld[y][x]) {
+          if (numLiveNeighbors < 2) {
+            newWorld[y][x] = 0;
+          } else if (numLiveNeighbors > 3) {
+            newWorld[y][x] = 0;
+          }
+        } else if (numLiveNeighbors === 3) {
+          newWorld[y][x] = 1;
+        }
+      }
+    }
+    return newWorld;
   }
 
   function drawWorld(world) {
