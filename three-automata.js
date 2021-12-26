@@ -12,7 +12,8 @@
   // const RULE_NUM = 30;
   // const RULE_NUM = 73;
   // const RULE_NUM = 106;
-  const RULE_NUM = 30;
+  const RULE_NUM_TOP = 73;
+  const RULE_NUM_BOTTOM = 30;
 
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#39FF14';
@@ -36,11 +37,16 @@
   //   world[C_HEIGHT / GRID_SIZE - 1][i] = Math.random() > 0.5 ? 1 : 0;
   // }
 
-  // converts a rule number to a 8-digit binary string
-  const RULE_BIN = RULE_NUM.toString(2).padStart(8, '0');
   const ITER_KEYS = [7, 6, 5, 4, 3, 2, 1, 0];
-  const ITER_MAP = {};
-  ITER_KEYS.forEach((k, i) => ITER_MAP[k] = parseInt(RULE_BIN[i], 10));
+
+  const RULE_BIN_TOP = RULE_NUM_TOP.toString(2).padStart(8, '0');
+  const ITER_MAP_TOP = {};
+  ITER_KEYS.forEach((k, i) => ITER_MAP_TOP[k] = parseInt(RULE_BIN_TOP[i], 10));
+
+  const RULE_BIN_BOTTOM = RULE_NUM_BOTTOM.toString(2).padStart(8, '0');
+  const ITER_MAP_BOTTOM = {};
+  ITER_KEYS.forEach((k, i) => ITER_MAP_BOTTOM[k] = parseInt(RULE_BIN_BOTTOM[i], 10));
+
 
   // naive way of calculating the next iteration of the world
   function calculateNewWorld1d(world) {
@@ -64,7 +70,7 @@
       } else {
         nextKey = prevRow[x - 1] * 4 + prevRow[x] * 2 + prevRow[x + 1];
       }
-      newBottomRow.push(ITER_MAP[nextKey]);
+      newBottomRow.push(ITER_MAP_BOTTOM[nextKey]);
     }
     for (let y = C_HEIGHT / GRID_SIZE - 1; y > 2 * C_HEIGHT / GRID_SIZE / 3; y--) {
       newWorld[y - 1] = world[y];
@@ -83,7 +89,7 @@
       } else {
         nextKey = prevTopRow[x - 1] * 4 + prevTopRow[x] * 2 + prevTopRow[x + 1];
       }
-      newTopRow.push(ITER_MAP[nextKey]);
+      newTopRow.push(ITER_MAP_TOP[nextKey]);
     }
     for (let y = 0; y < C_HEIGHT / GRID_SIZE / 3; y++) {
       newWorld[y + 1] = world[y];
