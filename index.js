@@ -1,8 +1,12 @@
-const C_WIDTH = 602;
+const C_WIDTH = 600;
 const C_HEIGHT = 400;
-const GRID_SIZE = 2;
+const GRID_SIZE = 4;
 
 const UPDATE_INTERVAL_MS = 50;
+
+// https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
+// const RULE_NUM = 73;
+// const RULE_NUM = 73;
 const RULE_NUM = 30;
 
 const canvas = document.getElementById("world");
