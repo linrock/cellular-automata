@@ -10,15 +10,17 @@
   canvas.height = C_HEIGHT;
 
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#39FF14';
+  ctx.fillStyle = 'green';
 
   let world = [];
+
+  const CELL_LIVE = 10;
 
   // initialize the world with random numbers
   for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
     const row = [];
     for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
-      row.push(Math.random() > 0.8 ? 1 : 0);
+      row.push(Math.random() > 0.8 ? CELL_LIVE : 0);
     }
     world.push(row);
   }
@@ -29,23 +31,36 @@
     for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
       newWorld.push([]);
       for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
+        // calculate the number of live neighbors
         let numLiveNeighbors = 0;
         if (y > 0) {
           numLiveNeighbors +=
-            (world[y - 1][x - 1] || 0) + world[y - 1][x] + (world[y - 1][x + 1] || 0);
+            (world[y - 1][x - 1] === CELL_LIVE ? 1 : 0) +
+            (world[y - 1][x] === CELL_LIVE     ? 1 : 0) + 
+            (world[y - 1][x + 1] === CELL_LIVE ? 1 : 0);
         }
-        numLiveNeighbors += (world[y][x - 1] || 0) + (world[y][x + 1] || 0);
+        numLiveNeighbors +=
+          (world[y][x - 1] === CELL_LIVE ? 1 : 0) +
+          (world[y][x + 1] === CELL_LIVE ? 1 : 0);
         if (y < C_HEIGHT / GRID_SIZE - 1) {
           numLiveNeighbors +=
-            (world[y + 1][x - 1] || 0) + world[y + 1][x] + (world[y + 1][x + 1] || 0);
+            (world[y + 1][x - 1] === CELL_LIVE ? 1 : 0) +
+            (world[y + 1][x] === CELL_LIVE     ? 1 : 0) +
+            (world[y + 1][x + 1] === CELL_LIVE ? 1 : 0);
         }
+
+        // decide the new state of the current cell
         newWorld[y][x] = world[y][x];
-        if (newWorld[y][x]) {
+        if (newWorld[y][x] === CELL_LIVE) {
           if (numLiveNeighbors < 2 || numLiveNeighbors > 3) {
-            newWorld[y][x] = 0;
+            newWorld[y][x] = Math.max(0, newWorld[y][x] - 1);
           }
-        } else if (numLiveNeighbors === 3) {
-          newWorld[y][x] = 1;
+        } else {
+          if (numLiveNeighbors === 3) {
+            newWorld[y][x] = CELL_LIVE;
+          } else {
+            newWorld[y][x] = Math.max(0, newWorld[y][x] - 1);
+          }
         }
       }
     }
@@ -56,7 +71,12 @@
     ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
     for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
       for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
-        if (world[y][x] === 1) {
+        if (world[y][x] !== 0) {
+          if (world[y][x] === CELL_LIVE) {
+            ctx.fillStyle = 'lightgreen';
+          } else {
+            ctx.fillStyle = 'green';
+          }
           ctx.fillRect(
             x * GRID_SIZE,
             y * GRID_SIZE,
