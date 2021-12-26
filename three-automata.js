@@ -43,14 +43,10 @@
   ITER_KEYS.forEach((k, i) => ITER_MAP[k] = parseInt(RULE_BIN[i], 10));
 
   // naive way of calculating the next iteration of the world
-  function calculateNewWorld(world) {
+  function calculateNewWorld1d(world) {
     const newWorld = [];
     for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
-      const row = [];
-      for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
-        row.push(0);
-      }
-      newWorld.push(row);
+      newWorld[y] = world[y].slice();
     }
 
     // num grid values in X direction
@@ -92,22 +88,28 @@
     for (let y = 0; y < C_HEIGHT / GRID_SIZE / 3; y++) {
       newWorld[y + 1] = world[y];
     }
-    world[C_HEIGHT / GRID_SIZE / 3] = newWorld[C_HEIGHT / GRID_SIZE / 3];
     newWorld[0] = newTopRow;
 
+    return newWorld;
+  }
+
+  function calculateNewWorld2d(world) {
+    const newWorld = [];
+    for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
+      newWorld[y] = world[y].slice();
+    }
     // the middle third of the world follows the rules of the game of life
     for (let y = C_HEIGHT / GRID_SIZE / 3; y < 2 * C_HEIGHT / GRID_SIZE / 3; y++) {
       for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
-        let numLiveNeighbors = 0;
-        if (y > 0) {
-          numLiveNeighbors +=
-            (world[y - 1][x - 1] || 0) + world[y - 1][x] + (world[y - 1][x + 1] || 0);
-        }
-        numLiveNeighbors += (world[y][x - 1] || 0) + (world[y][x + 1] || 0);
-        if (y < C_HEIGHT / GRID_SIZE - 1) {
-          numLiveNeighbors +=
-            (world[y + 1][x - 1] || 0) + world[y + 1][x] + (world[y + 1][x + 1] || 0);
-        }
+        const numLiveNeighbors =
+          (world[y - 1][x - 1] || 0) +
+          world[y - 1][x] +
+          (world[y - 1][x + 1] || 0) +
+          (world[y][x - 1] || 0) +
+          (world[y][x + 1] || 0) +
+          (world[y + 1][x - 1] || 0) +
+          world[y + 1][x] +
+          (world[y + 1][x + 1] || 0);
         newWorld[y][x] = world[y][x];
         if (newWorld[y][x]) {
           if (numLiveNeighbors < 2 || numLiveNeighbors > 3) {
@@ -137,7 +139,8 @@
   }
 
   function updateForever() {
-    const newWorld = calculateNewWorld(world);
+    let newWorld = calculateNewWorld1d(world);
+    newWorld = calculateNewWorld2d(newWorld);
     requestAnimationFrame(() => drawWorld(newWorld));
     world = newWorld;
     setTimeout(() => updateForever(), UPDATE_INTERVAL_MS);
