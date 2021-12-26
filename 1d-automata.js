@@ -1,6 +1,6 @@
 (() => {
   const C_WIDTH = 400;
-  const C_HEIGHT = 200;
+  const C_HEIGHT = 400;
   const GRID_SIZE = 4;
 
   const UPDATE_INTERVAL_MS = 50;
