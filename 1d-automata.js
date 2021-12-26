@@ -1,6 +1,6 @@
 (() => {
   const C_WIDTH = 400;
-  const C_HEIGHT = 400;
+  const C_HEIGHT = 200;
   const GRID_SIZE = 4;
 
   const UPDATE_INTERVAL_MS = 50;
@@ -15,7 +15,9 @@
   const canvas = document.getElementById('1d-world');
   canvas.width = C_WIDTH;
   canvas.height = C_HEIGHT;
+
   const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#39FF14';
 
   const INIT = {
     // initialize the bottom row with random numbers

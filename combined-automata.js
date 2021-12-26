@@ -9,7 +9,13 @@
   canvas.width = C_WIDTH;
   canvas.height = C_HEIGHT;
 
+  // const RULE_NUM = 30;
+  // const RULE_NUM = 73;
+  // const RULE_NUM = 106;
+  const RULE_NUM = 30;
+
   const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#39FF14';
 
   // initialize the world with zeroes
   let world = [];
@@ -20,9 +26,14 @@
     }
     world.push(row);
   }
+
+  // central dot
   world[C_HEIGHT / GRID_SIZE - 1][C_WIDTH / GRID_SIZE / 2] = 1;
 
-  const RULE_NUM = 30;
+  // random
+  // for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
+  //   world[C_HEIGHT / GRID_SIZE - 1][i] = Math.random() > 0.5 ? 1 : 0;
+  // }
 
   // converts a rule number to a 8-digit binary string
   const RULE_BIN = RULE_NUM.toString(2).padStart(8, '0');
