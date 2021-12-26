@@ -33,16 +33,14 @@
           numLiveNeighbors +=
             (world[y - 1][x - 1] || 0) + world[y - 1][x] + (world[y - 1][x + 1] || 0);
         }
-        numLiveNeighbors += world[y][x - 1] || 0 + world[y][x + 1] || 0;
+        numLiveNeighbors += (world[y][x - 1] || 0) + (world[y][x + 1] || 0);
         if (y < C_HEIGHT / GRID_SIZE - 1) {
           numLiveNeighbors +=
             (world[y + 1][x - 1] || 0) + world[y + 1][x] + (world[y + 1][x + 1] || 0);
         }
         newWorld[y][x] = world[y][x];
         if (newWorld[y][x]) {
-          if (numLiveNeighbors < 2) {
-            newWorld[y][x] = 0;
-          } else if (numLiveNeighbors > 3) {
+          if (numLiveNeighbors < 2 || numLiveNeighbors > 3) {
             newWorld[y][x] = 0;
           }
         } else if (numLiveNeighbors === 3) {
