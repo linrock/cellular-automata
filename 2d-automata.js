@@ -8,9 +8,9 @@
   const canvas = document.getElementById('game-of-life');
   canvas.width = C_WIDTH;
   canvas.height = C_HEIGHT;
+  canvas.style.background = '#40376E'
 
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = 'green';
 
   let world = [];
 
@@ -73,9 +73,11 @@
       for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
         if (world[y][x] !== 0) {
           if (world[y][x] === CELL_LIVE) {
-            ctx.fillStyle = 'lightgreen';
+            ctx.fillStyle = '#A7F500';
+          } else if (world[y][x] > 5) {
+            ctx.fillStyle = '#B71540';
           } else {
-            ctx.fillStyle = 'green';
+            ctx.fillStyle = '#69140E';
           }
           ctx.fillRect(
             x * GRID_SIZE,
