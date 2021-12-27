@@ -9,6 +9,9 @@
   canvas.width = C_WIDTH;
   canvas.height = C_HEIGHT;
 
+  const NUM_CELLS_X = C_WIDTH / GRID_SIZE;
+  const NUM_CELLS_Y = C_HEIGHT / GRID_SIZE;
+
   // const RULE_NUM = 30;
   // const RULE_NUM = 73;
   // const RULE_NUM = 106;
@@ -20,17 +23,17 @@
 
   // initialize the world with zeroes
   let world = [];
-  for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
+  for (let y = 0; y < NUM_CELLS_Y; y++) {
     const row = [];
-    for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
+    for (let x = 0; x < NUM_CELLS_X; x++) {
       row.push(0);
     }
     world.push(row);
   }
 
   // central dot
-  world[0][C_WIDTH / GRID_SIZE / 2] = 1;
-  world[C_HEIGHT / GRID_SIZE - 1][C_WIDTH / GRID_SIZE / 2] = 1;
+  world[0][NUM_CELLS_X / 2] = 1;
+  world[NUM_CELLS_Y - 1][NUM_CELLS_X / 2] = 1;
 
   // random
   // for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
@@ -51,7 +54,7 @@
   // naive way of calculating the next iteration of the world
   function calculateNewWorld1d(world) {
     const newWorld = [];
-    for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
+    for (let y = 0; y < NUM_CELLS_Y; y++) {
       newWorld[y] = world[y].slice();
     }
 
@@ -60,38 +63,38 @@
 
     // the bottom third of the world is a 1d cellular automata
     const newBottomRow = [];
-    const prevRow = world[C_HEIGHT / GRID_SIZE - 1];
-    for (let x = 0; x < n; x++) {
-      let nextKey;
+    const prevRow = world[NUM_CELLS_Y - 1];
+    for (let x = 0; x < NUM_CELLS_X; x++) {
+      let key = prevRow[x] * 2;
       if (x === 0) {
-        nextKey = prevRow[n - 1] * 4 + prevRow[x] * 2 + prevRow[x + 1];
-      } else if (x === n - 1) {
-        nextKey = prevRow[x - 1] * 4 + prevRow[x] * 2 + prevRow[0];
+        key += prevRow[NUM_CELLS_X - 1] * 4 + prevRow[x + 1];
+      } else if (x === NUM_CELLS_X - 1) {
+        key += prevRow[x - 1] * 4 + prevRow[0];
       } else {
-        nextKey = prevRow[x - 1] * 4 + prevRow[x] * 2 + prevRow[x + 1];
+        key += prevRow[x - 1] * 4 + prevRow[x + 1];
       }
-      newBottomRow.push(ITER_MAP_BOTTOM[nextKey]);
+      newBottomRow.push(ITER_MAP_BOTTOM[key]);
     }
-    for (let y = C_HEIGHT / GRID_SIZE - 1; y > 2 * C_HEIGHT / GRID_SIZE / 3; y--) {
+    for (let y = NUM_CELLS_Y - 1; y > 2 * NUM_CELLS_Y / 3; y--) {
       newWorld[y - 1] = world[y];
     }
-    newWorld[C_HEIGHT / GRID_SIZE - 1] = newBottomRow;
+    newWorld[NUM_CELLS_Y - 1] = newBottomRow;
 
     // the top third of the world is a 1d cellular automata
     const newTopRow = [];
     const prevTopRow = world[0];
-    for (let x = 0; x < n; x++) {
-      let nextKey;
+    for (let x = 0; x < NUM_CELLS_X; x++) {
+      let key = prevTopRow[x] * 2;
       if (x === 0) {
-        nextKey = prevTopRow[n - 1] * 4 + prevTopRow[x] * 2 + prevTopRow[x + 1];
+        key += prevTopRow[NUM_CELLS_X - 1] * 4 + prevTopRow[x + 1];
       } else if (x === n - 1) {
-        nextKey = prevTopRow[x - 1] * 4 + prevTopRow[x] * 2 + prevTopRow[0];
+        key += prevTopRow[x - 1] * 4 + prevTopRow[0];
       } else {
-        nextKey = prevTopRow[x - 1] * 4 + prevTopRow[x] * 2 + prevTopRow[x + 1];
+        key += prevTopRow[x - 1] * 4 + prevTopRow[x + 1];
       }
-      newTopRow.push(ITER_MAP_TOP[nextKey]);
+      newTopRow.push(ITER_MAP_TOP[key]);
     }
-    for (let y = 0; y < C_HEIGHT / GRID_SIZE / 3; y++) {
+    for (let y = 0; y < NUM_CELLS_Y / 3; y++) {
       newWorld[y + 1] = world[y];
     }
     newWorld[0] = newTopRow;
@@ -101,12 +104,12 @@
 
   function calculateNewWorld2d(world) {
     const newWorld = [];
-    for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
+    for (let y = 0; y < NUM_CELLS_Y; y++) {
       newWorld[y] = world[y].slice();
     }
     // the middle third of the world follows the rules of the game of life
-    for (let y = C_HEIGHT / GRID_SIZE / 3; y < 2 * C_HEIGHT / GRID_SIZE / 3; y++) {
-      for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
+    for (let y = NUM_CELLS_Y / 3; y < 2 * NUM_CELLS_Y / 3; y++) {
+      for (let x = 0; x < NUM_CELLS_X; x++) {
         const numLiveNeighbors =
           (world[y - 1][x - 1] || 0) +
           world[y - 1][x] +
@@ -131,8 +134,8 @@
 
   function drawWorld(world) {
     ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
-    for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
-      for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
+    for (let y = 0; y < NUM_CELLS_Y; y++) {
+      for (let x = 0; x < NUM_CELLS_X; x++) {
         if (world[y][x] === 1) {
           ctx.fillRect(
             x * GRID_SIZE,
