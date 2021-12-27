@@ -12,6 +12,10 @@
 
   const ctx = canvas.getContext('2d');
 
+  let isAnimating = false;
+  canvas.addEventListener('play', () => isAnimating = true);
+  canvas.addEventListener('pause', () => isAnimating = false);
+
   let world = [];
 
   const CELL_LIVE = 10;
@@ -90,9 +94,11 @@
   }
 
   function updateForever() {
-    const newWorld = calculateNewWorld(world);
-    requestAnimationFrame(() => drawWorld(newWorld));
-    world = newWorld;
+    if (isAnimating) {
+      const newWorld = calculateNewWorld(world);
+      requestAnimationFrame(() => drawWorld(newWorld));
+      world = newWorld;
+    }
     setTimeout(() => updateForever(), UPDATE_INTERVAL_MS);
   }
 

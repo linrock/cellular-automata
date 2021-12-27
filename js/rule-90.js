@@ -14,6 +14,10 @@
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#39FF14';
 
+  let isAnimating = false;
+  canvas.addEventListener('play', () => isAnimating = true);
+  canvas.addEventListener('pause', () => isAnimating = false);
+
   function drawCells(cells) {
     requestAnimationFrame(() => {
       // shift all rows up by one. removes the top row
@@ -36,8 +40,10 @@
   }
 
   function updateForever(eca) {
-    eca.calculateNextGeneration();
-    drawCells(eca.cells);
+    if (isAnimating) {
+      eca.calculateNextGeneration();
+      drawCells(eca.cells);
+    }
     setTimeout(() => updateForever(eca), UPDATE_INTERVAL_MS);
   }
 

@@ -13,6 +13,10 @@
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#39FF14';
 
+  let isAnimating = false;
+  canvas.addEventListener('play', () => isAnimating = true);
+  canvas.addEventListener('pause', () => isAnimating = false);
+
   // initialize the world with random numbers
   let world = [];
   for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
@@ -81,9 +85,11 @@
   }
 
   function updateForever() {
-    const newWorld = calculateNewWorld(world);
-    requestAnimationFrame(() => drawWorld(newWorld));
-    world = newWorld;
+    if (isAnimating) {
+      const newWorld = calculateNewWorld(world);
+      requestAnimationFrame(() => drawWorld(newWorld));
+      world = newWorld;
+    }
     setTimeout(() => updateForever(), UPDATE_INTERVAL_MS);
   }
 

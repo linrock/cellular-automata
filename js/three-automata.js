@@ -21,6 +21,10 @@
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#39FF14';
 
+  let isAnimating = false;
+  canvas.addEventListener('play', () => isAnimating = true);
+  canvas.addEventListener('pause', () => isAnimating = false);
+
   // initialize the world with zeroes
   let world = [];
   for (let y = 0; y < NUM_CELLS_Y; y++) {
@@ -148,10 +152,12 @@
   }
 
   function updateForever() {
-    let newWorld = calculateNewWorld1d(world);
-    newWorld = calculateNewWorld2d(newWorld);
-    requestAnimationFrame(() => drawWorld(newWorld));
-    world = newWorld;
+    if (isAnimating) {
+      let newWorld = calculateNewWorld1d(world);
+      newWorld = calculateNewWorld2d(newWorld);
+      requestAnimationFrame(() => drawWorld(newWorld));
+      world = newWorld;
+    }
     setTimeout(() => updateForever(), UPDATE_INTERVAL_MS);
   }
 
