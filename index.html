@@ -10,53 +10,71 @@
         <p>
           Cellular automata are grids of "cells" where each cell
           changes over time based on the state of its neighbors.
+          The state of the grid in the next point in time is called
+          a generation.
         </p>
       </section>
 
       <section>
         <h3>Elementary cellular automata</h3>
         <p>
-          The simplest automata are one-dimensional rows. Each cell has
-          two possible states. The state of a cell in the next generation
-          depends only on its current state and the state of its two
-          neighbors.
+          The simplest automata are one-dimensional rows. Each cell in a
+          row has two possible states. The state of a cell in the next
+          generation depends only on its current state and the state of
+          its two neighbors to its left and right.
         </p>
         <p>
-          We can visualize the evolution of a one-dimensional automata
+          We can visualize the evolution of one-dimensional automata
           over time by adding new generations to the top or bottom of a
-          grid. We'll then see a pattern that appears to scroll vertically.
+          grid. If we do this continously, we'll see a pattern that
+          appears to scroll vertically.
         </p>
         <canvas id="1d-world"></canvas>
         <div>
-        <small>Rule 30 = chaotic behavior</small>
+          <small>Rule 30 = chaotic behavior</small>
         </div>
       </section>
 
       <section>
-        <h3>Conway's Game of Life</h3>
+        <h3>Two-dimensional cellular automata</h3>
         <p>
-          The most popular two-dimensional cellular automaton was created
-          by John Conway in 1970. In each new generation, the state of the
-          world is generated based on these rules:
+          The world is a 2D grid of cells. Each generation considers the
+          states of a cell along with the states of its neighbors
+          in two dimensions.
+        </p>
+        <p>
+          The most popular two-dimensional cellular automaton is John
+          Conway's Game of Life. Cells have two possible states: live or
+          dead. In each generation, the state of the world is generated
+          based on these rules:
           <ul>
-            <li>A dead cell with three neighbors becomes a live cell</li>
-            <li>A live cell with two or three neighbors stays alive</li>
+            <li>A dead cell with 3 neighbors becomes a live cell</li>
+            <li>A live cell with 2 or 3 neighbors stays the same</li>
             <li>All other live cells become dead cells</li>
           </ul>
         </p>
-        <canvas id="game-of-life"></canvas>
-        <aside></aside>
       </section>
 
       <section>
-        <h1>Experiments with many worlds</h1>
+        <h2>Visual experiments</h2>
+      </section>
+
+      <section>
+        <h3>Trails in 2D cellular automata</h3>
+        <p>
+          In the Game of Life, if we instead fade a cell from live to
+          dead over a few generations, moving patterns in the world will
+          appear to leave trails behind them.
+        </p>
+        <canvas id="game-of-life"></canvas>
       </section>
 
       <section>
         <h3>Elementary automaton + Game of Life</h3>
         <p>
           The bottom half of the world is an elementary cellular automaton.
-          The top half is governed by the rules of Life.
+          As each generation reaches the middle, it influences the top half
+          of the world, which is governed by the Game of Life.
         </p>
         <canvas id="combined-world"></canvas>
         <aside></aside>
@@ -67,7 +85,7 @@
         <p>
           The top and bottom thirds of the world are two different
           elementary cellular automata. The middle third of the world
-          follows the rules of Life.
+          follows the Game of Life.
         </p>
         <canvas id="three-combined-world"></canvas>
         <aside></aside>
