@@ -1,5 +1,5 @@
 (() => {
-  const C_WIDTH = 300;
+  const C_WIDTH = 400;
   const C_HEIGHT = 200;
   const GRID_SIZE = 4;
 

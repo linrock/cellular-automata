@@ -12,11 +12,19 @@
         height: 100%;
       }
       h1 {
+        color: #aaa;
+        font-size: 2rem;
         margin-top: 20px;
+      }
+      h3 {
+        color: #aaa;
       }
       p {
         line-height: 1.5rem;
         margin-bottom: 2rem;
+      }
+      li {
+        line-height: 1.5rem;
       }
       article {
         width: 50%;
@@ -64,21 +72,42 @@
       </section>
 
       <section>
-        <h3>Conway's game of life</h3>
+        <h3>Conway's Game of Life</h3>
         <p>
+          The most popular two-dimensional cellular automaton was created
+          by John Conway in 1970. In each new generation, the state of the
+          world is generated based on these rules:
+          <ul>
+            <li>A dead cell with three neighbors becomes a live cell</li>
+            <li>A live cell with two or three neighbors stays alive</li>
+            <li>All other live cells become dead cells</li>
+          </ul>
         </p>
         <canvas id="game-of-life"></canvas>
         <aside></aside>
       </section>
 
       <section>
-        <h3>Two worlds</h3>
+        <h1>Experiments with many worlds</h1>
+      </section>
+
+      <section>
+        <h3>Elementary automaton + Game of Life</h3>
+        <p>
+          The bottom half of the world is an elementary cellular automaton.
+          The top half is governed by the rules of Life.
+        </p>
         <canvas id="combined-world"></canvas>
         <aside></aside>
       </section>
 
       <section>
-        <h3>Three worlds</h3>
+        <h3>2x elementary automaton + Game of Life</h3>
+        <p>
+          The top and bottom thirds of the world are two different
+          elementary cellular automatons. The middle third follows
+          the rules of Life.
+        </p>
         <canvas id="three-combined-world"></canvas>
         <aside></aside>
       </section>
