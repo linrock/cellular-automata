@@ -9,7 +9,7 @@
       <section>
         <h1>Cellular automata</h1>
         <p>
-          Cellular automata are grids of cells where each cell changes
+          A cellular automaton is a grid of cells where each cell changes
           over time based on a set of rules and the state of its neighbors.
           The state of a grid in the next point in time is called a
           generation. Simple rules can lead to complex patterns.
@@ -23,12 +23,16 @@
               <ul>
                 <li><a href="#one-dimensional">One-dimensional</a>
                   <ul>
-                    <li>ECA</li>
+                    <li><a href="#elementary-cellular-automata">ECA</a></li>
                   </ul>
                 </li>
                 <li><a href="#two-dimensional">Two-dimensional</a>
                   <ul>
-                    <li>Conway's Game of Life</li>
+                    <li>
+                      <a href="#conways-game-of-life">
+                        Conway's Game of Life
+                      </a>
+                    </li>
                   </ul>
                 </li>
               </ul>
@@ -65,17 +69,25 @@
       <section>
         <h3 id="one-dimensional">One-dimensional cellular automata</h3>
         <p>
-          The simplest automata are known as elementary cellular automata
-          (ECA). They're one-dimensional rows of cells. Each cell in a
-          row has two possible states. The state of a cell in the next
-          generation depends only on its current state and the state of
-          its two neighbors to its left and right.
-        </p>
+          The world is a 1D row of cells. Each new generation considers
+          the state of a cell along with the states of its neighbors to
+          its left and right.
         <p>
-          We can visualize the evolution of one-dimensional automata
+        <p>
+          We can visualize the evolution of 1D cellular automata
           over time by adding new generations to the top or bottom of a
           grid. If we do this continously over time, we'll see a pattern
           scrolling vertically.
+        </p>
+      </section>
+
+      <section>
+        <h4 id="elementary-cellular-automata">Elementary cellular automata</h4>
+        <p>
+          The simplest automata are known as elementary cellular automata
+          (ECA). Each cell has two possible states. The state of a cell in
+          the next generation depends on its current state and the state of
+          its two immediate neighbors on its left and right.
         </p>
         <canvas id="1d-world"></canvas>
         <div>
@@ -87,14 +99,22 @@
         <h3 id="two-dimensional">Two-dimensional cellular automata</h3>
         <p>
           The world is a 2D grid of cells. Each generation considers the
-          states of a cell along with the states of its neighbors
-          in two dimensions.
+          states of each cell along with the states of the cell's surrounding
+          neighbors on the grid.
         </p>
         <p>
-          The most popular two-dimensional cellular automaton is John
-          Conway's Game of Life. Cells have two possible states: live or
-          dead. In each generation, the state of the world is generated
-          based on these rules:
+          We can visualize new generations of 2D cellular automata over time
+          by updating the states of the cells on the 2D grid itself.
+        </p>
+      </section>
+
+      <section>
+        <h4 id="conways-game-of-life">Conway's Game of Life</h4>
+        <p>
+          Cells have two possible states: live or dead. New generations of
+          the world consider only the 8 immediate neighbors of each cell.
+          In each generation, the state of the world is generated based on
+          these rules:
           <ul>
             <li>A dead cell with 3 neighbors becomes a live cell</li>
             <li>A live cell with 2 or 3 neighbors stays the same</li>
