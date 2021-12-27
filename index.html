@@ -19,6 +19,9 @@
       h3 {
         color: #aaa;
       }
+      a {
+        display: block;
+      }
       p {
         line-height: 1.5rem;
         margin-bottom: 2rem;
@@ -34,11 +37,17 @@
         margin-bottom: 3rem;
       }
       canvas {
-        margin: 20px 0;
         background: #222;
+      }
+      small {
+        display: block;
+        margin-top: 1.5rem;
       }
       aside {
         margin-left: 20px;
+      }
+      footer {
+        margin-top: 50px;
       }
     </style>
   </head>
@@ -102,15 +111,25 @@
       </section>
 
       <section>
-        <h3>2x elementary automaton + Game of Life</h3>
+        <h3>2x elementary automata + Game of Life</h3>
         <p>
           The top and bottom thirds of the world are two different
-          elementary cellular automatons. The middle third follows
-          the rules of Life.
+          elementary cellular automata. The middle third of the world
+          follows the rules of Life.
         </p>
         <canvas id="three-combined-world"></canvas>
         <aside></aside>
       </section>
+
+      <section>
+        <h1>References</h1>
+        <a href="https://en.wikipedia.org/wiki/Cellular_automaton"
+           target="_blank">Wikipedia - Cellular automaton</a>
+        <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+           target="_blank">Wikipedia - Conway's Game of Life</a>
+      </section>
+
+      <footer><a href="javascript:">source code</a></footer>
     </article>
 
     <script src="1d-automata.js"></script>
