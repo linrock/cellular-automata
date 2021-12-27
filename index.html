@@ -21,8 +21,16 @@
           <ul>
             <li><a href="#overview">Overview</a>
               <ul>
-                <li><a href="#one-dimensional">One-dimensional</a></li>
-                <li><a href="#two-dimensional">Two-dimensional</a></li>
+                <li><a href="#one-dimensional">One-dimensional</a>
+                  <ul>
+                    <li>ECA</li>
+                  </ul>
+                </li>
+                <li><a href="#two-dimensional">Two-dimensional</a>
+                  <ul>
+                    <li>Conway's Game of Life</li>
+                  </ul>
+                </li>
               </ul>
             </li>
             <li><a href="#visual-experiments">Visual experiments</a>
@@ -37,9 +45,16 @@
         </nav>
 
         <aside>
-          <canvas width="240" height="120" id="gol-glider"></canvas>
-          <canvas width="240" height="120" id="rule-90"
-                  style="background: black"></canvas>
+          <figure>
+            <canvas width="240" height="120" id="rule-90"
+                    style="background: black"></canvas>
+            <figcaption>ECA rule 90</figcaption>
+          </figure>
+
+          <figure>
+            <canvas width="240" height="120" id="gol-glider"></canvas>
+            <figcaption>Gosper glider gun</figcaption>
+          </figure>
         </aside>
       </section>
 
@@ -48,9 +63,10 @@
       </section>
 
       <section>
-        <h3 id="one-dimensional">Elementary cellular automata</h3>
+        <h3 id="one-dimensional">One-dimensional cellular automata</h3>
         <p>
-          The simplest automata are one-dimensional rows. Each cell in a
+          The simplest automata are known as elementary cellular automata
+          (ECA). They're one-dimensional rows of cells. Each cell in a
           row has two possible states. The state of a cell in the next
           generation depends only on its current state and the state of
           its two neighbors to its left and right.
@@ -58,8 +74,8 @@
         <p>
           We can visualize the evolution of one-dimensional automata
           over time by adding new generations to the top or bottom of a
-          grid. If we do this continously, we'll see a pattern that
-          appears to scroll vertically.
+          grid. If we do this continously over time, we'll see a pattern
+          scrolling vertically.
         </p>
         <canvas id="1d-world"></canvas>
         <div>

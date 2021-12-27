@@ -52,21 +52,23 @@ section {
   margin-bottom: 3rem;
 }
 
-.flex-responsive {
-  display: flex;
+figure {
+  margin: 0 auto 2rem;
 }
 
-.flex-responsive nav, .flex-responsive aside {
-  width: 50%;
+figcaption {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.flex-responsive {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media only screen and (max-width: 600px) {
   .flex-responsive {
     display: block;
-  }
-
-  .flex-responsive nav, .flex-responsive aside {
-    width: auto;
   }
 }
 
@@ -77,10 +79,6 @@ canvas {
 small {
   display: block;
   margin-top: 1.5rem;
-}
-
-aside {
-  margin-left: 20px;
 }
 
 footer {
