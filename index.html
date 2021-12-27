@@ -19,34 +19,31 @@
       <section class="flex-responsive">
         <nav>
           <ul>
-            <li><a href="#overview">Overview</a>
+            <li><a href="#one-dimensional">One-dimensional</a>
               <ul>
-                <li><a href="#one-dimensional">One-dimensional</a>
-                  <ul>
-                    <li><a href="#elementary-cellular-automata">ECA</a></li>
-                  </ul>
+                <li><a href="#elementary-cellular-automata">ECA</a></li>
+              </ul>
+            </li>
+            <li><a href="#two-dimensional">Two-dimensional</a>
+              <ul>
+                <li>
+                  <a href="#conways-game-of-life">
+                    Conway's Game of Life
+                  </a>
                 </li>
-                <li><a href="#two-dimensional">Two-dimensional</a>
-                  <ul>
-                    <li>
-                      <a href="#conways-game-of-life">
-                        Conway's Game of Life
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#day-and-night">
-                        Day and night
-                      </a>
-                    </li>
-                  </ul>
+                <li>
+                  <a href="#day-and-night">
+                    Day and night
+                  </a>
                 </li>
               </ul>
             </li>
             <li><a href="#visual-experiments">Visual experiments</a>
               <ul>
-                <li>Trails in 2D</li>
-                <li>ECA + Game of Life</li>
-                <li>2x ECA + Game of Life</li>
+                <li><a href="#trails-in-2d">Trails in 2D</a></li>
+                <li><a href="#eca-and-game-of-life">ECA + Game of Life</a></li>
+                <li><a href="#two-eca-and-game-of-life">
+                  2x ECA + Game of Life</a></li>
               </ul>
             </li>
             <li><a href="#references">References</a></li>
@@ -65,10 +62,6 @@
             <figcaption>Gosper glider gun</figcaption>
           </figure>
         </aside>
-      </section>
-
-      <section>
-        <h2 id="overview">Overview</h2>
       </section>
 
       <section>
@@ -154,7 +147,7 @@
       </section>
 
       <section>
-        <h3>Trails in 2D</h3>
+        <h3 id="trails-in-2d">Trails in 2D</h3>
         <p>
           In the Game of Life, if we instead fade a cell from live to
           dead over a few generations, moving patterns in the world will
@@ -164,7 +157,7 @@
       </section>
 
       <section>
-        <h3>Elementary automaton + Game of Life</h3>
+        <h3 id="eca-and-game-of-life">Elementary automaton + Game of Life</h3>
         <p>
           The bottom half of the world is an elementary cellular automaton.
           As each generation reaches the middle, it influences the top half
@@ -175,7 +168,9 @@
       </section>
 
       <section>
-        <h3>2x elementary automata + Game of Life</h3>
+        <h3 id="two-eca-and-game-of-life">
+          2x elementary automata + Game of Life
+        </h3>
         <p>
           The top and bottom thirds of the world are two different
           elementary cellular automata. The middle third of the world
@@ -187,12 +182,13 @@
 
       <section>
         <h1 id="references">References</h1>
-        <a href="https://en.wikipedia.org/wiki/Cellular_automaton"
-           target="_blank">Wikipedia - Cellular automaton</a>
-        <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
-           target="_blank">Wikipedia - Conway's Game of Life</a>
-        <a href="https://en.wikipedia.org/wiki/Category:Cellular_automaton_rules"
-           target="_blank">Wikipedia - Category: Cellular automaton rules</a>
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/Cellular_automaton"
+                 target="_blank">Wikipedia - Cellular automaton</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+                 target="_blank">Wikipedia - Conway's Game of Life</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Category:Cellular_automaton_rules"
+                 target="_blank">Wikipedia - Category: Cellular automaton rules</a></li>
       </section>
 
       <footer><a href="javascript:">source code</a></footer>
