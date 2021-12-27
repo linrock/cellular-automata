@@ -5,10 +5,13 @@
 
   const UPDATE_INTERVAL_MS = 50;
 
+  const NUM_CELLS_X = C_WIDTH / GRID_SIZE;
+  const NUM_CELLS_Y = C_HEIGHT / GRID_SIZE;
+
   // https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
+  const RULE_NUM = 30;   // chaotic
+  // const RULE_NUM = 70;
   // const RULE_NUM = 73;
-  // const RULE_NUM = 73;
-  const RULE_NUM = 30;
   // const RULE_NUM = 110;
   // const RULE_NUM = 184;
 
@@ -22,18 +25,16 @@
   const INIT = {
     // initialize the bottom row with random numbers
     RANDOM_UNIFORM: () => {
-      for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
+      for (let i = 0; i < NUM_CELLS_X; i++) {
         bottomRow.push(Math.random() > 0.5 ? 1 : 0);
       }
     },
     // initialize the bottom row with a single pixel in the middle
     ONE_MIDDLE: () => {
-      for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
+      for (let i = 0; i < NUM_CELLS_X; i++) {
         bottomRow[i] = 0;
-        if (i === ~~(C_WIDTH / GRID_SIZE / 2)) {
-          bottomRow[i] = 1;
-        }
       }
+      bottomRow[~~(NUM_CELLS_X / 2)] = 1;
     },
   };
 
@@ -42,7 +43,7 @@
   INIT.ONE_MIDDLE();
 
   // draw the bottom row
-  for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
+  for (let i = 0; i < NUM_CELLS_X; i++) {
     if (bottomRow[i]) {
       ctx.fillRect(
         i * GRID_SIZE,
@@ -61,15 +62,14 @@
   // calculate the values of the next row based on the previous row
   function calculateNextRow(prevRow) {
     const nextRow = [];
-    const n = C_WIDTH / GRID_SIZE;
-    for (i = 0; i < n; i++) {
-      let nextKey;
+    for (i = 0; i < NUM_CELLS_X; i++) {
+      let nextKey = 2 * prevRow[i];
       if (i === 0) {
-        nextKey = 4 * prevRow[n - 1] + 2 * prevRow[i] + prevRow[i + 1];
-      } else if (i === n - 1) {
-        nextKey = 4 * prevRow[i - 1] + 2 * prevRow[i] + prevRow[0];
+        nextKey += 4 * prevRow[NUM_CELLS_X - 1] + prevRow[i + 1];
+      } else if (i === NUM_CELLS_X - 1) {
+        nextKey += 4 * prevRow[i - 1] + prevRow[0];
       } else {
-        nextKey = 4 * prevRow[i - 1] + 2 * prevRow[i] + prevRow[i + 1];
+        nextKey += 4 * prevRow[i - 1] + prevRow[i + 1];
       }
       nextRow.push(ITER_MAP[nextKey]);
     }
@@ -84,7 +84,7 @@
 
     // draw the new bottom row with the values of the new iteration
     ctx.clearRect(0, C_HEIGHT - GRID_SIZE, C_WIDTH, GRID_SIZE);
-    for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
+    for (let i = 0; i < NUM_CELLS_X; i++) {
       if (nextRow[i]) {
         ctx.fillRect(
           i * GRID_SIZE,
