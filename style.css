@@ -44,6 +44,10 @@ ul {
   margin: 0;
 }
 
+nav > ul {
+  margin-bottom: 2rem;
+}
+
 li {
   line-height: 1.75rem;
 }
@@ -93,5 +97,5 @@ small {
 }
 
 footer {
-  margin-top: 50px;
+  margin-top: 4rem;
 }
