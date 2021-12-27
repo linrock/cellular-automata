@@ -69,6 +69,7 @@ figure:last-child {
 figcaption {
   font-size: 0.8rem;
   margin-top: 0.5rem;
+  opacity: 0.7;
 }
 
 .flex-responsive {
