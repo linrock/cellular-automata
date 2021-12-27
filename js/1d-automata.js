@@ -22,28 +22,30 @@
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#39FF14';
 
-  function drawNextIter(nextRow) {
-    // move all the previously-calculated rows up a row
-    const data = ctx.getImageData(
-      0, GRID_SIZE, C_WIDTH, C_HEIGHT - GRID_SIZE);
-    ctx.putImageData(data, 0, 0);
+  function drawCells(cells) {
+    requestAnimationFrame(() => {
+      // move all the previously-calculated rows up a row
+      const data = ctx.getImageData(
+        0, GRID_SIZE, C_WIDTH, C_HEIGHT - GRID_SIZE);
+      ctx.putImageData(data, 0, 0);
 
-    // draw the new bottom row with the values of the new iteration
-    ctx.clearRect(0, C_HEIGHT - GRID_SIZE, C_WIDTH, GRID_SIZE);
-    for (let i = 0; i < NUM_CELLS_X; i++) {
-      if (nextRow[i]) {
-        ctx.fillRect(
-          i * GRID_SIZE,
-          C_HEIGHT - GRID_SIZE,
-          GRID_SIZE,
-          GRID_SIZE);
+      // draw the new bottom row with the values of the new iteration
+      ctx.clearRect(0, C_HEIGHT - GRID_SIZE, C_WIDTH, GRID_SIZE);
+      for (let i = 0; i < NUM_CELLS_X; i++) {
+        if (cells[i]) {
+          ctx.fillRect(
+            i * GRID_SIZE,
+            C_HEIGHT - GRID_SIZE,
+            GRID_SIZE,
+            GRID_SIZE);
+        }
       }
-    }
+    });
   }
 
   function updateForever(eca) {
-    const nextRow = eca.calculateNextGeneration();
-    requestAnimationFrame(() => drawNextIter(nextRow));
+    eca.calculateNextGeneration();
+    drawCells(eca.cells);
     setTimeout(() => updateForever(eca), UPDATE_INTERVAL_MS);
   }
 
@@ -51,15 +53,8 @@
   const eca = new ECA(NUM_CELLS_X, RULE_NUM, 'one_middle'); 
 
   // draw the bottom row
-  for (let i = 0; i < NUM_CELLS_X; i++) {
-    if (eca.cells[i]) {
-      ctx.fillRect(
-        i * GRID_SIZE,
-        C_HEIGHT - GRID_SIZE,
-        GRID_SIZE,
-        GRID_SIZE);
-    }
-  }
+  drawCells(eca.cells);
 
+  // forever repeat calculating new rows and drawing them
   updateForever(eca);
 })();
