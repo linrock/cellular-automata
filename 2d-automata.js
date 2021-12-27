@@ -1,5 +1,5 @@
 (() => {
-  const C_WIDTH = 400;
+  const C_WIDTH = 300;
   const C_HEIGHT = 200;
   const GRID_SIZE = 4;
 
@@ -73,7 +73,7 @@
       for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
         if (world[y][x] !== 0) {
           if (world[y][x] === CELL_LIVE) {
-            ctx.fillStyle = '#00fddc';
+            ctx.fillStyle = '#b5ffe9';
           } else if (world[y][x] > CELL_LIVE / 2) {
             ctx.fillStyle = '#ff66b3';
           } else {
