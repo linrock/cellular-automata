@@ -15,16 +15,34 @@
   // const RULE_NUM = 110;
   // const RULE_NUM = 184;
 
+  // const FG_COLOR = '#39FF14'; // light green
+  const FG_COLOR = '#cef9f2'; // light blue
+  const BG_COLOR = '#1b065e';
+
   const canvas = document.getElementById('1d-world');
   canvas.width = C_WIDTH;
   canvas.height = C_HEIGHT;
+  canvas.style.background = BG_COLOR;
 
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#39FF14';
+  ctx.fillStyle = FG_COLOR;
+
+  // initialize an elementary cellular automaton
+  let eca = new ECA(NUM_CELLS_X, RULE_NUM, 'one_middle');
 
   let isAnimating = false;
   canvas.addEventListener('play', () => isAnimating = true);
   canvas.addEventListener('pause', () => isAnimating = false);
+  canvas.addEventListener('click', () => {
+    // click to clear the canvas and start over
+    isAnimating = false;
+    requestAnimationFrame(() => {
+      ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
+    });
+    eca = new ECA(NUM_CELLS_X, RULE_NUM, 'one_middle');
+    drawCells(eca.cells);
+    isAnimating = true;
+  });
 
   function drawCells(cells) {
     requestAnimationFrame(() => {
@@ -47,20 +65,14 @@
     });
   }
 
-  function updateForever(eca) {
+  function updateForever() {
     if (isAnimating) {
       eca.calculateNextGeneration();
       drawCells(eca.cells);
     }
-    setTimeout(() => updateForever(eca), UPDATE_INTERVAL_MS);
+    setTimeout(() => updateForever(), UPDATE_INTERVAL_MS);
   }
 
-  // initialize an elementary cellular automaton
-  const eca = new ECA(NUM_CELLS_X, RULE_NUM, 'one_middle'); 
-
-  // draw the bottom row
-  drawCells(eca.cells);
-
-  // forever repeat calculating new rows and drawing them
-  updateForever(eca);
+  drawCells(eca.cells);  // draw the bottom row
+  updateForever();       // forever repeat calculating/drawing new rows
 })();
