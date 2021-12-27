@@ -24,12 +24,12 @@
 
   function drawCells(cells) {
     requestAnimationFrame(() => {
-      // move all the previously-calculated rows up a row
+      // shift all rows up by one. removes the top row
       const data = ctx.getImageData(
         0, GRID_SIZE, C_WIDTH, C_HEIGHT - GRID_SIZE);
       ctx.putImageData(data, 0, 0);
 
-      // draw the new bottom row with the values of the new iteration
+      // draw the new bottom row with the values of the new generation
       ctx.clearRect(0, C_HEIGHT - GRID_SIZE, C_WIDTH, GRID_SIZE);
       for (let i = 0; i < NUM_CELLS_X; i++) {
         if (cells[i]) {
