@@ -34,8 +34,12 @@ p {
   margin-bottom: 2rem;
 }
 
+ul {
+  margin: 0;
+}
+
 li {
-  line-height: 1.5rem;
+  line-height: 1.75rem;
 }
 
 article {
@@ -46,6 +50,24 @@ article {
 
 section {
   margin-bottom: 3rem;
+}
+
+.flex-responsive {
+  display: flex;
+}
+
+.flex-responsive nav, .flex-responsive aside {
+  width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .flex-responsive {
+    display: block;
+  }
+
+  .flex-responsive nav, .flex-responsive aside {
+    width: auto;
+  }
 }
 
 canvas {
