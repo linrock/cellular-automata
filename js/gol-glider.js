@@ -19,14 +19,8 @@
   // initialize the world with random numbers
   let world = [];
   for (let y = 0; y < NUM_CELLS_Y; y++) {
-    const row = [];
-    for (let x = 0; x < NUM_CELLS_X; x++) {
-      row.push(0);
-    }
-    world.push(row);
+    world.push(new Array(NUM_CELLS_X).fill(0));
   }
-
-  console.log(`${NUM_CELLS_Y} ${NUM_CELLS_X}`);
 
   // initialize a glider gun
   world[5][1] = 1;
