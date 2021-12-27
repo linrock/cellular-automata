@@ -14,12 +14,6 @@ h1 {
   margin-top: 20px;
 }
 
-h1 {
-  color: #aaa;
-  font-size: 2rem;
-  margin-top: 20px;
-}
-
 h2 {
   color: #aaa;
   font-size: 1.5rem;
@@ -32,6 +26,7 @@ h3 {
 
 a {
   display: block;
+  color: inherit;
 }
 
 p {
