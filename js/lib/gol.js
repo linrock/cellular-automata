@@ -18,6 +18,19 @@ class GOL {
     }
   }
 
+  // method of deciding the new state of the current cell
+  newCellRule(state, numLiveNeighbors) {
+    if (state)  {
+      if (numLiveNeighbors < 2 || numLiveNeighbors > 3) {
+        return 0;
+      }
+      return state;
+    } else if (numLiveNeighbors === 3) {
+      return 1;
+    }
+    return 0;
+  }
+
   // naive way of calculating the next generation of the world
   calculateNewWorld() {
     const newWorld = [];
@@ -41,20 +54,7 @@ class GOL {
             (this.world[y + 1][x]     ? 1 : 0) +
             (this.world[y + 1][x + 1] ? 1 : 0);
         }
-
-        // decide the new state of the current cell
-        newWorld[y][x] = this.world[y][x];
-        if (newWorld[y][x]) {
-          if (numLiveNeighbors < 2 || numLiveNeighbors > 3) {
-            newWorld[y][x] = 0;
-          }
-        } else {
-          if (numLiveNeighbors === 3) {
-            newWorld[y][x] = 1;
-          } else {
-            newWorld[y][x] = 0;
-          }
-        }
+        newWorld[y][x] = this.newCellRule(this.world[y][x], numLiveNeighbors);
       }
     }
     this.world = newWorld;
