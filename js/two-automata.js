@@ -21,6 +21,8 @@
   canvas.addEventListener('play', () => isAnimating = true);
   canvas.addEventListener('pause', () => isAnimating = false);
 
+  const eca = new ECA(C_WIDTH / GRID_SIZE, RULE_NUM, 'one_middle');
+
   // initialize the world with zeroes
   let world = [];
   for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
@@ -30,20 +32,7 @@
     }
     world.push(row);
   }
-
-  // central dot
-  world[C_HEIGHT / GRID_SIZE - 1][C_WIDTH / GRID_SIZE / 2] = 1;
-
-  // random
-  // for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
-  //   world[C_HEIGHT / GRID_SIZE - 1][i] = Math.random() > 0.5 ? 1 : 0;
-  // }
-
-  // converts a rule number to a 8-digit binary string
-  const RULE_BIN = RULE_NUM.toString(2).padStart(8, '0');
-  const ITER_KEYS = [7, 6, 5, 4, 3, 2, 1, 0];
-  const ITER_MAP = {};
-  ITER_KEYS.forEach((k, i) => ITER_MAP[k] = parseInt(RULE_BIN[i], 10));
+  world[C_HEIGHT / GRID_SIZE - 1] = eca.cells;
 
   // naive way of calculating the next iteration of the world
   function calculateNewWorld(world) {
@@ -57,20 +46,8 @@
     }
 
     // the bottom half of the world is a 1d cellular automata
-    const newBottomRow = [];
+    const newBottomRow = eca.cells;
     const prevRow = world[C_HEIGHT / GRID_SIZE - 1];
-    const n = C_WIDTH / GRID_SIZE;
-    for (let x = 0; x < n; x++) {
-      let nextKey;
-      if (x === 0) {
-        nextKey = prevRow[n - 1] * 4 + prevRow[x] * 2 + prevRow[x + 1];
-      } else if (x === n - 1) {
-        nextKey = prevRow[x - 1] * 4 + prevRow[x] * 2 + prevRow[0];
-      } else {
-        nextKey = prevRow[x - 1] * 4 + prevRow[x] * 2 + prevRow[x + 1];
-      }
-      newBottomRow.push(ITER_MAP[nextKey]);
-    }
     for (let y = C_HEIGHT / GRID_SIZE - 1; y > C_HEIGHT / GRID_SIZE / 2; y--) {
       newWorld[y - 1] = world[y];
     }
@@ -119,6 +96,7 @@
 
   function updateForever() {
     if (isAnimating) {
+      eca.calculateNextGeneration();
       const newWorld = calculateNewWorld(world);
       requestAnimationFrame(() => drawWorld(newWorld));
       world = newWorld;
