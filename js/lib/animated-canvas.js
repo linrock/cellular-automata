@@ -14,8 +14,6 @@ class AnimatedCanvas {
 
   constructor(canvasId, gridSize, initAnimContext) {
     const canvas = document.getElementById(canvasId);
-    canvas.addEventListener('play', () => this.isAnimating = true);
-    canvas.addEventListener('pause', () => this.isAnimating = false);
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.canvasWidth = canvas.width;
@@ -23,6 +21,17 @@ class AnimatedCanvas {
     this.gridSize = gridSize;
     this.numCellsX = this.canvasWidth / gridSize;
     this.numCellsY = this.canvasHeight / gridSize;
+    canvas.addEventListener('play', () => this.isAnimating = true);
+    canvas.addEventListener('pause', () => this.isAnimating = false);
+    canvas.addEventListener('click', () => {
+      // click to clear the canvas and start over
+      this.isAnimating = false;
+      requestAnimationFrame(() => {
+        this.ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
+      });
+      this.updateWorld = initAnimContext(this.numCellsX, this.numCellsY);
+      this.isAnimating = true;
+    });
     this.updateWorld = initAnimContext(this.numCellsX, this.numCellsY);
   }
 
