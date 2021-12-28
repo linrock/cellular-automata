@@ -7,23 +7,17 @@
     // initialize the world with zeroes. the bottom row is an ECA
     let world = [];
     for (let y = 0; y < numY; y++) {
-      const row = [];
-      for (let x = 0; x < numX; x++) {
-        row.push(0);
-      }
-      world.push(row);
+      world.push(new Array(numX).fill(0));
     }
     world[numY - 1] = eca.cells;
 
-    // naive way of calculating the next iteration of the world
-    function calculateNewWorld(world) {
+    // naive way of generating new worlds
+    return () => {
+      eca.calculateNextGeneration();
+
       const newWorld = [];
       for (let y = 0; y < numY; y++) {
-        const row = [];
-        for (let x = 0; x < numX; x++) {
-          row.push(0);
-        }
-        newWorld.push(row);
+        newWorld.push(new Array(numX).fill(0));
       }
 
       // the bottom half of the world is a 1d cellular automata
@@ -35,14 +29,13 @@
       // the top half of the world follows the rules of the game of life
       for (let y = 0; y < numY / 2; y++) {
         for (let x = 0; x < numX; x++) {
-          let numLiveNeighbors = 0;
+          let numLiveNeighbors = (world[y][x - 1] || 0) + (world[y][x + 1] || 0);
           if (y > 0) {
             numLiveNeighbors +=
               (world[y - 1][x - 1] || 0) +
               world[y - 1][x] +
               (world[y - 1][x + 1] || 0);
           }
-          numLiveNeighbors += (world[y][x - 1] || 0) + (world[y][x + 1] || 0);
           if (y < numY - 1) {
             numLiveNeighbors +=
               (world[y + 1][x - 1] || 0) +
@@ -59,12 +52,6 @@
           }
         }
       }
-      return newWorld;
-    }
-
-    return () => {
-      eca.calculateNextGeneration();
-      const newWorld = calculateNewWorld(world);
       world = newWorld;
       return world;
     }
