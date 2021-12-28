@@ -58,5 +58,6 @@ class GOL {
       }
     }
     this.world = newWorld;
+    return newWorld;
   }
 }

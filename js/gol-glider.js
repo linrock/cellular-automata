@@ -49,10 +49,7 @@
     gol.world[3][36] = 1;
     gol.world[4][36] = 1;
 
-    return () => {
-      gol.calculateNewWorld();
-      return gol.world;
-    };
+    return () => gol.calculateNewWorld();
   });
   anim.setBackgroundColor('#1a1423');
   anim.setForegroundColor('#39FF14');

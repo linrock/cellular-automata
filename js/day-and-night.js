@@ -9,10 +9,7 @@
         return [3, 6, 7, 8].includes(numLiveNeighbors);
       }
     };
-    return () => {
-      gol.calculateNewWorld();
-      return gol.world;
-    };
+    return () => gol.calculateNewWorld();
   });
   anim.setForegroundColor('#ffd449');
   anim.setBackgroundColor('#110244');
