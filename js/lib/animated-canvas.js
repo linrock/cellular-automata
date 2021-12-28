@@ -1,6 +1,7 @@
 class AnimatedCanvas {
   UPDATE_INTERVAL_MS = 50;
   isAnimating = false;
+  updateWorld = () => {};
 
   canvas;
   ctx;
@@ -11,7 +12,7 @@ class AnimatedCanvas {
   numCellsX;
   numCellsY;
 
-  constructor(canvasId, gridSize, updateFunc) {
+  constructor(canvasId, gridSize, initAnimContext) {
     const canvas = document.getElementById(canvasId);
     canvas.addEventListener('play', () => this.isAnimating = true);
     canvas.addEventListener('pause', () => this.isAnimating = false);
@@ -22,7 +23,7 @@ class AnimatedCanvas {
     this.gridSize = gridSize;
     this.numCellsX = this.canvasWidth / gridSize;
     this.numCellsY = this.canvasHeight / gridSize;
-    this.updateFunc = updateFunc;
+    this.updateWorld = initAnimContext(this.numCellsX, this.numCellsY);
   }
 
   drawWorld(world) {
@@ -42,11 +43,10 @@ class AnimatedCanvas {
     });
   }
 
-  updateForever(world) {
+  updateForever() {
     if (this.isAnimating) {
-      this.updateFunc();
-      this.drawWorld(world);
+      this.drawWorld(this.updateWorld());
     }
-    setTimeout(() => this.updateForever(world), this.UPDATE_INTERVAL_MS);
+    setTimeout(() => this.updateForever(), this.UPDATE_INTERVAL_MS);
   }
 }
