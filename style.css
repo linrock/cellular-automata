@@ -96,6 +96,12 @@ figcaption {
   .flex-responsive {
     display: block;
   }
+  .flex-responsive figure {
+    margin-left: 0;
+  }
+  .flex-responsive canvas {
+    width: 100%;
+  }
 }
 
 canvas {
