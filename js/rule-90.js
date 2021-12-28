@@ -23,6 +23,6 @@
       return world;
     };
   });
-
+  anim.setForegroundColor('#39FF14');
   anim.updateForever();
 })();

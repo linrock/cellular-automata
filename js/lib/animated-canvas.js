@@ -16,14 +16,22 @@ class AnimatedCanvas {
     const canvas = document.getElementById(canvasId);
     canvas.addEventListener('play', () => this.isAnimating = true);
     canvas.addEventListener('pause', () => this.isAnimating = false);
+    this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.ctx.fillStyle = '#39FF14';
     this.canvasWidth = canvas.width;
     this.canvasHeight = canvas.height;
     this.gridSize = gridSize;
     this.numCellsX = this.canvasWidth / gridSize;
     this.numCellsY = this.canvasHeight / gridSize;
     this.updateWorld = initAnimContext(this.numCellsX, this.numCellsY);
+  }
+
+  setForegroundColor(color) {
+    this.ctx.fillStyle = color;
+  }
+
+  setBackgroundColor(color) {
+    this.canvas.style.background = color;
   }
 
   drawWorld(world) {
