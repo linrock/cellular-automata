@@ -1,7 +1,9 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>An overview of cellular automata</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width">
+    <title>An overview of cellular automata</title>
     <link rel="stylesheet" href="style.css">
     <script src="js/main.js"></script>
   </head>
@@ -75,9 +77,9 @@
       <section>
         <h2 id="one-dimensional">One-dimensional cellular automata</h2>
         <p>
-          The world is a 1D row of cells. Each new generation considers
-          the state of a cell along with the states of its neighbors to
-          its left and right.
+          The world is a 1D row of cells. With each new generation of
+          the world, the state of a cell changes based on its current
+          state and the states of its neighbors to its left and right.
         <p>
         <p>
           We can visualize the evolution of 1D cellular automata
@@ -91,14 +93,27 @@
         <h3 id="elementary-cellular-automata">Elementary cellular automata</h3>
         <p>
           The simplest automata are known as elementary cellular automata
-          (ECA). Each cell has two possible states. The state of a cell in
-          the next generation depends on its current state and the state of
-          its two immediate neighbors on its left and right.
+          (ECA). Each cell has two possible states. The state of each cell in
+          the next generation depends only on 3 values: its current state
+          and the state of its two immediate neighbors.
+        </p>
+        <p>
+          Since there are 2<sup>3</sup> = 8 orientations of the 3 values,
+          there are 2<sup>8</sup> = 256 possible ways to determine the new
+          state of a cell in the next generation of the world.
+        </p>
+        <p>
+          Here's an example of chaotic behavior arising from an ECA initialized
+          with a single cell in the middle.
         </p>
         <figure>
           <canvas id="1d-world" width="330" height="165"></canvas>
           <figcaption>Rule 30 with one initial middle cell</figcaption>
         </figure>
+        <p>
+          ECAs behave differently when initialized with random cells. Here's
+          another example of chaotic behavior.
+        <p>
         <figure>
           <canvas id="1d-world-2" width="330" height="165"></canvas>
           <figcaption>Rule 106 with random initial cells</figcaption>
