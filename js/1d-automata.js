@@ -27,6 +27,11 @@
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = FG_COLOR;
 
+  let world = [];
+  for (let i = 0; i < NUM_CELLS_Y; i++) {
+    world.push(new Array(NUM_CELLS_X).fill(0));
+  }
+
   // initialize an elementary cellular automaton
   let eca = new ECA(NUM_CELLS_X, RULE_NUM, 'one_middle');
 
@@ -39,27 +44,29 @@
     requestAnimationFrame(() => {
       ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
     });
+    world = [];
+    for (let i = 0; i < NUM_CELLS_Y; i++) {
+      world.push(new Array(NUM_CELLS_X).fill(0));
+    }
     eca = new ECA(NUM_CELLS_X, RULE_NUM, 'one_middle');
-    drawCells(eca.cells);
+    world.push(eca.cells);
+    world.shift();
+    drawWorld(world);
     isAnimating = true;
   });
 
-  function drawCells(cells) {
+  function drawWorld(world) {
     requestAnimationFrame(() => {
-      // shift all rows up by one. removes the top row
-      const data = ctx.getImageData(
-        0, GRID_SIZE, C_WIDTH, C_HEIGHT - GRID_SIZE);
-      ctx.putImageData(data, 0, 0);
-
-      // draw the new bottom row with the values of the new generation
-      ctx.clearRect(0, C_HEIGHT - GRID_SIZE, C_WIDTH, GRID_SIZE);
-      for (let i = 0; i < NUM_CELLS_X; i++) {
-        if (cells[i]) {
-          ctx.fillRect(
-            i * GRID_SIZE,
-            C_HEIGHT - GRID_SIZE,
-            GRID_SIZE,
-            GRID_SIZE);
+      ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
+      for (let x = 0; x < NUM_CELLS_X; x++) {
+        for (let y = 0; y < NUM_CELLS_Y; y++) {
+          if (world[y][x]) {
+            ctx.fillRect(
+              x * GRID_SIZE,
+              y * GRID_SIZE,
+              GRID_SIZE,
+              GRID_SIZE);
+          }
         }
       }
     });
@@ -68,11 +75,15 @@
   function updateForever() {
     if (isAnimating) {
       eca.calculateNextGeneration();
-      drawCells(eca.cells);
+      world.push(eca.cells);
+      world.shift();
+      drawWorld(world);
     }
     setTimeout(() => updateForever(), UPDATE_INTERVAL_MS);
   }
 
-  drawCells(eca.cells);  // draw the bottom row
+  world.push(eca.cells);
+  world.shift();
+  drawWorld(world);      // draw the whole world
   updateForever();       // forever repeat calculating/drawing new rows
 })();
