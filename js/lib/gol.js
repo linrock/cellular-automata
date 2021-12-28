@@ -11,7 +11,7 @@ class GOL {
       const row = [];
       for (let x = 0; x < numCellsX; x++) {
         if (cellInitFunc) {
-          row.push(cellInitFunc ? cellInitFunc() : 0);
+          row.push(cellInitFunc ? cellInitFunc(x, y) : 0);
         }
       }
       this.world.push(row);

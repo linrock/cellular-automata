@@ -27,7 +27,7 @@ class AnimatedCanvas {
       // click to clear the canvas and start over
       this.isAnimating = false;
       requestAnimationFrame(() => {
-        this.ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
+        this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
       });
       this.updateWorld = initAnimContext(this.numCellsX, this.numCellsY);
       this.isAnimating = true;
