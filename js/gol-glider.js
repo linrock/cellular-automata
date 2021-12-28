@@ -20,105 +20,59 @@
   canvas.addEventListener('play', () => isAnimating = true);
   canvas.addEventListener('pause', () => isAnimating = false);
 
-  // initialize the world with random numbers
-  let world = [];
-  for (let y = 0; y < NUM_CELLS_Y; y++) {
-    world.push(new Array(NUM_CELLS_X).fill(0));
-  }
+  const gol = new GOL(NUM_CELLS_X, NUM_CELLS_Y);
 
-  // initialize a glider gun
-  world[5][1] = 1;
-  world[6][1] = 1;
-  world[5][2] = 1;
-  world[6][2] = 1;
+  // manually draw a glider gun
+  gol.world[5][1] = 1;
+  gol.world[6][1] = 1;
+  gol.world[5][2] = 1;
+  gol.world[6][2] = 1;
 
-  world[3][14] = 1;
-  world[3][13] = 1;
-  world[4][12] = 1;
-  world[5][11] = 1;
-  world[6][11] = 1;
-  world[7][11] = 1;
-  world[8][12] = 1;
-  world[9][13] = 1;
-  world[9][14] = 1;
+  gol.world[3][14] = 1;
+  gol.world[3][13] = 1;
+  gol.world[4][12] = 1;
+  gol.world[5][11] = 1;
+  gol.world[6][11] = 1;
+  gol.world[7][11] = 1;
+  gol.world[8][12] = 1;
+  gol.world[9][13] = 1;
+  gol.world[9][14] = 1;
 
-  world[6][15] = 1;
+  gol.world[6][15] = 1;
 
-  world[4][16] = 1;
-  world[8][16] = 1;
+  gol.world[4][16] = 1;
+  gol.world[8][16] = 1;
 
-  world[5][17] = 1;
-  world[6][17] = 1;
-  world[7][17] = 1;
+  gol.world[5][17] = 1;
+  gol.world[6][17] = 1;
+  gol.world[7][17] = 1;
 
-  world[6][18] = 1;
+  gol.world[6][18] = 1;
 
-  world[3][21] = 1;
-  world[4][21] = 1;
-  world[5][21] = 1;
-  world[3][22] = 1;
-  world[4][22] = 1;
-  world[5][22] = 1;
+  gol.world[3][21] = 1;
+  gol.world[4][21] = 1;
+  gol.world[5][21] = 1;
+  gol.world[3][22] = 1;
+  gol.world[4][22] = 1;
+  gol.world[5][22] = 1;
 
-  world[2][23] = 1;
-  world[6][23] = 1;
+  gol.world[2][23] = 1;
+  gol.world[6][23] = 1;
 
-  world[1][25] = 1;
-  world[2][25] = 1;
-  world[6][25] = 1;
-  world[7][25] = 1;
+  gol.world[1][25] = 1;
+  gol.world[2][25] = 1;
+  gol.world[6][25] = 1;
+  gol.world[7][25] = 1;
 
-  world[3][35] = 1;
-  world[4][35] = 1;
-  world[3][36] = 1;
-  world[4][36] = 1;
-
-  // naive way of calculating the next iteration of the world
-  function calculateNewWorld(world) {
-    const newWorld = [];
-    for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
-      newWorld.push([]);
-      for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
-        // calculate the number of live neighbors
-        let numLiveNeighbors = 0;
-        if (y > 0) {
-          numLiveNeighbors +=
-            (world[y - 1][x - 1] ? 1 : 0) +
-            (world[y - 1][x]     ? 1 : 0) + 
-            (world[y - 1][x + 1] ? 1 : 0);
-        }
-        numLiveNeighbors +=
-          (world[y][x - 1] ? 1 : 0) +
-          (world[y][x + 1] ? 1 : 0);
-        if (y < C_HEIGHT / GRID_SIZE - 1) {
-          numLiveNeighbors +=
-            (world[y + 1][x - 1] ? 1 : 0) +
-            (world[y + 1][x]     ? 1 : 0) +
-            (world[y + 1][x + 1] ? 1 : 0);
-        }
-
-        // decide the new state of the current cell
-        newWorld[y][x] = world[y][x];
-        if (newWorld[y][x]) {
-          if (numLiveNeighbors < 2 || numLiveNeighbors > 3) {
-            newWorld[y][x] = 0;
-          }
-        } else {
-          if (numLiveNeighbors === 3) {
-            newWorld[y][x] = 1;
-          } else {
-            newWorld[y][x] = 0;
-          }
-        }
-      }
-    }
-    return newWorld;
-  }
+  gol.world[3][35] = 1;
+  gol.world[4][35] = 1;
+  gol.world[3][36] = 1;
+  gol.world[4][36] = 1;
 
   function drawWorld(world) {
     ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
-    for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
-      for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
+    for (let y = 0; y < NUM_CELLS_Y; y++) {
+      for (let x = 0; x < NUM_CELLS_X; x++) {
         if (world[y][x]) {
           ctx.fillRect(
             x * GRID_SIZE,
@@ -132,13 +86,12 @@
 
   function updateForever() {
     if (isAnimating) {
-      const newWorld = calculateNewWorld(world);
-      requestAnimationFrame(() => drawWorld(newWorld));
-      world = newWorld;
+      gol.calculateNewWorld();
+      requestAnimationFrame(() => drawWorld(gol.world));
     }
     setTimeout(() => updateForever(), UPDATE_INTERVAL_MS);
   }
 
-  drawWorld(world);
+  drawWorld(gol.world);
   updateForever();
 })();

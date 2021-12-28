@@ -20,7 +20,9 @@
   canvas.addEventListener('play', () => isAnimating = true);
   canvas.addEventListener('pause', () => isAnimating = false);
 
-  const gol = new GOL(NUM_CELLS_X, NUM_CELLS_Y);
+  const gol = new GOL(NUM_CELLS_X, NUM_CELLS_Y, () => {
+    return Math.random() > 0.8 ? 1 : 0;
+  });
 
   function drawWorld(world) {
     ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
@@ -46,5 +48,5 @@
   }
 
   drawWorld(gol.world);
-  updateForever(gol);
+  updateForever();
 })();

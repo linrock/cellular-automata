@@ -4,13 +4,15 @@ class GOL {
   numCellsY = -1;
   world = [];
 
-  constructor(numCellsX, numCellsY) {
+  constructor(numCellsX, numCellsY, cellInitFunc) {
     this.numCellsX = numCellsX;
     this.numCellsY = numCellsY;
     for (let y = 0; y < numCellsY; y++) {
       const row = [];
       for (let x = 0; x < numCellsX; x++) {
-        row.push(Math.random() > 0.8 ? 1 : 0);
+        if (cellInitFunc) {
+          row.push(cellInitFunc ? cellInitFunc() : 0);
+        }
       }
       this.world.push(row);
     }
