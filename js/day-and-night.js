@@ -1,18 +1,12 @@
 (() => {
+  // Day and Night simulation - variant of Game of Life
   const anim = new AnimatedCanvas('c-day-and-night', 3, (numX, numY) => {
-    const gol = new GOL(numX, numY, () => {
-      return Math.random() > 0.5 ? 1 : 0;
-    });
+    const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
     gol.newCellRule = (state, numLiveNeighbors) => {
       if (state) {
-        if (![3, 4, 6, 7, 8].includes(numLiveNeighbors)) {
-          return 0;
-        }
-        return state;
+        return [3, 4, 6, 7, 8].includes(numLiveNeighbors);
       } else {
-        if ([3, 6, 7, 8].includes(numLiveNeighbors)) {
-          return 1;
-        }
+        return [3, 6, 7, 8].includes(numLiveNeighbors);
       }
     };
     return () => {
