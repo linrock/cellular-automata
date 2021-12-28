@@ -1,7 +1,7 @@
 body {
   font-family: Arial, 'Sans Serif';
-  background: #333;
-  color: #fafafa;
+  background: #242424;
+  color: #e5e5e5;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -21,12 +21,15 @@ h2 {
 }
 
 h3 {
-  color: #aaa;
+  color: inherit;
   padding-top: 1rem;
+  font-size: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 
 h4 {
-  color: #aaa;
+  color: #fafafa;
   padding-top: 1rem;
 }
 
@@ -36,7 +39,7 @@ a {
 }
 
 p {
-  line-height: 1.5rem;
+  line-height: 1.6rem;
   margin-bottom: 2rem;
 }
 
@@ -49,7 +52,7 @@ nav > ul {
 }
 
 li {
-  line-height: 1.75rem;
+  line-height: 1.8rem;
 }
 
 article {
@@ -72,7 +75,7 @@ figure:last-child {
 
 figcaption {
   font-size: 0.8rem;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
   opacity: 0.7;
 }
 
@@ -93,7 +96,7 @@ canvas {
 
 small {
   display: block;
-  margin-top: 1.5rem;
+  margin-top: 0.8rem;
   opacity: 0.7;
 }
 
