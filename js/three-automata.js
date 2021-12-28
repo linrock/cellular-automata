@@ -25,7 +25,10 @@
   canvas.addEventListener('play', () => isAnimating = true);
   canvas.addEventListener('pause', () => isAnimating = false);
 
-  // initialize the world with zeroes
+  const ecaTop = new ECA(NUM_CELLS_X, RULE_NUM_TOP, 'one_middle');
+  const ecaBottom = new ECA(NUM_CELLS_X, RULE_NUM_BOTTOM, 'one_middle');
+
+  // initialize the world with zeroes. top and bottom rows are ECAs
   let world = [];
   for (let y = 0; y < NUM_CELLS_Y; y++) {
     const row = [];
@@ -34,26 +37,8 @@
     }
     world.push(row);
   }
-
-  // central dot
-  world[0][NUM_CELLS_X / 2] = 1;
-  world[NUM_CELLS_Y - 1][NUM_CELLS_X / 2] = 1;
-
-  // random
-  // for (let i = 0; i < C_WIDTH / GRID_SIZE; i++) {
-  //   world[C_HEIGHT / GRID_SIZE - 1][i] = Math.random() > 0.5 ? 1 : 0;
-  // }
-
-  const ITER_KEYS = [7, 6, 5, 4, 3, 2, 1, 0];
-
-  const RULE_BIN_TOP = RULE_NUM_TOP.toString(2).padStart(8, '0');
-  const ITER_MAP_TOP = {};
-  ITER_KEYS.forEach((k, i) => ITER_MAP_TOP[k] = parseInt(RULE_BIN_TOP[i], 10));
-
-  const RULE_BIN_BOTTOM = RULE_NUM_BOTTOM.toString(2).padStart(8, '0');
-  const ITER_MAP_BOTTOM = {};
-  ITER_KEYS.forEach((k, i) => ITER_MAP_BOTTOM[k] = parseInt(RULE_BIN_BOTTOM[i], 10));
-
+  world[0] = ecaTop.cells;
+  world[NUM_CELLS_Y - 1] = ecaBottom.cells;
 
   // naive way of calculating the next iteration of the world
   function calculateNewWorld1d(world) {
@@ -62,46 +47,19 @@
       newWorld[y] = world[y].slice();
     }
 
-    // num grid values in X direction
-    const n = C_WIDTH / GRID_SIZE;
-
     // the bottom third of the world is a 1d cellular automata
-    const newBottomRow = [];
-    const prevRow = world[NUM_CELLS_Y - 1];
-    for (let x = 0; x < NUM_CELLS_X; x++) {
-      let key = prevRow[x] * 2;
-      if (x === 0) {
-        key += prevRow[NUM_CELLS_X - 1] * 4 + prevRow[x + 1];
-      } else if (x === NUM_CELLS_X - 1) {
-        key += prevRow[x - 1] * 4 + prevRow[0];
-      } else {
-        key += prevRow[x - 1] * 4 + prevRow[x + 1];
-      }
-      newBottomRow.push(ITER_MAP_BOTTOM[key]);
-    }
+    ecaBottom.calculateNextGeneration();
     for (let y = NUM_CELLS_Y - 1; y > 2 * NUM_CELLS_Y / 3; y--) {
       newWorld[y - 1] = world[y];
     }
-    newWorld[NUM_CELLS_Y - 1] = newBottomRow;
+    newWorld[NUM_CELLS_Y - 1] = ecaBottom.cells;
 
     // the top third of the world is a 1d cellular automata
-    const newTopRow = [];
-    const prevTopRow = world[0];
-    for (let x = 0; x < NUM_CELLS_X; x++) {
-      let key = prevTopRow[x] * 2;
-      if (x === 0) {
-        key += prevTopRow[NUM_CELLS_X - 1] * 4 + prevTopRow[x + 1];
-      } else if (x === n - 1) {
-        key += prevTopRow[x - 1] * 4 + prevTopRow[0];
-      } else {
-        key += prevTopRow[x - 1] * 4 + prevTopRow[x + 1];
-      }
-      newTopRow.push(ITER_MAP_TOP[key]);
-    }
-    for (let y = 0; y < NUM_CELLS_Y / 3; y++) {
+    ecaTop.calculateNextGeneration();
+    for (let y = 0; y < NUM_CELLS_Y / 3; y++ ) {
       newWorld[y + 1] = world[y];
     }
-    newWorld[0] = newTopRow;
+    newWorld[0] = ecaTop.cells;
 
     return newWorld;
   }
