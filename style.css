@@ -45,7 +45,7 @@ a:hover {
 
 p {
   line-height: 1.6rem;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
 }
 
 ul {
@@ -58,6 +58,13 @@ nav > ul {
 
 li {
   line-height: 1.8rem;
+}
+
+sup {
+  position: relative;
+  vertical-align: middle;
+  top: -0.4rem;
+  font-size: 0.7rem;
 }
 
 article {
