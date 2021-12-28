@@ -3,6 +3,9 @@
   const C_HEIGHT = 165;
   const GRID_SIZE = 3;
 
+  const NUM_CELLS_X = C_WIDTH / GRID_SIZE;
+  const NUM_CELLS_Y = C_HEIGHT / GRID_SIZE;
+
   const UPDATE_INTERVAL_MS = 50;
 
   const canvas = document.getElementById('game-of-life');
@@ -17,62 +20,12 @@
   canvas.addEventListener('play', () => isAnimating = true);
   canvas.addEventListener('pause', () => isAnimating = false);
 
-  // initialize the world with random numbers
-  let world = [];
-  for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
-    const row = [];
-    for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
-      row.push(Math.random() > 0.8 ? 1 : 0);
-    }
-    world.push(row);
-  }
-
-  // naive way of calculating the next iteration of the world
-  function calculateNewWorld(world) {
-    const newWorld = [];
-    for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
-      newWorld.push([]);
-      for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
-        // calculate the number of live neighbors
-        let numLiveNeighbors = 0;
-        if (y > 0) {
-          numLiveNeighbors +=
-            (world[y - 1][x - 1] ? 1 : 0) +
-            (world[y - 1][x]     ? 1 : 0) + 
-            (world[y - 1][x + 1] ? 1 : 0);
-        }
-        numLiveNeighbors +=
-          (world[y][x - 1] ? 1 : 0) +
-          (world[y][x + 1] ? 1 : 0);
-        if (y < C_HEIGHT / GRID_SIZE - 1) {
-          numLiveNeighbors +=
-            (world[y + 1][x - 1] ? 1 : 0) +
-            (world[y + 1][x]     ? 1 : 0) +
-            (world[y + 1][x + 1] ? 1 : 0);
-        }
-
-        // decide the new state of the current cell
-        newWorld[y][x] = world[y][x];
-        if (newWorld[y][x]) {
-          if (numLiveNeighbors < 2 || numLiveNeighbors > 3) {
-            newWorld[y][x] = 0;
-          }
-        } else {
-          if (numLiveNeighbors === 3) {
-            newWorld[y][x] = 1;
-          } else {
-            newWorld[y][x] = 0;
-          }
-        }
-      }
-    }
-    return newWorld;
-  }
+  const gol = new GOL(NUM_CELLS_X, NUM_CELLS_Y);
 
   function drawWorld(world) {
     ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
-    for (let y = 0; y < C_HEIGHT / GRID_SIZE; y++) {
-      for (let x = 0; x < C_WIDTH / GRID_SIZE; x++) {
+    for (let y = 0; y < NUM_CELLS_Y; y++) {
+      for (let x = 0; x < NUM_CELLS_X; x++) {
         if (world[y][x]) {
           ctx.fillRect(
             x * GRID_SIZE,
@@ -86,13 +39,12 @@
 
   function updateForever() {
     if (isAnimating) {
-      const newWorld = calculateNewWorld(world);
-      requestAnimationFrame(() => drawWorld(newWorld));
-      world = newWorld;
+      gol.calculateNewWorld();
+      requestAnimationFrame(() => drawWorld(gol.world));
     }
     setTimeout(() => updateForever(), UPDATE_INTERVAL_MS);
   }
 
-  drawWorld(world);
-  updateForever();
+  drawWorld(gol.world);
+  updateForever(gol);
 })();
