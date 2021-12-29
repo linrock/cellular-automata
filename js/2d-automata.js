@@ -2,6 +2,8 @@
   // standard Game of Life simulation with random initial values
   const anim = new AnimatedCanvas('game-of-life', 3, (numX, numY) => {
     const gol = new GOL(numX, numY, () => Math.random() > 0.8 ? 1 : 0);
+    gol.B = [3];
+    gol.S = [2, 3];
     return () => gol.calculateNewWorld();
   });
   anim.setForegroundColor('#39FF14');
@@ -14,13 +16,8 @@
   // Day and Night simulation - variant of Game of Life
   const anim = new AnimatedCanvas('c-day-and-night', 3, (numX, numY) => {
     const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
-    gol.newCellRule = (state, numLiveNeighbors) => {
-      if (state) {
-        return [3, 4, 6, 7, 8].includes(numLiveNeighbors);
-      } else {
-        return [3, 6, 7, 8].includes(numLiveNeighbors);
-      }
-    };
+    gol.B = [3, 6, 7, 8];
+    gol.S = [3, 4, 6, 7, 8];
     return () => gol.calculateNewWorld();
   });
   // anim.setForegroundColor('#ffd449');
@@ -44,13 +41,8 @@
       }
       return Math.random() > 0.5 ? 1 : 0;
     });
-    gol.newCellRule = (state, numLiveNeighbors) => {
-      if (state) {
-        return numLiveNeighbors >= 1 && numLiveNeighbors <= 5;
-      } else {
-        return numLiveNeighbors === 3;
-      }
-    };
+    gol.B = [3];
+    gol.S = [1, 2, 3, 4, 5];
     return () => gol.calculateNewWorld();
   });
   // anim.setForegroundColor('#7c6354');
@@ -71,15 +63,8 @@
     } else {
       gol = new GOL(numX, numY, () => Math.random() > 0.55 ? 1 : 0);
     }
-    const B = [4, 6, 7, 8];
-    const S = [3, 5, 6, 7, 8];
-    gol.newCellRule = (state, numLiveNeighbors) => {
-      if (state) {
-        return B.includes(numLiveNeighbors);
-      } else {
-        return S.includes(numLiveNeighbors);
-      }
-    };
+    gol.B = [4, 6, 7, 8];
+    gol.S = [3, 5, 6, 7, 8];
     return () => gol.calculateNewWorld();
   });
   anim.setForegroundColor('#fff44f');

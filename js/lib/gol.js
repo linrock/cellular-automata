@@ -4,6 +4,9 @@ class GOL {
   numCellsY = -1;
   world = [];
 
+  B = [3];     // born
+  S = [2, 3];  // survives
+
   constructor(numCellsX, numCellsY, cellInitFunc) {
     this.numCellsX = numCellsX;
     this.numCellsY = numCellsY;
@@ -21,14 +24,9 @@ class GOL {
   // method of deciding the new state of the current cell
   newCellRule(state, numLiveNeighbors) {
     if (state)  {
-      if (numLiveNeighbors < 2 || numLiveNeighbors > 3) {
-        return 0;
-      }
-      return state;
-    } else if (numLiveNeighbors === 3) {
-      return 1;
+      return this.S.includes(numLiveNeighbors);
     }
-    return 0;
+    return this.B.includes(numLiveNeighbors);
   }
 
   // naive way of calculating the next generation of the world
