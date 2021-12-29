@@ -47,8 +47,12 @@
     };
     return () => gol.calculateNewWorld();
   });
-  anim.setForegroundColor('#ffd449');
-  anim.setBackgroundColor('#110244');
+  // anim.setForegroundColor('#7c6354');
+  // anim.setBackgroundColor('#dddbf1');
+  // anim.setForegroundColor('#b2ff98');
+  // anim.setBackgroundColor('#372772');
+  anim.setForegroundColor('#eee');
+  anim.setBackgroundColor('#111');
   window.animatedCanvases.push(anim);
 }
 {
