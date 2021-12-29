@@ -156,9 +156,9 @@
           In each generation, the state of the world is generated based on
           these rules:
           <ul>
-            <li>A dead cell with 3 neighbors becomes a live cell</li>
-            <li>A live cell with 2 or 3 neighbors stays the same</li>
-            <li>All other live cells become dead cells</li>
+            <li>A dead cell with 3 neighbors becomes live</li>
+            <li>A live cell with 2 or 3 neighbors stays live</li>
+            <li>All other live cells become dead</li>
           </ul>
         </p>
         <div class="flex-responsive">
@@ -203,20 +203,24 @@
 
       <section>
         <h3 id="cyclic-cellular-automata">Cyclic cellular automata</h3>
-        <p>
-          This is a multi-state system where the state of a cell changes
-          if enough neighboring cells are in a state that win over it.
-          The tri-state version is also known as "Rock, paper, scissors".
-          For example, if a scissors cell is surrounded by enough rock
-          cells, then the scissors cell becomes a rock in the next generation.
-        </p>
-        <p>
-          When initialized with random values, this system can reach a
-          steady state of spiral waves that model excitable media in the
-          real world, such as chemical reactions and cardiac cells.
-        </p>
         <div class="flex-responsive">
-          <canvas id="c-cyclic" width="300" height="300"></canvas>
+          <div>
+            <p>
+              This is a multi-state system where the state of a cell changes
+              if enough neighboring cells are in a state that win over it.
+              The tri-state version is also known as "Rock, paper, scissors".
+              For example, if a scissors cell is surrounded by enough rock
+              cells, then the scissors cell becomes a rock in the next generation.
+            </p>
+            <p>
+              When initialized with random values, this system can reach a
+              steady state of spiral waves.
+            </p>
+          </div>
+          <figure>
+            <canvas id="c-cyclic" width="300" height="300"></canvas>
+            <figcaption>Rock paper scissors</figcaption>
+          </figure>
         </div>
       </section>
 
