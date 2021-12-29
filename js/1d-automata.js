@@ -1,93 +1,40 @@
 {
-  // https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
-  const RULE_NUM = 30;   // chaotic
-  // const RULE_NUM = 70;
-  // const RULE_NUM = 73;
-  // const RULE_NUM = 110;
-  // const RULE_NUM = 184;
+  function createEcaAnimatedCanvas(canvasId, ruleNum, initMethod) {
+    return new AnimatedCanvas(canvasId, 3, (numX, numY) => {
+      // initialize an elementary cellular automaton
+      const eca = new ECA(numX, ruleNum, initMethod);
 
-  const anim = new AnimatedCanvas('1d-world', 3, (numCellsX, numCellsY) => {
-    // initialize an elementary cellular automaton
-    const eca = new ECA(numCellsX, RULE_NUM, 'one_middle');
+      // initialize an empty world
+      const world = [];
+      for (let i = 0; i < numY; i++) {
+        world.push(new Array(numX).fill(0));
+      }
 
-    // initialize an empty world
-    const world = [];
-    for (let i = 0; i < numCellsY; i++) {
-      world.push(new Array(numCellsX).fill(0));
-    }
-
-    // the first ECA generation is the bottom row of the world
-    world.push(eca.cells);
-    world.shift();
-
-    // add new generations of the ECA to the bottom
-    return () => {
-      eca.calculateNextGeneration();
+      // the first ECA generation is the bottom row of the world
       world.push(eca.cells);
       world.shift();
-      return world;
-    };
-  });
-  anim.setForegroundColor('#cef9f2');  // light blue
-  anim.setBackgroundColor('#1b065e');
-  window.animatedCanvases.push(anim);
-}
-{
-  const RULE_NUM = 90;
 
-  const anim = new AnimatedCanvas('rule-90', 3, (numCellsX, numCellsY) => {
-    // initialize an elementary cellular automaton
-    const eca = new ECA(numCellsX, RULE_NUM, 'one_middle');
+      // add new generations of the ECA to the bottom
+      return () => {
+        eca.calculateNextGeneration();
+        world.push(eca.cells);
+        world.shift();
+        return world;
+      };
+    });
+  }
 
-    // initialize an empty world
-    const world = [];
-    for (let i = 0; i < numCellsY; i++) {
-      world.push(new Array(numCellsX).fill(0));
-    }
+  const anim1 = createEcaAnimatedCanvas('1d-world', 30, 'one_middle');
+  anim1.setForegroundColor('#cef9f2');  // light blue
+  anim1.setBackgroundColor('#1b065e');
+  window.animatedCanvases.push(anim1);
 
-    // the first ECA generation is the bottom row of the world
-    world.push(eca.cells);
-    world.shift();
+  const anim2 = createEcaAnimatedCanvas('rule-90', 90, 'one_middle');
+  anim2.setForegroundColor('#39FF14');
+  window.animatedCanvases.push(anim2);
 
-    // add new generations of the ECA to the bottom
-    return () => {
-      eca.calculateNextGeneration();
-      world.push(eca.cells);
-      world.shift();
-      return world;
-    };
-  });
-  anim.setForegroundColor('#39FF14');
-  window.animatedCanvases.push(anim);
-}
-{
-  const anim = new AnimatedCanvas('1d-world-2', 3, (numCellsX, numCellsY) => {
-    const eca = new ECA(numCellsX, 106, 'random');
-
-    // initialize an empty world
-    const world = [];
-    for (let i = 0; i < numCellsY; i++) {
-      world.push(new Array(numCellsX).fill(0));
-    }
-
-    // the first ECA generation is the bottom row of the world
-    world.push(eca.cells);
-    world.shift();
-
-    // add new generations of the ECA to the bottom
-    return () => {
-      eca.calculateNextGeneration();
-      world.push(eca.cells);
-      world.shift();
-      return world;
-    };
-  });
-  // anim.setForegroundColor('#cef9f2');  // light blue
-  // anim.setBackgroundColor('#1b065e');
-  // anim.setForegroundColor('#a5e6ba');
-  // anim.setBackgroundColor('#360568');
-  anim.setForegroundColor('#5c7aff');
-  // anim.setForegroundColor('#7a42da');
-  anim.setBackgroundColor('#1d0b3b');
-  window.animatedCanvases.push(anim);
+  const anim3 = createEcaAnimatedCanvas('1d-world-2', 106, 'random');
+  anim3.setForegroundColor('#5c7aff');
+  anim3.setBackgroundColor('#1d0b3b');
+  window.animatedCanvases.push(anim3);
 }
