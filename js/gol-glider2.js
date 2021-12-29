@@ -55,10 +55,12 @@
     }
 
     // hack for shifting a structure around
+    const shiftX = 8;
+    const shiftY = 12;
     for (let y = 0; y < numY - 1; y++) {
       for (let x = 0; x < numX - 1; x++) {
         if (gol.world[y][x]) {
-          shiftedWorld[y + 12][x] = gol.world[y][x]; 
+          shiftedWorld[y + shiftY][x + shiftX] = gol.world[y][x];
         }
       }
     }
