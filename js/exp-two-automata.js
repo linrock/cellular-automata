@@ -58,7 +58,7 @@
   });
   // anim.setForegroundColor('#ff8f00');
   // anim.setForegroundColor('#ffd400');
-  anim.setForegroundColor('orange');
+  anim.setForegroundColor('rgb(255,188,46)');
   anim.setBackgroundColor('#2e0400');
   window.animatedCanvases.push(anim);
 }
