@@ -150,20 +150,26 @@
 
       <section>
         <h3 id="conways-game-of-life">Conway's Game of Life</h3>
-        <p>
-          Cells have two possible states: live or dead. New generations of
-          the world consider only the 8 immediate neighbors of each cell.
+        <div class="flex-responsive">
+          <p>
+            Created by mathematician John Conway in 1970, this is perhaps
+            the most well-known cellular autonoma. Cells have two possible
+            states: live or dead. New generations of the world consider only
+            the 8 immediate neighbors of each cell.
+          </p>
+          <figure>
+            <canvas id="game-of-life" width="300" height="180"></canvas>
+          </figure>
+        </div>
+        <p style="margin-bottom: 1rem">
           In each generation, the state of the world is generated based on
           these rules:
-          <ul>
-            <li>A dead cell with 3 neighbors becomes live</li>
-            <li>A live cell with 2 or 3 neighbors stays live</li>
-            <li>All other live cells become dead</li>
-          </ul>
-        </p>
-        <div class="flex-responsive">
-          <canvas id="game-of-life"></canvas>
-        </div>
+        <p>
+        <ul>
+          <li>A dead cell with 3 neighbors becomes live</li>
+          <li>A live cell with 2 or 3 neighbors stays live</li>
+          <li>All other live cells become dead</li>
+        </ul>
       </section>
 
       <section>
@@ -185,8 +191,8 @@
             <canvas id="c-day-and-night" width="300" height="240"></canvas>
           </figure>
         </div>
-        <p>
-          New generations of the world follow these rules:
+        <p style="margin-bottom: 1rem">
+          New generations of a Day and Night world follow these rules:
         </p>
         <ul>
           <li>An off cell with 3, 6, 7, or 8 neighbors becomes on</li>
