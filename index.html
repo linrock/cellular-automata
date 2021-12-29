@@ -25,7 +25,7 @@
 
       <section class="flex-responsive" style="margin-bottom: 0">
         <nav>
-          <h3 style="margin-top: 0; padding-top: 0">Table of contents</h3>
+          <h4 style="margin-top: 0; padding-top: 0">Table of contents</h4>
           <ul>
             <li><a href="#one-dimensional">One-dimensional</a>
               <ul>
@@ -77,12 +77,6 @@
         </nav>
 
         <aside>
-          <figure>
-            <canvas width="240" height="120" id="rule-90"
-                    style="background: black"></canvas>
-            <figcaption>ECA rule 90</figcaption>
-          </figure>
-
         </aside>
       </section>
 
@@ -115,28 +109,40 @@
           = 256 rules for determining the new state of a cell in the next
           generation of the world.
         </p>
+
         <div class="flex-responsive">
           <p>
-            A common way to view the behavior of a rule is to initialize the
-            first generation with a single 1 in the middle. Some rules will lead
-            to simple or symmetric patterns while some will lead to chaotic
-            patterns. Rule 30 leads to aperiodic and chaotic behavior.
+            One way to view the behavior of a rule is to initialize the
+            first generation with a single 1 in the middle. Some rules such as
+            rule 30 will lead to chaotic and aperiodic patterns.
           </p>
           <figure>
-            <canvas id="1d-world" width="300" height="150"></canvas>
-            <figcaption>Rule 30 with one initial middle cell</figcaption>
+            <canvas id="1d-world" width="300" height="120"></canvas>
+            <figcaption>Rule 30 starting with one cell</figcaption>
           </figure>
         </div>
+
+        <div class="flex-responsive">
+          <p>
+            Other rules such as rule 90 will lead to symmetric and periodic patterns.
+            When starting with one cell, a fractal pattern called a Sierpinkski
+            triangle is generated.
+          </p>
+          <figure>
+            <canvas id="rule-90" width="300" height="120" style="background: black"></canvas>
+            <figcaption>Rule 90 starting with one cell</figcaption>
+          </figure>
+        </div>
+
         <div class="flex-responsive">
           <p>
             ECAs behave differently when cells are initialized with random
-            cells. For example, with rule 106, starting with a single 1 in the
-            middle leads to only a diagonal line. However, when the cells start
-            with random states, chaotic behavior arises.
+            cells. Rule 106 starting with a single cell leads to only a diagonal
+            line. However, when the cells start with random states, chaotic behavior arises.
           <p>
           <figure>
-            <canvas id="1d-world-2" width="300" height="150"></canvas>
-            <figcaption>Rule 106 with random initial cells</figcaption>
+            <canvas id="1d-world-2" width="300" height="120"></canvas>
+            <figcaption>Rule 106 starting with random cells</figcaption>
           </figure>
         </div>
       </section>
