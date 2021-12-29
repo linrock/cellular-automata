@@ -168,10 +168,25 @@
 
       <section>
         <h3 id="day-and-night">Day and Night</h3>
+        <div class="flex-responsive">
+          <div>
+            <p>
+              In Day and Night, each cell has two possible states: on or off.
+              The on and off states in the world are symmetric. If the state
+              of all cells in the world are inverted, the future world is the
+              inverted version of the original.
+            </p>
+            <p>
+              Since this follows similar rules as the Game of Life, it's
+              considered a Life-like cellular automata.
+            </p>
+          </div>
+          <figure>
+            <canvas id="c-day-and-night" width="300" height="240"></canvas>
+          </figure>
+        </div>
         <p>
-          Since this follows similar rules as the Game of Life, it's considered
-          a Life-like cellular automata. Each cell also has two possible states:
-          on or off. The state of the world is generated based on these rules:
+          New generations of the world follow these rules:
         </p>
         <ul>
           <li>An off cell with 3, 6, 7, or 8 neighbors becomes on</li>
@@ -179,13 +194,7 @@
           <li>All other on cells become off</li>
         </ul>
         <p>
-          In Day and Night, the on and off states in the world are symmetric.
-          If the state of all cells in the world are inverted, the future world
-          is the inverted version of the original.
         </p>
-        <div class="flex-responsive">
-          <canvas id="c-day-and-night"></canvas>
-        </div>
       </section>
 
       <section>
@@ -229,7 +238,7 @@
           </div>
           <figure>
             <canvas id="c-cyclic" width="300" height="300"></canvas>
-            <figcaption>Rock paper scissors</figcaption>
+            <figcaption>Tri-state - Rock, paper, scissors</figcaption>
           </figure>
         </div>
       </section>
