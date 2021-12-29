@@ -1,4 +1,4 @@
-{
+(() => {
   // time to wait between rendering animation frames
   const ANIM_UPDATE_INTERVAL_MS = 50;
 
@@ -48,4 +48,4 @@
 
   toggleCanvasAnimationsForever();
   updateAndDrawAllAnimationsForever();
-}
+})();
