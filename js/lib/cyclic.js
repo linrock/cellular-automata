@@ -4,6 +4,10 @@ class Cyclic {
   numCellsY = -1;
   world = [];
 
+  numStates = 3;
+  winThreshold = 2;  // need this # of winning neighbors to win
+  winRand = 2;       // add randomess to the win threshold
+
   constructor(numCellsX, numCellsY, cellInitFunc) {
     this.numCellsX = numCellsX;
     this.numCellsY = numCellsY;
@@ -27,7 +31,10 @@ class Cyclic {
     for (let y = 0; y < this.numCellsY; y++) {
       for (let x = 0; x < this.numCellsX; x++) {
         // count the number of neighbors with a particular value
-        const counts = { 0: 0, 1: 0, 2: 0};
+        const counts = {};
+        for (let i = 0; i < this.numStates; i++) {
+          counts[i] = 0;
+        }
         if (y > 0) {
           if (x > 0) {
             counts[this.world[y - 1][x - 1]] += 1;
@@ -52,12 +59,13 @@ class Cyclic {
             counts[this.world[y + 1][x + 1]] += 1;
           }
         }
-        const winnerVal = (this.world[y][x] + 1) % 3
+        const winnerVal = (this.world[y][x] + 1) % this.numStates;
         // the state of the cell changes if enough neighbors have
         // a winning value over it
-        if (counts[winnerVal] > 2) {
+        if (counts[winnerVal] > this.winThreshold) {
           // add some randomness for smoother edges
-          if (counts[winnerVal] > 2 + ~~(Math.random() * 2)) {
+          const rand = ~~(Math.random() * this.winRand);
+          if (counts[winnerVal] > this.winThreshold + rand) {
             newWorld[y][x] = winnerVal;
           } else {
             newWorld[y][x] = this.world[y][x];
