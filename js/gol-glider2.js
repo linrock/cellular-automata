@@ -3,51 +3,54 @@
     const gol = new GOL(numX, numY);
 
     // manually draw a simkin glider gun
-    gol.world[2][2] = 1;
-    gol.world[2][3] = 1;
-    gol.world[3][2] = 1;
-    gol.world[3][3] = 1;
+    const pixels = [
+      [2, 2],
+      [2, 3],
+      [3, 2],
+      [3, 3],
 
-    gol.world[2][9] = 1;
-    gol.world[2][10] = 1;
-    gol.world[3][9] = 1;
-    gol.world[3][10] = 1;
+      [2, 9],
+      [2, 10],
+      [3, 9],
+      [3, 10],
 
-    gol.world[5][6] = 1;
-    gol.world[5][7] = 1;
-    gol.world[6][6] = 1;
-    gol.world[6][7] = 1;
+      [5, 6],
+      [5, 7],
+      [6, 6],
+      [6, 7],
 
-    gol.world[11][24] = 1;
-    gol.world[11][25] = 1;
-    gol.world[11][27] = 1;
-    gol.world[11][28] = 1;
+      [11, 24],
+      [11, 25],
+      [11, 27],
+      [11, 28],
 
-    gol.world[12][23] = 1;
-    gol.world[12][29] = 1;
+      [12, 23],
+      [12, 29],
 
-    gol.world[13][23] = 1;
-    gol.world[13][30] = 1;
+      [13, 23],
+      [13, 30],
 
-    gol.world[14][23] = 1;
-    gol.world[14][24] = 1;
-    gol.world[14][25] = 1;
-    gol.world[14][29] = 1;
+      [14, 23],
+      [14, 24],
+      [14, 25],
+      [14, 29],
 
-    gol.world[15][28] = 1;
+      [15, 28],
 
-    gol.world[13][33] = 1;
-    gol.world[13][34] = 1;
-    gol.world[14][33] = 1;
-    gol.world[14][34] = 1;
+      [13, 33],
+      [13, 34],
+      [14, 33],
+      [14, 34],
 
-    gol.world[19][23] = 1;
-    gol.world[19][24] = 1;
-    gol.world[20][23] = 1;
-    gol.world[21][24] = 1;
-    gol.world[21][25] = 1;
-    gol.world[21][26] = 1;
-    gol.world[22][26] = 1;
+      [19, 23],
+      [19, 24],
+      [20, 23],
+      [21, 24],
+      [21, 25],
+      [21, 26],
+      [22, 26],
+    ];
+    pixels.forEach(([y, x]) => gol.world[y][x] = 1);
 
     const shiftedWorld = [];
     for (let y = 0; y < numY; y++) {
