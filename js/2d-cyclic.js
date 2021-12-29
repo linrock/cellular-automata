@@ -14,9 +14,9 @@
         for (let y = 0; y < this.numCellsY; y++) {
           if (world[y][x]) {
             if (world[y][x] === 2) {
-              this.ctx.fillStyle = 'green';
+              this.ctx.fillStyle = 'orange';
             } else if (world[y][x] === 1) {
-              this.ctx.fillStyle = 'blue';
+              this.ctx.fillStyle = 'yellow';
             }
             this.ctx.fillRect(
               x * this.gridSize,

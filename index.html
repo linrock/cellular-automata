@@ -46,6 +46,11 @@
                     Mazetric
                   </a>
                 </li>
+                <li>
+                  <a href="#cyclic-cellular-automata">
+                    Cyclic cellular automata
+                  </a>
+                </li>
               </ul>
             </li>
             <li><a href="#visual-experiments">Visual experiments</a>
@@ -188,7 +193,8 @@
         <p>
           Also a Life-like cellular automata, this is an example of a maze
           generation algorithm. When initialized with random values in the
-          center, cells will expand outwards towards the edges.
+          center, cells will expand outwards towards the edges until a steady
+          state is reached.
         </p>
         <div class="flex-responsive">
           <canvas id="c-mazectric"></canvas>
@@ -196,8 +202,18 @@
       </section>
 
       <section>
-        <h3 id="cyclic">Cyclic</h3>
+        <h3 id="cyclic-cellular-automata">Cyclic cellular automata</h3>
         <p>
+          This is a multi-state system where the state of a cell changes
+          if enough neighboring cells are in a state that win over it.
+          The tri-state version is also known as "Rock, paper, scissors".
+          For example, if a scissors cell is surrounded by enough rock
+          cells, then the scissors cell becomes a rock in the next generation.
+        </p>
+        <p>
+          When initialized with random values, this system can reach a
+          steady state of spiral waves that model excitable media in the
+          real world, such as chemical reactions and cardiac cells.
         </p>
         <div class="flex-responsive">
           <canvas id="c-cyclic" width="300" height="300"></canvas>
