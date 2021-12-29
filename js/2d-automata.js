@@ -62,6 +62,31 @@
   window.animatedCanvases.push(anim);
 }
 {
+  // Anneal - variation of majority voting
+  const anim = new AnimatedCanvas('c-anneal', 3, (numX, numY) => {
+    let gol;
+    // hack to help the animation converge towards one blob more frequently
+    if (Math.random() > 0.5) {
+      gol = new GOL(numX, numY, () => Math.random() > 0.45 ? 1 : 0);
+    } else {
+      gol = new GOL(numX, numY, () => Math.random() > 0.55 ? 1 : 0);
+    }
+    const B = [4, 6, 7, 8];
+    const S = [3, 5, 6, 7, 8];
+    gol.newCellRule = (state, numLiveNeighbors) => {
+      if (state) {
+        return B.includes(numLiveNeighbors);
+      } else {
+        return S.includes(numLiveNeighbors);
+      }
+    };
+    return () => gol.calculateNewWorld();
+  });
+  anim.setForegroundColor('#fff44f');
+  anim.setBackgroundColor('#110829');
+  window.animatedCanvases.push(anim);
+}
+{
   // cyclic tri-state cellular automata with random initial state
   // AKA rock paper scissors
   const anim = new AnimatedCanvas('c-cyclic', 3, (numX, numY) => {

@@ -51,6 +51,11 @@
                         Mazetric
                       </a>
                     </li>
+                    <li>
+                      <a href="#anneal">
+                        Anneal
+                      </a>
+                    </li>
                   </ul>
                 </li>
                 <li>
@@ -245,6 +250,27 @@
           </div>
           <figure>
             <canvas id="c-mazectric" width="300" height="300"></canvas>
+          </figure>
+        </div>
+      </section>
+
+      <section>
+        <h4 id="anneal">Anneal</h4>
+        <div class="flex-responsive">
+          <div>
+            <p>
+              When starting with random values, blobs will quickly group
+              together. As time passes, a single blob may form or the world
+              will fade towards nothingness. This is a variant of the Vichniac
+              majority voting rule. As blobs fade away, their edges approximate
+              the curve-shortening flow or geometric heat flow.
+            </p>
+            <p>
+              The rules can be written as: B4678/S35678
+            </p>
+          </div>
+          <figure>
+            <canvas id="c-anneal" width="300" height="300"></canvas>
           </figure>
         </div>
       </section>
