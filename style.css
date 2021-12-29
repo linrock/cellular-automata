@@ -93,6 +93,11 @@ figcaption {
   opacity: 0.7;
 }
 
+.half-width-square {
+  width: 300px;
+  height: 300px;
+}
+
 .flex-responsive {
   display: flex;
   justify-content: space-between;
@@ -107,6 +112,10 @@ figcaption {
   }
   .flex-responsive canvas {
     width: 100%;
+  }
+  .half-width-square {
+    width: auto;
+    height: auto;
   }
 }
 

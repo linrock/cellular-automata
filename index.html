@@ -190,14 +190,24 @@
 
       <section>
         <h3 id="mazectric">Mazectric</h3>
-        <p>
-          Also a Life-like cellular automata, this is an example of a maze
-          generation algorithm. When initialized with random values in the
-          center, cells will expand outwards towards the edges until a steady
-          state is reached.
-        </p>
         <div class="flex-responsive">
-          <canvas id="c-mazectric" width="360" height="360"></canvas>
+          <div>
+            <p>
+              Also a Life-like cellular automata, this is an example of a maze
+              generation algorithm. When initialized with random values in the
+              center, cells will expand outwards towards the edges until a steady
+              state is reached.
+            </p>
+            <p>
+              In some random initial states, oscillator patterns will appear,
+              where 2x2 cells will continuously switch between on and off
+              states.
+            </p>
+          </div>
+          <figure>
+            <canvas id="c-mazectric" width="360" height="360"
+                    class="half-width-square"></canvas>
+          </figure>
         </div>
       </section>
 
