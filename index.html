@@ -274,11 +274,12 @@
         <div class="flex-responsive">
           <div>
             <p>
-              This is a multi-state system where the state of a cell changes
+              These are multi-state systems where the state of a cell changes
               if enough neighboring cells are in a state that win over it.
-              The tri-state version is also known as "Rock, paper, scissors".
+              Systems with 3 states are also known as "Rock, paper, scissors".
               For example, if a scissors cell is surrounded by enough rock
-              cells, then the scissors cell becomes a rock in the next generation.
+              cells, then the scissors cell becomes a rock in the next
+              generation.
             </p>
             <p>
               When initialized with random values, this system can reach a
@@ -287,7 +288,7 @@
           </div>
           <figure>
             <canvas id="c-cyclic" width="300" height="300"></canvas>
-            <figcaption>Tri-state - Rock, paper, scissors</figcaption>
+            <figcaption>3 states - Rock, paper, scissors</figcaption>
           </figure>
         </div>
       </section>
@@ -303,13 +304,18 @@
       <section>
         <h3 id="trails-in-2d">Trails in 2D</h3>
         <div class="flex-responsive">
-          <p>
-            In the Game of Life, if we instead transition cells from live to
-            dead over a few generations, moving patterns in the world will
-            appear to leave trails behind them as they fade.
-          </p>
+          <div>
+            <p>
+              In the Game of Life, if we instead slowly transition cells from
+              live to dead over many generations, moving patterns in the world
+              will appear to leave trails behind them as they fade.
+            </p>
+            <p>
+              This concept can be used for some colorful visual effects.
+            </p>
+          </div>
           <figure>
-            <canvas id="c-game-of-life-trails" width="360" height="180"></canvas>
+            <canvas id="c-game-of-life-trails" width="300" height="240"></canvas>
           </figure>
         </div>
       </section>

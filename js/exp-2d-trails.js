@@ -1,5 +1,5 @@
 {
-  const CELL_LIVE = 10;
+  const CELL_LIVE = 16;
   const CELL_TRANSITION = CELL_LIVE / 2;
 
   const anim = new AnimatedCanvas('c-game-of-life-trails', 3, (numX, numY) => {
@@ -8,7 +8,7 @@
     for (let y = 0; y < numY; y++) {
       const row = [];
       for (let x = 0; x < numX; x++) {
-        row.push(Math.random() > 0.8 ? CELL_LIVE : 0);
+        row.push(Math.random() > 0.5 ? CELL_LIVE : 0);
       }
       world.push(row);
     }
