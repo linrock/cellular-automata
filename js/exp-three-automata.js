@@ -1,4 +1,4 @@
-(() => {
+{
   // const RULE_NUM = 106;
   const RULE_NUM_TOP = 73;
   const RULE_NUM_BOTTOM = 30;
@@ -86,4 +86,4 @@
   });
   anim.setForegroundColor('#39FF14');
   window.animatedCanvases.push(anim);
-})();
+}

@@ -1,4 +1,4 @@
-(() => {
+{
   const anim = new AnimatedCanvas('gol-glider', 3, (numCellsX, numCellsY) => {
     const gol = new GOL(numCellsX, numCellsY);
 
@@ -54,4 +54,4 @@
   anim.setBackgroundColor('#1a1423');
   anim.setForegroundColor('#39FF14');
   window.animatedCanvases.push(anim);
-})();
+}

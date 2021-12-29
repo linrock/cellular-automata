@@ -1,4 +1,4 @@
-(() => {
+{
   const anim = new AnimatedCanvas('combined-world', 3, (numX, numY) => {
     const RULE_NUM = 30;
     const eca = new ECA(numX, RULE_NUM, 'one_middle');
@@ -61,4 +61,4 @@
   anim.setForegroundColor('orange');
   anim.setBackgroundColor('#2e0400');
   window.animatedCanvases.push(anim);
-})();
+}

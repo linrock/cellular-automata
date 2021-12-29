@@ -1,4 +1,4 @@
-(() => {
+{
   const RULE_NUM = 90;
 
   const anim = new AnimatedCanvas('rule-90', 3, (numCellsX, numCellsY) => {
@@ -25,4 +25,4 @@
   });
   anim.setForegroundColor('#39FF14');
   window.animatedCanvases.push(anim);
-})();
+}

@@ -63,6 +63,7 @@
 }
 {
   // cyclic tri-state cellular automata with random initial state
+  // AKA rock paper scissors
   const anim = new AnimatedCanvas('c-cyclic', 3, (numX, numY) => {
     const cyc = new Cyclic(numX, numY, () => {
       const rand = Math.random();

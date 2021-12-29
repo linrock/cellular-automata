@@ -1,5 +1,6 @@
-(() => {
+{
   const CELL_LIVE = 10;
+  const CELL_TRANSITION = CELL_LIVE / 2;
 
   const anim = new AnimatedCanvas('c-game-of-life-trails', 3, (numX, numY) => {
     // initialize the world with random numbers
@@ -62,7 +63,7 @@
         if (world[y][x] !== 0) {
           if (world[y][x] === CELL_LIVE) {
             this.ctx.fillStyle = '#b5ffe9';
-          } else if (world[y][x] > CELL_LIVE / 2) {
+          } else if (world[y][x] > CELL_TRANSITION) {
             this.ctx.fillStyle = '#ff66b3';
           } else {
             this.ctx.fillStyle = '#96031a';
@@ -78,4 +79,4 @@
   };
   anim.setBackgroundColor('#1a1423');
   window.animatedCanvases.push(anim);
-})();
+}
