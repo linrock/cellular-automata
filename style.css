@@ -12,12 +12,14 @@ h1 {
   color: #ffb574;
   font-size: 2rem;
   padding-top: 2rem;
+  margin-top: 0;
 }
 
 h2 {
   color: #ffca50;
   font-size: 1.5rem;
   padding-top: 2rem;
+  margin-top: 0;
 }
 
 h3 {
@@ -53,7 +55,11 @@ ul {
 }
 
 nav > ul {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+ul + p {
+  margin-top: 1.5rem;
 }
 
 li {

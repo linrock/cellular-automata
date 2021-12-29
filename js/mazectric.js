@@ -3,10 +3,10 @@
   const anim = new AnimatedCanvas('c-mazectric', 3, (numX, numY) => {
     const gol = new GOL(numX, numY, (x, y) => {
       // initialize only the middle half of the canvas with random numbers
-      if (x < numX / 4 || x > 3 * numX / 4) {
+      if (x < numX / 3 || x > 2 * numX / 3) {
         return 0;
       }
-      if (y < numY / 4 || y > 3 * numY / 4) {
+      if (y < numY / 3 || y > 2 * numY / 3) {
         return 0;
       }
       return Math.random() > 0.5 ? 1 : 0;

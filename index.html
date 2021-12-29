@@ -19,7 +19,7 @@
         </p>
       </section>
 
-      <section class="flex-responsive" style="margin-bottom: 1rem">
+      <section class="flex-responsive" style="margin-bottom: 0">
         <nav>
           <h3 style="margin-top: 0; padding-top: 0">Table of contents</h3>
           <ul>
@@ -164,9 +164,9 @@
       <section>
         <h3 id="day-and-night">Day and Night</h3>
         <p>
-          This automata is similar to the Game of Life. Each cell also has
-          two possible states: on or off. The state of the world is generated
-          based on these rules:
+          Since this follows similar rules as the Game of Life, it's considered
+          a Life-like cellular automata. Each cell also has two possible states:
+          on or off. The state of the world is generated based on these rules:
         </p>
         <ul>
           <li>An off cell with 3, 6, 7, or 8 neighbors becomes on</li>
@@ -174,9 +174,9 @@
           <li>All other on cells become off</li>
         </ul>
         <p>
-          A property of Day and Night is the symmetry of the on and off states.
-          If the state of all cells in the world are inverted,
-          the future world is the inverted version of the original.
+          In Day and Night, the on and off states in the world are symmetric.
+          If the state of all cells in the world are inverted, the future world
+          is the inverted version of the original.
         </p>
         <div class="flex-responsive">
           <canvas id="c-day-and-night"></canvas>
@@ -186,7 +186,9 @@
       <section>
         <h3 id="mazectric">Mazectric</h3>
         <p>
-          This is an example of a maze generation algorithm using 2D automata.
+          Also a Life-like cellular automata, this is an example of a maze
+          generation algorithm. When initialized with random values in the
+          center, cells will expand outwards towards the edges.
         </p>
         <div class="flex-responsive">
           <canvas id="c-mazectric"></canvas>
@@ -195,6 +197,10 @@
 
       <section>
         <h2 id="visual-experiments">Visual experiments</h2>
+        <p>
+          These are experiments that combine or expand upon the above ideas
+          just for fun.
+        </p>
       </section>
 
       <section>
