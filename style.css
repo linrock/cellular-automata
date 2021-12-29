@@ -129,6 +129,7 @@ footer {
 
 footer > nav {
   max-width: 600px;
+  padding: 0 1rem;
   margin: 0 auto;
   display: flex;
 }

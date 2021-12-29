@@ -1,4 +1,4 @@
-(() => {
+{
   // standard Game of Life simulation with random initial values
   const anim = new AnimatedCanvas('game-of-life', 3, (numX, numY) => {
     const gol = new GOL(numX, numY, () => Math.random() > 0.8 ? 1 : 0);
@@ -7,4 +7,81 @@
   anim.setBackgroundColor('#1a1423');
   anim.setForegroundColor('#39FF14');
   window.animatedCanvases.push(anim);
-})();
+}
+{
+  // Day and Night simulation - variant of Game of Life
+  const anim = new AnimatedCanvas('c-day-and-night', 3, (numX, numY) => {
+    const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
+    gol.newCellRule = (state, numLiveNeighbors) => {
+      if (state) {
+        return [3, 4, 6, 7, 8].includes(numLiveNeighbors);
+      } else {
+        return [3, 6, 7, 8].includes(numLiveNeighbors);
+      }
+    };
+    return () => gol.calculateNewWorld();
+  });
+  anim.setForegroundColor('#ffd449');
+  anim.setBackgroundColor('#110244');
+  window.animatedCanvases.push(anim);
+}
+{
+  // Mazetric simulation - variant of Game of Life
+  const anim = new AnimatedCanvas('c-mazectric', 3, (numX, numY) => {
+    const gol = new GOL(numX, numY, (x, y) => {
+      // initialize only the middle half of the canvas with random numbers
+      if (x < numX / 3 || x > 2 * numX / 3) {
+        return 0;
+      }
+      if (y < numY / 3 || y > 2 * numY / 3) {
+        return 0;
+      }
+      return Math.random() > 0.5 ? 1 : 0;
+    });
+    gol.newCellRule = (state, numLiveNeighbors) => {
+      if (state) {
+        return numLiveNeighbors >= 1 && numLiveNeighbors <= 5;
+      } else {
+        return numLiveNeighbors === 3;
+      }
+    };
+    return () => gol.calculateNewWorld();
+  });
+  anim.setForegroundColor('#ffd449');
+  anim.setBackgroundColor('#110244');
+  window.animatedCanvases.push(anim);
+}
+{
+  // cyclic tri-state cellular automata with random initial state
+  const anim = new AnimatedCanvas('c-cyclic', 3, (numX, numY) => {
+    const cyc = new Cyclic(numX, numY, () => {
+      const rand = Math.random();
+      return rand > 0.667 ? 2 : (rand > 0.333 ? 1 : 0);
+    });
+    return () => cyc.calculateNewWorld();
+  });
+  anim.drawWorld = function(world) {
+    requestAnimationFrame(() => {
+      this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+      for (let x = 0; x < this.numCellsX; x++) {
+        for (let y = 0; y < this.numCellsY; y++) {
+          if (world[y][x]) {
+            if (world[y][x] === 2) {
+              this.ctx.fillStyle = 'orange';
+            } else if (world[y][x] === 1) {
+              this.ctx.fillStyle = 'yellow';
+            }
+            this.ctx.fillRect(
+              x * this.gridSize,
+              y * this.gridSize,
+              this.gridSize,
+              this.gridSize);
+            }
+        }
+      }
+    });
+  };
+  anim.setBackgroundColor('#1a1423');
+  anim.setForegroundColor('#39FF14');
+  window.animatedCanvases.push(anim);
+}
