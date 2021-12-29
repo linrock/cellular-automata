@@ -2,7 +2,7 @@
   const anim = new AnimatedCanvas('gol-glider', 3, (numCellsX, numCellsY) => {
     const gol = new GOL(numCellsX, numCellsY);
 
-    // manually draw a glider gun
+    // manually draw a gosper glider gun
     gol.world[5][1] = 1;
     gol.world[6][1] = 1;
     gol.world[5][2] = 1;
