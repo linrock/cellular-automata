@@ -10,13 +10,17 @@
   <body>
     <main>
       <section>
-        <h1>Cellular automata</h1>
+        <h1>
+          <a href="https://robotmoon.com/cellular-automata">
+            Cellular automata</a>
+          <canvas width="24" height="24" id="gol-octagon"
+                  style="background: none; margin-left: 1rem; position: relative; top: 2px;"></canvas>
+        </h1>
         <p>
           A cellular automaton is a grid of cells where each cell changes
           over time based on a set of rules and the state of its neighbors.
           Simple rules can lead to complex patterns.
         </p>
-        <canvas width="24" height="24" id="gol-octagon"></canvas>
       </section>
 
       <section class="flex-responsive" style="margin-bottom: 0">
@@ -79,10 +83,6 @@
             <figcaption>ECA rule 90</figcaption>
           </figure>
 
-          <figure>
-            <canvas width="240" height="120" id="gol-glider"></canvas>
-            <figcaption>Gosper glider gun</figcaption>
-          </figure>
         </aside>
       </section>
 
@@ -361,6 +361,13 @@
             <canvas id="three-combined-world" width="300" height="300"></canvas>
           </figure>
         </div>
+      </section>
+
+      <section>
+          <figure>
+            <canvas width="240" height="120" id="gol-glider"></canvas>
+            <figcaption>Gosper glider gun</figcaption>
+          </figure>
       </section>
 
       <section>
