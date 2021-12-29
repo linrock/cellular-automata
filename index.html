@@ -68,7 +68,7 @@
                   2x ECA + Game of Life</a></li>
               </ul>
             </li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#about">About this page</a></li>
             <li><a href="#references">References</a></li>
           </ul>
         </nav>
@@ -112,8 +112,8 @@
         </p>
         <p>
           Since there are 2<sup>3</sup> = 8 orientations of the 3 values,
-          and there are 2 states for a cell, there are 2<sup>8</sup> = 256
-          possible rules for determining the new state of a cell in the next
+          and there are 2 possible states for a cell, there are 2<sup>8</sup>
+          = 256 rules for determining the new state of a cell in the next
           generation of the world.
         </p>
         <div class="flex-responsive">
@@ -338,12 +338,24 @@
       </section>
 
       <section>
-        <h2 id="about">About</h3>
+        <h2 id="fun-facts">Fun facts</h3>
+        <ul>
+          <li>
+            Conway's Game of Life and ECA 110 are Turing complete.
+          <li>
+            The Game of Life and other Life-like automata can be implemented
+            in the Game of Life using a construct called an OTCA metapixel.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="about">About this page</h3>
         <p>
-          This page is a work in progress. Animations are written in vanilla
+          This page is a work in progress. Animations are written in plain
           javascript and use the canvas API for rendering. All source code is
-          <a href="https://github.com/linrock/cellular-automata"
-             style="display: inline">publicly available here</a>.
+          <a href="https://github.com/linrock/cellular-automata">
+            publicly available here</a>.
         </p>
       </section>
 
@@ -359,6 +371,10 @@
 
           <li><a href="https://en.wikipedia.org/wiki/Category:Cellular_automaton_rules"
                  target="_blank">Wikipedia - Cellular automaton rules</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Rule_110"
+                 target="_blank">Wikipedia - Rule 110</a></li>
+          <li><a href="https://www.conwaylife.com/wiki/OTCA_metapixel"
+                 target="_blank">OTCA metapixel</a></li>
       </section>
 
     </main>
