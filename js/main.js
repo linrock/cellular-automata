@@ -1,12 +1,32 @@
 (() => {
-  const POLL_INTERVAL_MS = 500;
+  // time to wait between rendering animation frames
+  const ANIM_UPDATE_INTERVAL_MS = 50;
+
+  // frequency to toggle animation play/pause statuses
+  const VIZ_POLL_INTERVAL_MS = 500;
 
   const PLAY_EVENT = new CustomEvent('play');
   const PAUSE_EVENT = new CustomEvent('pause');
 
+  // centralize all animated canvases in one place
+  window.animatedCanvases = [];
+
+  function updateAndDrawAllAnimations() {
+    requestAnimationFrame(() => {
+      animatedCanvases.forEach((anim) => anim.updateAndDrawWorld());
+    });
+  }
+
+  function updateAndDrawAllAnimationsForever() {
+    updateAndDrawAllAnimations();
+    setTimeout(() => {
+      updateAndDrawAllAnimationsForever();
+    }, ANIM_UPDATE_INTERVAL_MS);
+  }
+
   // play all canvases within the current viewport
   // pause all canvases not within the current viewport
-  setInterval(() => {
+  function toggleCanvasAnimations() {
     const viewportHeight = window.innerHeight;
     const canvases = document.getElementsByTagName("canvas");
     [...canvases].forEach((canvas) => {
@@ -19,5 +39,13 @@
         canvas.dispatchEvent(PLAY_EVENT);
       }
     });
-  }, POLL_INTERVAL_MS);
+  }
+
+  function toggleCanvasAnimationsForever() {
+    toggleCanvasAnimations();
+    setTimeout(() => toggleCanvasAnimationsForever(), VIZ_POLL_INTERVAL_MS);
+  }
+
+  toggleCanvasAnimationsForever();
+  updateAndDrawAllAnimationsForever();
 })();

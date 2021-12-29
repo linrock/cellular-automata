@@ -31,7 +31,7 @@
     });
     anim.setForegroundColor('#cef9f2');  // light blue
     anim.setBackgroundColor('#1b065e');
-    anim.updateForever();
+    window.animatedCanvases.push(anim);
   }
 
   {
@@ -58,6 +58,6 @@
     });
     anim.setForegroundColor('#cef9f2');  // light blue
     anim.setBackgroundColor('#1b065e');
-    anim.updateForever();
+    window.animatedCanvases.push(anim);
   }
 })();

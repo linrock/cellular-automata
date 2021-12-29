@@ -85,5 +85,5 @@
     };
   });
   anim.setForegroundColor('#39FF14');
-  anim.updateForever();
+  window.animatedCanvases.push(anim);
 })();

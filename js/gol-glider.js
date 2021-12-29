@@ -53,5 +53,5 @@
   });
   anim.setBackgroundColor('#1a1423');
   anim.setForegroundColor('#39FF14');
-  anim.updateForever();
+  window.animatedCanvases.push(anim);
 })();

@@ -60,10 +60,9 @@ class AnimatedCanvas {
     });
   }
 
-  updateForever() {
+  updateAndDrawWorld() {
     if (this.isAnimating) {
       this.drawWorld(this.updateWorld());
     }
-    setTimeout(() => this.updateForever(), this.UPDATE_INTERVAL_MS);
   }
 }

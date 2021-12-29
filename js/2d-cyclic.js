@@ -1,5 +1,5 @@
 (() => {
-  // cyclic automata with random initial state
+  // cyclic tri-state cellular automata with random initial state
   const anim = new AnimatedCanvas('c-cyclic', 3, (numX, numY) => {
     const cyc = new Cyclic(numX, numY, () => {
       const rand = Math.random();
@@ -30,5 +30,5 @@
   };
   anim.setBackgroundColor('#1a1423');
   anim.setForegroundColor('#39FF14');
-  anim.updateForever();
+  window.animatedCanvases.push(anim);
 })();

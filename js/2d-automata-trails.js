@@ -77,5 +77,5 @@
     }
   };
   anim.setBackgroundColor('#1a1423');
-  anim.updateForever();
+  window.animatedCanvases.push(anim);
 })();
