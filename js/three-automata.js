@@ -19,6 +19,9 @@
     world[0] = ecaTop.cells;
     world[numY - 1] = ecaBottom.cells;
 
+    const BOUND_TOP_Y = numY / 4;
+    const BOUND_BOTTOM_Y = 3 * numY / 4;
+
     // generates the next iteration of the 2x ECA worlds
     function calculateNewWorld1d(world) {
       const newWorld = [];
@@ -26,16 +29,16 @@
         newWorld[y] = world[y].slice();
       }
 
-      // the bottom third of the world is a 1d cellular automata
+      // the bottom fourth of the world is a 1d cellular automata
       ecaBottom.calculateNextGeneration();
-      for (let y = numY - 1; y > 2 * numY / 3; y--) {
+      for (let y = numY - 1; y > BOUND_BOTTOM_Y; y--) {
         newWorld[y - 1] = world[y];
       }
       newWorld[numY - 1] = ecaBottom.cells;
 
-      // the top third of the world is a 1d cellular automata
+      // the top fourth of the world is a 1d cellular automata
       ecaTop.calculateNextGeneration();
-      for (let y = 0; y < numY / 3; y++ ) {
+      for (let y = 0; y < BOUND_TOP_Y; y++ ) {
         newWorld[y + 1] = world[y];
       }
       newWorld[0] = ecaTop.cells;
@@ -49,8 +52,8 @@
       for (let y = 0; y < numY; y++) {
         newWorld[y] = world[y].slice();
       }
-      // the middle third of the world follows the rules of the game of life
-      for (let y = numY / 3; y < 2 * numY / 3; y++) {
+      // the middle fourth of the world follows the rules of the game of life
+      for (let y = BOUND_TOP_Y; y < BOUND_BOTTOM_Y; y++) {
         for (let x = 0; x < numX; x++) {
           const numLiveNeighbors =
             (world[y - 1][x - 1] || 0) +
