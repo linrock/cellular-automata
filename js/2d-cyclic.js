@@ -7,25 +7,34 @@
     });
     return () => cyc.calculateNewWorld();
   });
-  anim.drawWorld = function(world) {
+  anim.drawWorld = function(worldDiff) {
     requestAnimationFrame(() => {
-      this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-      for (let x = 0; x < this.numCellsX; x++) {
-        for (let y = 0; y < this.numCellsY; y++) {
-          if (world[y][x]) {
-            if (world[y][x] === 2) {
-              this.ctx.fillStyle = 'orange';
-            } else if (world[y][x] === 1) {
-              this.ctx.fillStyle = 'yellow';
-            }
+      worldDiff.forEach(([state, coords]) => {
+        if (state) {
+          if (state === 1) {
+            this.ctx.fillStyle = 'yellow';
+          } else if (state === 2) {
+            this.ctx.fillStyle = 'orange';
+          }
+          coords.forEach(([x, y]) => {
             this.ctx.fillRect(
               x * this.gridSize,
               y * this.gridSize,
               this.gridSize,
-              this.gridSize);
-            }
+              this.gridSize
+            );
+          });
+        } else {
+          coords.forEach(([x, y]) => {
+            this.ctx.clearRect(
+              x * this.gridSize,
+              y * this.gridSize,
+              this.gridSize,
+              this.gridSize
+            );
+          });
         }
-      }
+      });
     });
   };
   anim.setBackgroundColor('#1a1423');

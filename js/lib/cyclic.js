@@ -21,6 +21,7 @@ class Cyclic {
   // naive way of calculating the next generation of the world
   calculateNewWorld() {
     const newWorld = [];
+    let worldDiff = { 0: [], 1: [], 2: [] };
     for (let y = 0; y < this.numCellsY; y++) {
       newWorld.push(new Array(this.numCellsX).fill(0));
     }
@@ -59,6 +60,7 @@ class Cyclic {
           // add some randomness for smoother edges
           if (counts[winnerVal] > 2 + ~~(Math.random() * 2)) {
             newWorld[y][x] = winnerVal;
+            worldDiff[winnerVal].push([x, y]);
           } else {
             newWorld[y][x] = this.world[y][x];
           }
@@ -68,6 +70,10 @@ class Cyclic {
       }
     }
     this.world = newWorld;
-    return newWorld;
+    worldDiff = Object.entries(worldDiff);
+    for (let i = 0; i < worldDiff.length; i++) {
+      worldDiff[i][0] = Number(worldDiff[i][0]);
+    }
+    return worldDiff;
   }
 }
