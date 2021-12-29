@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width">
     <title>An overview of cellular automata</title>
+    <script src="js/main.js" async></script>
     <link rel="stylesheet" href="style.css">
-    <script src="js/main.js"></script>
   </head>
   <body>
     <main>
@@ -37,14 +37,21 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#day-and-night">
-                    Day and night
+                  <a href="#life-like-cellular-automata">
+                    Life-like cellular automata
                   </a>
-                </li>
-                <li>
-                  <a href="#mazetric">
-                    Mazetric
-                  </a>
+                  <ul>
+                    <li>
+                      <a href="#day-and-night">
+                        Day and night
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#mazetric">
+                        Mazetric
+                      </a>
+                    </li>
+                  </ul>
                 </li>
                 <li>
                   <a href="#cyclic-cellular-automata">
@@ -153,7 +160,7 @@
         <div class="flex-responsive">
           <p>
             Created by mathematician John Conway in 1970, this is perhaps
-            the most well-known cellular autonoma. Cells have two possible
+            the most well-known cellular automata. Cells have two possible
             states: live or dead. New generations of the world consider only
             the 8 immediate neighbors of each cell.
           </p>
@@ -164,7 +171,7 @@
         <p style="margin-bottom: 1rem">
           In each generation, the state of the world is generated based on
           these rules:
-        <p>
+        </p>
         <ul>
           <li>A dead cell with 3 neighbors becomes live</li>
           <li>A live cell with 2 or 3 neighbors stays live</li>
@@ -173,7 +180,25 @@
       </section>
 
       <section>
-        <h3 id="day-and-night">Day and Night</h3>
+        <h3 id="life-like-cellular-automata">Life-like cellular automata</h3>
+        <p style="margin-bottom: 1rem">
+          Cellular automata are considered Life-like if they're 2D, cells have
+          2 possible states, and change based on their 8 immediate neighbors.
+          The rules by which cell states change may differ.
+          A common notation for rules is written as Bx/Sy, where:
+        </p>
+        <ul>
+          <li>B = Birth - dead cells with these numbers of neighbors become live</li>
+          <li>S = Survival - live cells with these numbers of neighbors stay live</li>
+          <li>x and y are strings of digits from 1 to 8
+        </ul>
+        <p>
+          For example, the rules of the Game of Life can be written as: B3/S23
+        </P.
+      </section>
+
+      <section>
+        <h4 id="day-and-night">Day and Night</h4>
         <div class="flex-responsive">
           <div>
             <p>
@@ -192,19 +217,18 @@
           </figure>
         </div>
         <p style="margin-bottom: 1rem">
-          New generations of a Day and Night world follow these rules:
+          New generations of Day and Night worlds follow these rules:
         </p>
         <ul>
           <li>An off cell with 3, 6, 7, or 8 neighbors becomes on</li>
           <li>An on cell with 3, 4, 6, 7, or 8 neighbors becomes off</li>
           <li>All other on cells become off</li>
         </ul>
-        <p>
-        </p>
+        <p>The rules can be written as: B3678/S34678
       </section>
 
       <section>
-        <h3 id="mazectric">Mazectric</h3>
+        <h4 id="mazectric">Mazectric</h4>
         <div class="flex-responsive">
           <div>
             <p>
@@ -214,9 +238,8 @@
               state is reached.
             </p>
             <p>
-              In some random initial states, oscillator patterns will appear,
-              where 2x2 cells will continuously switch between on and off
-              states.
+              In some cases, oscillator patterns will appear, where 2x2 cells
+              will continuously switch between on and off states.
             </p>
           </div>
           <figure>
@@ -295,10 +318,10 @@
       <section>
         <h2 id="about">About</h3>
         <p>
-          This page is a work in progress. Animations on this page use
-          javascript and the canvas API. All source code is publicly available
+          This page is a work in progress. Animations are written in vanilla
+          javascript and use the canvas API for rendering. All source code is
           <a href="https://github.com/linrock/cellular-automata"
-             style="display: inline">here</a>.
+             style="display: inline">publicly available here</a>.
         </p>
       </section>
 

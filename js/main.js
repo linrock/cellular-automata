@@ -2,7 +2,7 @@
   // time to wait between rendering animation frames
   const ANIM_UPDATE_INTERVAL_MS = 50;
 
-  // frequency to toggle animation play/pause statuses
+  // frequency of toggling all animation play/pause statuses
   const VIZ_POLL_INTERVAL_MS = 500;
 
   const PLAY_EVENT = new CustomEvent('play');
@@ -28,7 +28,7 @@
   // pause all canvases not within the current viewport
   function toggleCanvasAnimations() {
     const viewportHeight = window.innerHeight;
-    const canvases = document.getElementsByTagName("canvas");
+    const canvases = document.getElementsByTagName('canvas');
     [...canvases].forEach((canvas) => {
       const rect = canvas.getBoundingClientRect();
       if (rect.bottom < 0 || rect.top > viewportHeight) {
