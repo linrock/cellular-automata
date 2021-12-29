@@ -73,7 +73,7 @@ sup {
   font-size: 0.7rem;
 }
 
-article {
+main {
   max-width: 600px;
   padding: 0 1rem;
   margin: auto;
@@ -121,5 +121,18 @@ small {
 }
 
 footer {
+  width: 100%;
   margin-top: 4rem;
+  padding: 1rem 0;
+  background: #1f1f1f;
+}
+
+footer > nav {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+}
+
+footer a {
+  margin-right: 3rem;
 }

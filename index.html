@@ -8,7 +8,7 @@
     <script src="js/main.js"></script>
   </head>
   <body>
-    <article>
+    <main>
       <section>
         <h1>Cellular automata</h1>
         <p>
@@ -196,6 +196,15 @@
       </section>
 
       <section>
+        <h3 id="cyclic">Cyclic</h3>
+        <p>
+        </p>
+        <div class="flex-responsive">
+          <canvas id="c-cyclic" width="300" height="300"></canvas>
+        </div>
+      </section>
+
+      <section>
         <h2 id="visual-experiments">Visual experiments</h2>
         <p>
           These are experiments that combine or expand upon the above ideas
@@ -222,7 +231,7 @@
           As each generation reaches the middle, it influences the top half
           of the world, which is follows the Game of Life.
         </p>
-        <canvas id="combined-world" width="330" height="330"></canvas>
+        <canvas id="combined-world" width="360" height="360"></canvas>
         <aside></aside>
       </section>
 
@@ -240,6 +249,13 @@
       </section>
 
       <section>
+        <h2 id="about">About</h3>
+        <p>
+          Future works
+        </p>
+      </section>
+
+      <section>
         <h2 id="references">References</h2>
         <ul>
           <li><a href="https://en.wikipedia.org/wiki/Cellular_automaton"
@@ -250,15 +266,23 @@
                  target="_blank">Wikipedia - Cellular automaton rules</a></li>
       </section>
 
-      <footer><a href="javascript:">source code</a></footer>
-    </article>
+    </main>
+
+    <footer>
+      <nav>
+        <a href="https://robotmoon.com">home</a>
+        <a href="javascript:">source code</a>
+      </nav>
+    </footer>
 
     <script src="js/lib/eca.js"></script>
     <script src="js/lib/gol.js"></script>
+    <script src="js/lib/cyclic.js"></script>
     <script src="js/lib/animated-canvas.js"></script>
     <script src="js/1d-automata.js"></script>
     <script src="js/rule-90.js"></script>
     <script src="js/2d-automata.js"></script>
+    <script src="js/2d-cyclic.js"></script>
     <script src="js/day-and-night.js"></script>
     <script src="js/mazectric.js"></script>
     <script src="js/2d-automata-trails.js"></script>
