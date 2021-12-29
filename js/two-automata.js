@@ -56,7 +56,9 @@
       return world;
     }
   });
-  anim.setForegroundColor('#ff8f00');
+  // anim.setForegroundColor('#ff8f00');
+  // anim.setForegroundColor('#ffd400');
+  anim.setForegroundColor('orange');
   anim.setBackgroundColor('#2e0400');
   window.animatedCanvases.push(anim);
 })();

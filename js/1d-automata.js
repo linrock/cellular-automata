@@ -56,8 +56,13 @@
         return world;
       };
     });
-    anim.setForegroundColor('#cef9f2');  // light blue
-    anim.setBackgroundColor('#1b065e');
+    // anim.setForegroundColor('#cef9f2');  // light blue
+    // anim.setBackgroundColor('#1b065e');
+    // anim.setForegroundColor('#a5e6ba');
+    // anim.setBackgroundColor('#360568');
+    anim.setForegroundColor('#5c7aff');
+    // anim.setForegroundColor('#7a42da');
+    anim.setBackgroundColor('#1d0b3b');
     window.animatedCanvases.push(anim);
   }
 })();

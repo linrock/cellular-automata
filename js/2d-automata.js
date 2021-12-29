@@ -4,8 +4,10 @@
     const gol = new GOL(numX, numY, () => Math.random() > 0.8 ? 1 : 0);
     return () => gol.calculateNewWorld();
   });
-  anim.setBackgroundColor('#1a1423');
   anim.setForegroundColor('#39FF14');
+  anim.setBackgroundColor('#1a1423');
+  // anim.setForegroundColor('#9dfff9');
+  // anim.setBackgroundColor('#003f59');
   window.animatedCanvases.push(anim);
 }
 {
@@ -21,8 +23,12 @@
     };
     return () => gol.calculateNewWorld();
   });
-  anim.setForegroundColor('#ffd449');
-  anim.setBackgroundColor('#110244');
+  // anim.setForegroundColor('#ffd449');
+  anim.setForegroundColor('#fff44f');
+  // anim.setForegroundColor('#29b6f6');
+  // anim.setBackgroundColor('#000437');
+  // anim.setBackgroundColor('#1a0c3e');
+  anim.setBackgroundColor('#110829');
   window.animatedCanvases.push(anim);
 }
 {
