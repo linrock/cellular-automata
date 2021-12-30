@@ -2,17 +2,7 @@
   const anim = new AnimatedCanvas('gol-oscillators', 3, (numX, numY) => {
     const gol = new GOL(numX, numY);
 
-    function drawPixels(pixels, shiftX = 0, shiftY = 0) {
-      pixels.forEach((row, y) => {
-        row.split('').forEach((pixel, x) => {
-          if (pixel !== ' ') {
-            gol.world[y + shiftY][x + shiftX] = 1;
-          }
-        });
-      });
-    }
-
-    drawPixels([  // an octagon
+    gol.drawPixels([  // an octagon
       '   11   ',
       '  1  1  ',
       ' 1    1 ',
@@ -23,7 +13,7 @@
       '   11   ',
     ], 5, 6);
 
-    drawPixels([  // a figure eight
+    gol.drawPixels([  // a figure eight
       '111',
       '111',
       '111',
@@ -32,13 +22,13 @@
       '   111',
     ], 28, 7);
 
-    drawPixels([  // a pentadecathlon
+    gol.drawPixels([  // a pentadecathlon
       '  1    1',
       '11 1111 11',
       '  1    1',
     ], 50, 9);
 
-    drawPixels([  // queen bees shuttle
+    gol.drawPixels([  // queen bees shuttle
       '         1',
       '       1 1',
       '      1 1',

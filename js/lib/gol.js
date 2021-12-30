@@ -21,6 +21,17 @@ class GOL {
     }
   }
 
+  // for manually converting arrays of strings into pixels
+  drawPixels(pixels, shiftX = 0, shiftY = 0) {
+    pixels.forEach((row, y) => {
+      row.split('').forEach((pixel, x) => {
+        if (pixel !== ' ') {
+          this.world[y + shiftY][x + shiftX] = 1;
+        }
+      });
+    });
+  }
+
   // method of deciding the new state of the current cell
   newCellRule(state, numLiveNeighbors) {
     if (state)  {
