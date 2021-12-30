@@ -67,8 +67,8 @@
     gol.S = [3, 5, 6, 7, 8];
     return () => gol.calculateNewWorld();
   });
-  anim.setForegroundColor('#fff44f');
-  anim.setBackgroundColor('#110829');
+  anim.setForegroundColor('rgb(239, 120, 47)');
+  anim.setBackgroundColor('rgb(66, 50, 47)');
   window.animatedCanvases.push(anim);
 }
 {
