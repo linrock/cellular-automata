@@ -2,6 +2,11 @@
   const CELL_LIVE = 16;
   const CELL_TRANSITION = CELL_LIVE / 2;
 
+  const bgColor = 'rgb(26, 28, 25)';
+  const liveColor = '#C8E77F';
+  const fadeColor1 = '#5C8B6B';
+  const fadeColor2 = '#355852';
+
   const anim = new AnimatedCanvas('c-game-of-life-trails', 3, (numX, numY) => {
     // initialize the world with random numbers
     let world = [];
@@ -62,11 +67,11 @@
       for (let x = 0; x < this.numCellsX; x++) {
         if (world[y][x] !== 0) {
           if (world[y][x] === CELL_LIVE) {
-            this.ctx.fillStyle = '#b5ffe9';
+            this.ctx.fillStyle = liveColor;
           } else if (world[y][x] > CELL_TRANSITION) {
-            this.ctx.fillStyle = '#ff66b3';
+            this.ctx.fillStyle = fadeColor1;
           } else {
-            this.ctx.fillStyle = '#96031a';
+            this.ctx.fillStyle = fadeColor2;
           }
           this.ctx.fillRect(
             x * this.gridSize,
@@ -77,6 +82,6 @@
       }
     }
   };
-  anim.setBackgroundColor('#1a1423');
+  anim.setBackgroundColor(bgColor);
   window.animatedCanvases.push(anim);
 }
