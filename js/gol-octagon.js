@@ -4,13 +4,22 @@
 
     // manually draw an octagon oscillator
     const pixels = [
-      [0, 3], [1, 2], [2, 1], [3, 0],
-      [4, 0], [5, 1], [6, 2], [7, 3],
-      [0, 4], [1, 5], [2, 6], [3, 7],
-      [4, 7], [5, 6], [6, 5], [7, 4],
+      '   11   ',
+      '  1  1  ',
+      ' 1    1 ',
+      '1      1',
+      '1      1',
+      ' 1    1 ',
+      '  1  1  ',
+      '   11   ',
     ];
-    pixels.forEach(([y, x]) => gol.world[y][x] = 1);
-
+    pixels.forEach((row, y) => {
+      row.split('').forEach((pixel, x) => {
+        if (pixel !== ' ') {
+          gol.world[y][x] = 1;
+        }
+      });
+    });
     return () => gol.calculateNewWorld();
   });
   anim.setForegroundColor('#ffa600');

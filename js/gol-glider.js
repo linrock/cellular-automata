@@ -28,7 +28,7 @@
     pixels.forEach(([y, x]) => gol.world[y][x] = 1);
     return () => gol.calculateNewWorld();
   });
-  anim.setBackgroundColor('#1a1423');
-  anim.setForegroundColor('#39FF14');
+  anim.setForegroundColor('#5dfdcb');
+  anim.setBackgroundColor('#02020a');
   window.animatedCanvases.push(anim);
 }
