@@ -1,6 +1,6 @@
 {
   const anim = new AnimatedCanvas('combined-world', 3, (numX, numY) => {
-    const RULE_NUM = 30;
+    const RULE_NUM = 89;
     const eca = new ECA(numX, RULE_NUM, 'one_middle');
 
     // initialize the world with zeroes. the bottom row is an ECA

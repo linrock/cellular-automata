@@ -1,7 +1,7 @@
 {
   // const RULE_NUM = 106;
   const RULE_NUM_TOP = 73;
-  const RULE_NUM_BOTTOM = 30;
+  const RULE_NUM_BOTTOM = 86;
 
   const anim = new AnimatedCanvas('three-combined-world', 3, (numX, numY) => {
     const ecaTop = new ECA(numX, RULE_NUM_TOP, 'one_middle');
