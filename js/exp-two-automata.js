@@ -1,6 +1,6 @@
 {
   const anim = new AnimatedCanvas('combined-world', 3, (numX, numY) => {
-    const RULE_NUM = 89;
+    const RULE_NUM = 30;
     const eca = new ECA(numX, RULE_NUM, 'one_middle');
 
     // initialize the world with zeroes. the bottom row is an ECA
@@ -71,10 +71,6 @@
       this.gridSize,
       this.gridSize);
   }
-
-  // anim.setForegroundColor('#ff8f00');
-  // anim.setForegroundColor('#ffd400');
-  anim.setForegroundColor('rgb(255,188,46)');
   anim.setBackgroundColor('#2e0400');
   window.animatedCanvases.push(anim);
 }
