@@ -68,7 +68,7 @@
     return () => gol.calculateNewWorld();
   });
   anim.setForegroundColor('rgb(239, 120, 47)');
-  anim.setBackgroundColor('rgb(66, 50, 47)');
+  anim.setBackgroundColor('rgb(40, 30, 28)');
   window.animatedCanvases.push(anim);
 }
 {
@@ -106,22 +106,24 @@
   window.animatedCanvases.push(anim);
 }
 {
-  // const bgColor = '#2B2414';
-  // const darkColor = '#456B6E';
-  // const lightColor = '#6E8984';
-
+  // cyclic tri-state animation at the top of the page
   const bgColor = 'rgb(82, 17, 7)';
   const darkColor = '#d75302';
   const lightColor = '#fac000';
 
-  // cyclic tri-state cellular automata with random initial state
+  const randThresh1 = 3/4;
+  const randThresh2 = 1/3;
   const anim = new AnimatedCanvas('c-first-canvas', 3, (numX, numY) => {
     const cyc = new Cyclic(numX, numY, () => {
       const rand = Math.random();
-      return rand > 0.667 ? 2 : (rand > 0.333 ? 1 : 0);
+      return rand > randThresh1 ? 2 : (rand > randThresh2 ? 1 : 0);
     });
+    // update constants to make the animation more chaotic
+    cyc.winThreshold = 1;
+    cyc.winRand = 4;
     return () => cyc.calculateNewWorld();
   });
+
   anim.drawWorld = function(world) {
     requestAnimationFrame(() => {
       this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
