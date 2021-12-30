@@ -3,9 +3,13 @@
   const RULE_NUM_TOP = 73;
   const RULE_NUM_BOTTOM = 86;
 
-  const topFgColor = '#344154';     // blue
+  const topFgColor = '#364c6c';     // blue
   const bottomFgColor = '#ED6142';  // red
   const middleFgColor = '#AE5976';  // purple
+
+  const CELL_BLUE = 1;
+  const CELL_RED = 2;
+  const CELL_PURPLE = 3;
 
   const anim = new AnimatedCanvas('three-combined-world', 3, (numX, numY) => {
     const ecaTop = new ECA(numX, RULE_NUM_TOP, 'one_middle');
@@ -24,8 +28,8 @@
       world.push(row);
     }
     // the top and bottom rows are ECAs
-    world[0] = ecaTop.cells;
-    world[numY - 1] = ecaBottom.cells;
+    world[0] = ecaTop.cells.map(x => x ? CELL_BLUE : 0);
+    world[numY - 1] = ecaBottom.cells.map(x => x ? CELL_RED : 0);
 
     // generates the next iteration of the 2x ECA worlds
     function calculateNewWorld1d(world) {
@@ -39,14 +43,14 @@
       for (let y = numY - 1; y > BOUND_BOTTOM_Y; y--) {
         newWorld[y - 1] = world[y];
       }
-      newWorld[numY - 1] = ecaBottom.cells;
+      newWorld[numY - 1] = ecaBottom.cells.map(x => x ? CELL_RED : 0);
 
       // the top fourth of the world is a 1d cellular automata
       ecaTop.calculateNextGeneration();
       for (let y = 0; y < BOUND_TOP_Y; y++ ) {
         newWorld[y + 1] = world[y];
       }
-      newWorld[0] = ecaTop.cells;
+      newWorld[0] = ecaTop.cells.map(x => x ? CELL_BLUE : 0);
 
       return newWorld;
     }
@@ -57,25 +61,38 @@
       for (let y = 0; y < numY; y++) {
         newWorld[y] = world[y].slice();
       }
-      // the middle fourth of the world follows the rules of the game of life
+      // the middle half of the world follows the rules of the game of life
       for (let y = BOUND_TOP_Y; y < BOUND_BOTTOM_Y; y++) {
         for (let x = 0; x < numX; x++) {
-          const numLiveNeighbors =
-            (world[y - 1][x - 1] || 0) +
-            world[y - 1][x] +
-            (world[y - 1][x + 1] || 0) +
-            (world[y][x - 1] || 0) +
-            (world[y][x + 1] || 0) +
-            (world[y + 1][x - 1] || 0) +
-            world[y + 1][x] +
-            (world[y + 1][x + 1] || 0);
+          const counts = {}
+          counts[CELL_BLUE] = 0;
+          counts[CELL_RED] = 0;
+          counts[CELL_PURPLE] = 0;
+          counts[world[y][x]]++;
+          let numNeighbors = 0;
+          world[y - 1][x - 1] && ++numNeighbors && counts[world[y-1][x-1]]++;
+          world[y - 1][x]     && ++numNeighbors && counts[world[y-1][x]]++;
+          world[y - 1][x + 1] && ++numNeighbors && counts[world[y-1][x+1]]++;
+          world[y][x - 1]     && ++numNeighbors && counts[world[y][x-1]]++;
+          world[y][x + 1]     && ++numNeighbors && counts[world[y][x+1]]++;
+          world[y + 1][x - 1] && ++numNeighbors && counts[world[y+1][x-1]]++;
+          world[y + 1][x]     && ++numNeighbors && counts[world[y+1][x]]++;
+          world[y + 1][x + 1] && ++numNeighbors && counts[world[y+1][x+1]]++;
           newWorld[y][x] = world[y][x];
           if (newWorld[y][x]) {
-            if (numLiveNeighbors < 2 || numLiveNeighbors > 3) {
+            if (numNeighbors < 2 || numNeighbors > 3) {
               newWorld[y][x] = 0;
             }
-          } else if (numLiveNeighbors === 3) {
-            newWorld[y][x] = 1;
+          } else if (numNeighbors === 3) {
+            if (counts[CELL_PURPLE] > 0) {
+              newWorld[y][x] = CELL_PURPLE;
+            } else if (counts[CELL_BLUE] > 0 && counts[CELL_RED] > 0) {
+              newWorld[y][x] = CELL_PURPLE;
+            } else if (counts[CELL_BLUE] > 0) {
+              newWorld[y][x] = CELL_BLUE;
+            } else {
+              newWorld[y][x] = CELL_RED;
+            }
           }
         }
       }
@@ -98,7 +115,13 @@
     } else if (y > 3 * this.numCellsY / 4) {
       this.ctx.fillStyle = bottomFgColor;
     } else {
-      this.ctx.fillStyle = middleFgColor;
+      if (value === CELL_BLUE) {
+        this.ctx.fillStyle = topFgColor;
+      } else if (value === CELL_RED) {
+        this.ctx.fillStyle = bottomFgColor;
+      } else {
+        this.ctx.fillStyle = middleFgColor;
+      }
     }
     this.ctx.fillRect(
       x * this.gridSize,
@@ -106,5 +129,6 @@
       this.gridSize,
       this.gridSize);
   }
+  anim.setBackgroundColor('#0c0b0b');
   window.animatedCanvases.push(anim);
 }
