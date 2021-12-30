@@ -5,7 +5,7 @@
 
   const topFgColor = '#364c6c';     // blue
   const bottomFgColor = '#ED6142';  // red
-  const middleFgColor = '#AE5976';  // purple
+  const middleFgColor = '#d77c9b';  // purple
 
   const CELL_BLUE = 1;
   const CELL_RED = 2;
@@ -18,8 +18,8 @@
     const ecaTop = new ECA(numX, RULE_NUM_TOP, 'one_middle');
     const ecaBottom = new ECA(numX, RULE_NUM_BOTTOM, 'one_middle');
 
-    boundTopY = numY / 4;
-    boundBottomY = 3 * numY / 4;
+    boundTopY = ~~(numY / 3);
+    boundBottomY = ~~(2 * numY / 3);
 
     // initialize the world with zeroes
     let world = [];
@@ -41,14 +41,14 @@
         newWorld[y] = world[y].slice();
       }
 
-      // the bottom fourth of the world is a 1d cellular automata
+      // the bottom of the world is a 1d cellular automaton
       ecaBottom.calculateNextGeneration();
       for (let y = numY - 1; y > boundBottomY; y--) {
         newWorld[y - 1] = world[y];
       }
       newWorld[numY - 1] = ecaBottom.cells.map(x => x ? CELL_RED : 0);
 
-      // the top fourth of the world is a 1d cellular automata
+      // the top of the world is a 1d cellular automaton
       ecaTop.calculateNextGeneration();
       for (let y = 0; y < boundTopY; y++ ) {
         newWorld[y + 1] = world[y];
@@ -64,7 +64,7 @@
       for (let y = 0; y < numY; y++) {
         newWorld[y] = world[y].slice();
       }
-      // the middle half of the world follows the rules of the game of life
+      // the middle of the world follows the rules of the game of life
       for (let y = boundTopY; y < boundBottomY; y++) {
         for (let x = 0; x < numX; x++) {
           const counts = {}
@@ -87,11 +87,14 @@
               newWorld[y][x] = 0;
             }
           } else if (numNeighbors === 3) {
-            if (counts[CELL_PURPLE] > 0) {
+            const numBlue = counts[CELL_BLUE],
+                  numRed = counts[CELL_RED],
+                  numPurp = counts[CELL_PURPLE];
+            if (numBlue && numRed) {
               newWorld[y][x] = CELL_PURPLE;
-            } else if (counts[CELL_BLUE] > 0 && counts[CELL_RED] > 0) {
+            } else if (numPurp >= numBlue && numPurp >= numRed) {
               newWorld[y][x] = CELL_PURPLE;
-            } else if (counts[CELL_BLUE] > 0) {
+            } else if (numBlue) {
               newWorld[y][x] = CELL_BLUE;
             } else {
               newWorld[y][x] = CELL_RED;
