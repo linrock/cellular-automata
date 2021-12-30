@@ -129,11 +129,7 @@
         this.ctx.fillStyle = middleFgColor;
       }
     }
-    this.ctx.fillRect(
-      x * this.cellSize,
-      y * this.cellSize,
-      this.cellSize,
-      this.cellSize);
+    this.fillCell(x, y);
   }
   anim.setBackgroundColor('#0c0b0b');
   window.animatedCanvases.push(anim);

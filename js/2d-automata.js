@@ -92,12 +92,8 @@
             } else if (world[y][x] === 1) {
               this.ctx.fillStyle = 'yellow';
             }
-            this.ctx.fillRect(
-              x * this.cellSize,
-              y * this.cellSize,
-              this.cellSize,
-              this.cellSize);
-            }
+            this.fillCell(x, y);
+          }
         }
       }
     });
@@ -135,12 +131,8 @@
             } else if (world[y][x] === 1) {
               this.ctx.fillStyle = lightColor;
             }
-            this.ctx.fillRect(
-              x * this.cellSize,
-              y * this.cellSize,
-              this.cellSize,
-              this.cellSize);
-            }
+            this.fillCell(x, y);
+          }
         }
       }
     });

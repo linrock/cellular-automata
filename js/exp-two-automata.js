@@ -91,11 +91,7 @@
       // the ECA in the bottom half
       this.ctx.fillStyle = ecaColor;
     }
-    this.ctx.fillRect(
-      x * this.cellSize,
-      y * this.cellSize,
-      this.cellSize,
-      this.cellSize);
+    this.fillCell(x, y);
   }
   anim.setBackgroundColor(bgColor);
   window.animatedCanvases.push(anim);

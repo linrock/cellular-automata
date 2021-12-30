@@ -73,11 +73,7 @@
           } else {
             this.ctx.fillStyle = fadeColor2;
           }
-          this.ctx.fillRect(
-            x * this.cellSize,
-            y * this.cellSize,
-            this.cellSize,
-            this.cellSize);
+          this.fillCell(x, y);
         }
       }
     }
