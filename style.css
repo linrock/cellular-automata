@@ -1,7 +1,7 @@
 body {
   font-family: "Helvetica Neue", Arial, 'Sans Serif';
   background: #242424;
-  color: #e5e5e5;
+  color: #e0e0e0;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -34,7 +34,7 @@ h3 {
 }
 
 h4 {
-  color: #fafafa;
+  color: #e0e0e0;
   font-size: 1rem;
   padding: 1rem 0 0.5rem;
   border-bottom: 1px solid rgba(255,255,255,0.1);
