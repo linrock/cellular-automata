@@ -70,9 +70,8 @@
               </ul>
             </li>
             <li><a href="#visual-experiments">Visual experiments</a>
-            <li><a href="#fun-facts">Fun facts</a>
+            <li><a href="#oscillators">Oscillators</a></li>
             <li><a href="#about">About this page</a></li>
-            <li><a href="#references">References</a></li>
           </ul>
         </nav>
         <figure>
@@ -126,12 +125,13 @@
 
         <div class="flex-responsive">
           <p>
-            Other rules such as rule 90 will lead to symmetric and periodic patterns.
-            When starting with one cell, a fractal pattern called a Sierpinkski
-            triangle is generated.
+            Other rules such as rule 90 will lead to symmetric and periodic
+            patterns. When starting with one middle cell, a fractal pattern
+            called a Sierpinkski triangle appears.
           </p>
           <figure>
-            <canvas id="rule-90" width="300" height="120" style="background: black"></canvas>
+            <canvas id="rule-90" width="300" height="120"
+                    style="background: black"></canvas>
             <figcaption>Rule 90 starting with one cell</figcaption>
           </figure>
         </div>
@@ -378,8 +378,8 @@
           Oscillators are patterns that always return to their initial state.
           In the Game of Life, glider guns are oscillators that continuously
           generate gliders. Gliders travel across space at a constant speed and
-          can be combined with other constructs to create logic gates and
-          more complex structures.
+          can be combined with other constructs to create logic gates. Logic
+          gates can be used to create computers.
         </p>
         <div class="flex-responsive" style="justify-content: flex-start">
           <figure>
@@ -391,19 +391,12 @@
             <figcaption>Simkin glider gun</figcaption>
           </figure>
         </div>
-      </section>
-
-      <section>
-        <h2 id="fun-facts">Fun facts</h3>
-        <ul>
-          <li>
-            Conway's Game of Life and ECA rule 110 are Turing complete.
-          </li>
-          <li>
-            The Game of Life and other Life-like automata can be implemented
-            in the Game of Life using a construct called an OTCA metapixel.
-          </li>
-        </ul>
+        <p>
+          Some Life-like automata are Turing complete, meaning they can
+          simulate any real-world computer. The Game of Life and other
+          Life-like automata can be implemented in the Game of Life
+          using a construct called an OTCA metapixel.
+        </p>
       </section>
 
       <section>
@@ -417,7 +410,7 @@
       </section>
 
       <section>
-        <h2 id="references">References</h2>
+        <h3 id="resources">Resources</h3>
         <ul>
           <li><a href="https://en.wikipedia.org/wiki/Cellular_automaton"
                  target="_blank">Wikipedia - Cellular automaton</a></li>
@@ -428,8 +421,6 @@
 
           <li><a href="https://en.wikipedia.org/wiki/Category:Cellular_automaton_rules"
                  target="_blank">Wikipedia - Cellular automaton rules</a></li>
-          <li><a href="https://en.wikipedia.org/wiki/Rule_110"
-                 target="_blank">Wikipedia - Rule 110</a></li>
           <li><a href="https://www.conwaylife.com/wiki/OTCA_metapixel"
                  target="_blank">OTCA metapixel</a></li>
       </section>
