@@ -43,18 +43,22 @@ class AnimatedCanvas {
     this.canvas.style.background = color;
   }
 
+  drawPixel(x, y, value) {
+    if (value) {
+      this.ctx.fillRect(
+        x * this.gridSize,
+        y * this.gridSize,
+        this.gridSize,
+        this.gridSize);
+    }
+  }
+
   drawWorld(world) {
     requestAnimationFrame(() => {
       this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
       for (let x = 0; x < this.numCellsX; x++) {
         for (let y = 0; y < this.numCellsY; y++) {
-          if (world[y][x]) {
-            this.ctx.fillRect(
-              x * this.gridSize,
-              y * this.gridSize,
-              this.gridSize,
-              this.gridSize);
-          }
+          this.drawPixel(x, y, world[y][x]);
         }
       }
     });

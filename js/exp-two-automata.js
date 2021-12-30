@@ -56,6 +56,22 @@
       return world;
     }
   });
+  anim.drawPixel = function(x, y, value) {
+    if (!value) {
+      return;
+    }
+    if (y < this.numCellsY / 2) {
+      this.ctx.fillStyle = 'rgb(249,95,2)';
+    } else {
+      this.ctx.fillStyle = 'rgb(255,188,46)';
+    }
+    this.ctx.fillRect(
+      x * this.gridSize,
+      y * this.gridSize,
+      this.gridSize,
+      this.gridSize);
+  }
+
   // anim.setForegroundColor('#ff8f00');
   // anim.setForegroundColor('#ffd400');
   anim.setForegroundColor('rgb(255,188,46)');
