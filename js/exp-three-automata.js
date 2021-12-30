@@ -11,12 +11,15 @@
   const CELL_RED = 2;
   const CELL_PURPLE = 3;
 
+  let boundTopY;
+  let boundBottomY;
+
   const anim = new AnimatedCanvas('three-combined-world', 3, (numX, numY) => {
     const ecaTop = new ECA(numX, RULE_NUM_TOP, 'one_middle');
     const ecaBottom = new ECA(numX, RULE_NUM_BOTTOM, 'one_middle');
 
-    const BOUND_TOP_Y = numY / 4;
-    const BOUND_BOTTOM_Y = 3 * numY / 4;
+    boundTopY = numY / 4;
+    boundBottomY = 3 * numY / 4;
 
     // initialize the world with zeroes
     let world = [];
@@ -40,14 +43,14 @@
 
       // the bottom fourth of the world is a 1d cellular automata
       ecaBottom.calculateNextGeneration();
-      for (let y = numY - 1; y > BOUND_BOTTOM_Y; y--) {
+      for (let y = numY - 1; y > boundBottomY; y--) {
         newWorld[y - 1] = world[y];
       }
       newWorld[numY - 1] = ecaBottom.cells.map(x => x ? CELL_RED : 0);
 
       // the top fourth of the world is a 1d cellular automata
       ecaTop.calculateNextGeneration();
-      for (let y = 0; y < BOUND_TOP_Y; y++ ) {
+      for (let y = 0; y < boundTopY; y++ ) {
         newWorld[y + 1] = world[y];
       }
       newWorld[0] = ecaTop.cells.map(x => x ? CELL_BLUE : 0);
@@ -62,7 +65,7 @@
         newWorld[y] = world[y].slice();
       }
       // the middle half of the world follows the rules of the game of life
-      for (let y = BOUND_TOP_Y; y < BOUND_BOTTOM_Y; y++) {
+      for (let y = boundTopY; y < boundBottomY; y++) {
         for (let x = 0; x < numX; x++) {
           const counts = {}
           counts[CELL_BLUE] = 0;
@@ -110,9 +113,9 @@
     if (!value) {
       return;
     }
-    if (y < this.numCellsY / 4) {
+    if (y < boundTopY) {
       this.ctx.fillStyle = topFgColor;
-    } else if (y > 3 * this.numCellsY / 4) {
+    } else if (y > boundBottomY) {
       this.ctx.fillStyle = bottomFgColor;
     } else {
       if (value === CELL_BLUE) {
