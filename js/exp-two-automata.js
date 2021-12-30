@@ -61,9 +61,9 @@
       return;
     }
     if (y < this.numCellsY / 2) {
-      this.ctx.fillStyle = 'rgb(249,95,2)';
-    } else {
       this.ctx.fillStyle = 'rgb(255,188,46)';
+    } else {
+      this.ctx.fillStyle = 'rgb(249,95,2)';
     }
     this.ctx.fillRect(
       x * this.gridSize,

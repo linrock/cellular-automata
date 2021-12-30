@@ -25,16 +25,17 @@
   }
 
   const anim1 = createEcaAnimatedCanvas('1d-world', 30, 'one_middle');
-  anim1.setForegroundColor('#cef9f2');  // light blue
-  anim1.setBackgroundColor('#1b065e');
+  anim1.setForegroundColor('#5c7aff');
+  // anim1.setBackgroundColor('#1b065e');
+  anim1.setBackgroundColor('#111');
   window.animatedCanvases.push(anim1);
 
   const anim2 = createEcaAnimatedCanvas('rule-90', 90, 'one_middle');
-  anim2.setForegroundColor('#39FF14');
+  anim2.setForegroundColor('yellow');
   window.animatedCanvases.push(anim2);
 
   const anim3 = createEcaAnimatedCanvas('1d-world-2', 106, 'random');
-  anim3.setForegroundColor('#5c7aff');
+  anim3.setForegroundColor('rgb(68,182,239)');  // light blue
   anim3.setBackgroundColor('#1d0b3b');
   window.animatedCanvases.push(anim3);
 }
