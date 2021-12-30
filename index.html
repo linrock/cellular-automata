@@ -19,7 +19,7 @@
         <p>
           A cellular automaton is a grid of cells where each cell changes
           over time based on a set of rules and the state of its neighbors.
-          Simple rules can lead to complex patterns.
+          Simple rules can lead to complex patterns and behaviors.
         </p>
       </section>
 
@@ -51,8 +51,8 @@
                       </a>
                     </li>
                     <li>
-                      <a href="#mazetric">
-                        Mazetric
+                      <a href="#mazectric">
+                        Mazectric
                       </a>
                     </li>
                     <li>
@@ -75,9 +75,11 @@
             <li><a href="#references">References</a></li>
           </ul>
         </nav>
-
-        <aside>
-        </aside>
+        <figure>
+          <canvas width="300" height="300" id="c-first-canvas"
+                  style="margin-top: 1.6rem"></canvas>
+          <figcaption>Spiral waves from a random initial state</figcaption>
+        </figure>
       </section>
 
       <section>
@@ -370,7 +372,7 @@
       </section>
 
       <section>
-        <h2 id="oscillators">Game of Life oscillators</h2>
+        <h2 id="oscillators">Oscillators</h2>
         <p>
           Oscillators are patterns that always return to their initial state.
           In the Game of Life, glider guns are oscillators that continuously

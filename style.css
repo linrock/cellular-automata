@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, 'Sans Serif';
+  font-family: "Helvetica Neue", Arial, 'Sans Serif';
   background: #242424;
   color: #e5e5e5;
   margin: 0;
@@ -59,7 +59,12 @@ ul {
 }
 
 nav > ul {
+  font-size: 0.9rem;
   margin-bottom: 1.5rem;
+}
+
+nav > ul a {
+  display: block;
 }
 
 ul + p {
