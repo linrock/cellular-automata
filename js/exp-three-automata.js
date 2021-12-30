@@ -3,11 +3,18 @@
   const RULE_NUM_TOP = 73;
   const RULE_NUM_BOTTOM = 86;
 
+  const topFgColor = '#344154';     // blue
+  const bottomFgColor = '#ED6142';  // red
+  const middleFgColor = '#AE5976';  // purple
+
   const anim = new AnimatedCanvas('three-combined-world', 3, (numX, numY) => {
     const ecaTop = new ECA(numX, RULE_NUM_TOP, 'one_middle');
     const ecaBottom = new ECA(numX, RULE_NUM_BOTTOM, 'one_middle');
 
-    // initialize the world with zeroes. top and bottom rows are ECAs
+    const BOUND_TOP_Y = numY / 4;
+    const BOUND_BOTTOM_Y = 3 * numY / 4;
+
+    // initialize the world with zeroes
     let world = [];
     for (let y = 0; y < numY; y++) {
       const row = [];
@@ -16,11 +23,9 @@
       }
       world.push(row);
     }
+    // the top and bottom rows are ECAs
     world[0] = ecaTop.cells;
     world[numY - 1] = ecaBottom.cells;
-
-    const BOUND_TOP_Y = numY / 4;
-    const BOUND_BOTTOM_Y = 3 * numY / 4;
 
     // generates the next iteration of the 2x ECA worlds
     function calculateNewWorld1d(world) {
@@ -84,6 +89,22 @@
       return world;
     };
   });
-  anim.setForegroundColor('#39FF14');
+  anim.drawPixel = function(x, y, value) {
+    if (!value) {
+      return;
+    }
+    if (y < this.numCellsY / 4) {
+      this.ctx.fillStyle = topFgColor;
+    } else if (y > 3 * this.numCellsY / 4) {
+      this.ctx.fillStyle = bottomFgColor;
+    } else {
+      this.ctx.fillStyle = middleFgColor;
+    }
+    this.ctx.fillRect(
+      x * this.gridSize,
+      y * this.gridSize,
+      this.gridSize,
+      this.gridSize);
+  }
   window.animatedCanvases.push(anim);
 }
