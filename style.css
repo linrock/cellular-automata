@@ -8,6 +8,16 @@ body {
   height: 100%;
 }
 
+.bg-dark {
+  background: #1a1a1a;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
 h1 {
   color: #ffb574;
   font-size: 2rem;
@@ -17,6 +27,13 @@ h1 {
 
 h1 a {
   color: #ffa600;
+}
+
+h1 canvas {
+  background: none;
+  margin-left: 1rem;
+  position: relative;
+  top: 2px;
 }
 
 h2 {
@@ -91,20 +108,6 @@ section {
   padding-bottom: 3rem;
 }
 
-.bg-dark {
-  background: #141414;
-}
-
-.bg-light {
-  background: #242424;
-}
-
-.container {
-  max-width: 600px;
-  margin: auto;
-  padding: 0 1rem;
-}
-
 figure {
   margin: 0 0 2rem 2rem;
 }
@@ -157,7 +160,7 @@ small {
 footer {
   width: 100%;
   padding: 1rem 0;
-  background: #1f1f1f;
+  background: #121212;
 }
 
 footer > nav {
