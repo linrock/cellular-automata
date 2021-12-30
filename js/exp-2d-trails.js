@@ -74,10 +74,10 @@
             this.ctx.fillStyle = fadeColor2;
           }
           this.ctx.fillRect(
-            x * this.gridSize,
-            y * this.gridSize,
-            this.gridSize,
-            this.gridSize);
+            x * this.cellSize,
+            y * this.cellSize,
+            this.cellSize,
+            this.cellSize);
         }
       }
     }

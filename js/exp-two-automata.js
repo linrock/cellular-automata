@@ -92,10 +92,10 @@
       this.ctx.fillStyle = ecaColor;
     }
     this.ctx.fillRect(
-      x * this.gridSize,
-      y * this.gridSize,
-      this.gridSize,
-      this.gridSize);
+      x * this.cellSize,
+      y * this.cellSize,
+      this.cellSize,
+      this.cellSize);
   }
   anim.setBackgroundColor(bgColor);
   window.animatedCanvases.push(anim);

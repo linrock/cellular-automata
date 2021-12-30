@@ -8,19 +8,19 @@ class AnimatedCanvas {
 
   canvasWidth;
   canvasHeight;
-  gridSize;
+  cellSize;
   numCellsX;
   numCellsY;
 
-  constructor(canvasId, gridSize, initAnimContext) {
+  constructor(canvasId, cellSize, initAnimContext) {
     const canvas = document.getElementById(canvasId);
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.canvasWidth = canvas.width;
     this.canvasHeight = canvas.height;
-    this.gridSize = gridSize;
-    this.numCellsX = this.canvasWidth / gridSize;
-    this.numCellsY = this.canvasHeight / gridSize;
+    this.cellSize = cellSize;
+    this.numCellsX = this.canvasWidth / cellSize;
+    this.numCellsY = this.canvasHeight / cellSize;
     canvas.addEventListener('play', () => this.isAnimating = true);
     canvas.addEventListener('pause', () => this.isAnimating = false);
     canvas.addEventListener('click', () => {
@@ -46,10 +46,10 @@ class AnimatedCanvas {
   drawPixel(x, y, value) {
     if (value) {
       this.ctx.fillRect(
-        x * this.gridSize,
-        y * this.gridSize,
-        this.gridSize,
-        this.gridSize);
+        x * this.cellSize,
+        y * this.cellSize,
+        this.cellSize,
+        this.cellSize);
     }
   }
 

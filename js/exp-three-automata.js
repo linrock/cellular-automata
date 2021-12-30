@@ -130,10 +130,10 @@
       }
     }
     this.ctx.fillRect(
-      x * this.gridSize,
-      y * this.gridSize,
-      this.gridSize,
-      this.gridSize);
+      x * this.cellSize,
+      y * this.cellSize,
+      this.cellSize,
+      this.cellSize);
   }
   anim.setBackgroundColor('#0c0b0b');
   window.animatedCanvases.push(anim);

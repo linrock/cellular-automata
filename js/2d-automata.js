@@ -93,10 +93,10 @@
               this.ctx.fillStyle = 'yellow';
             }
             this.ctx.fillRect(
-              x * this.gridSize,
-              y * this.gridSize,
-              this.gridSize,
-              this.gridSize);
+              x * this.cellSize,
+              y * this.cellSize,
+              this.cellSize,
+              this.cellSize);
             }
         }
       }
@@ -136,10 +136,10 @@
               this.ctx.fillStyle = lightColor;
             }
             this.ctx.fillRect(
-              x * this.gridSize,
-              y * this.gridSize,
-              this.gridSize,
-              this.gridSize);
+              x * this.cellSize,
+              y * this.cellSize,
+              this.cellSize,
+              this.cellSize);
             }
         }
       }
