@@ -81,11 +81,8 @@ p {
 
 ul {
   margin: 0;
-}
-
-nav > ul {
   font-size: 0.9rem;
-  margin-bottom: 1.5rem;
+  padding-inline-start: 2.2rem;
 }
 
 nav > ul a {
