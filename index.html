@@ -9,418 +9,414 @@
   </head>
   <body>
     <main>
-      <section>
-        <h1>
-          <a href="https://robotmoon.com/cellular-automata">
-            Cellular automata</a>
-          <canvas width="24" height="24" id="gol-octagon"
-                  style="background: none; margin-left: 1rem; position: relative; top: 2px;"></canvas>
-        </h1>
-        <p>
-          A cellular automaton is a grid of cells where each cell changes
-          over time based on a set of rules and the states of its neighbors.
-          Simple rules can lead to complex patterns and behaviors.
-        </p>
+      <section class="bg-light">
+        <div class="container">
+          <h1>
+            <a href="https://robotmoon.com/cellular-automata">
+              Cellular automata</a>
+            <canvas width="24" height="24" id="gol-octagon"
+                    style="background: none; margin-left: 1rem; position: relative; top: 2px;"></canvas>
+          </h1>
+          <p>
+            A cellular automaton is a grid of cells where each cell changes
+            over time based on a set of rules and the states of its neighbors.
+            Simple rules can lead to complex patterns and behaviors.
+          </p>
+        </div>
       </section>
 
-      <section class="flex-responsive" style="margin-bottom: 0">
-        <nav>
-          <h4 style="margin-top: 0; padding-top: 0">Table of contents</h4>
+      <section class="bg-light" style="margin-bottom: 0">
+        <div class="container flex-responsive">
+          <nav>
+            <h4 style="margin-top: 0; padding-top: 0">Table of contents</h4>
+            <ul>
+              <li><a href="#one-dimensional">One-dimensional</a>
+                <ul>
+                  <li><a href="#elementary-cellular-automata">
+                    Elementary cellular automata</a></li>
+                </ul>
+              </li>
+              <li><a href="#two-dimensional">Two-dimensional</a>
+                <ul>
+                  <li>
+                    <a href="#conways-game-of-life">
+                      Conway's Game of Life
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#life-like-cellular-automata">
+                      Life-like cellular automata
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="#day-and-night">
+                          Day and night
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#mazectric">
+                          Mazectric
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#anneal">
+                          Anneal
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#cyclic-cellular-automata">
+                      Cyclic cellular automata
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#visual-experiments">Visual experiments</a>
+              <li><a href="#oscillators">Oscillators</a></li>
+              <li><a href="#about">About this page</a></li>
+            </ul>
+          </nav>
+          <figure>
+            <canvas width="300" height="300" id="c-first-canvas"
+                    style="margin-top: 1.6rem"></canvas>
+            <figcaption>Spiral waves forming out of randomness</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="bg-dark">
+        <div class="container">
+          <h2 id="one-dimensional">One-dimensional cellular automata</h2>
+          <p>
+            The world is a 1D row of cells. We can see the evolution of the world
+            over time by adding new generations to the top or bottom of a grid.
+            If we do this repeatedly, we'll see a pattern scrolling vertically.
+          </p>
+
+          <h3 id="elementary-cellular-automata">Elementary cellular automata</h3>
+          <p>
+            The simplest automata are known as elementary cellular automata
+            (ECA). Each cell has 2 possible states: 0 or 1. The state of each
+            cell in the next generation depends only on 3 values: its current
+            state and the state of its two immediate neighbors.
+          </p>
+          <p>
+            Since there are 2<sup>3</sup> = 8 orientations of the 3 values,
+            and there are 2 possible states for a cell, there are 2<sup>8</sup>
+            = 256 rules for determining the new state of a cell in the next
+            generation of the world.
+          </p>
+
+          <div class="flex-responsive">
+            <p>
+              One way to view the behavior of a rule is to initialize the
+              first generation with a single 1 in the middle. Some rules such as
+              rule 30 will lead to chaotic and aperiodic patterns.
+            </p>
+            <figure>
+              <canvas id="1d-world" width="300" height="120"></canvas>
+              <figcaption>Rule 30 starting with one cell</figcaption>
+            </figure>
+          </div>
+
+          <div class="flex-responsive">
+            <p>
+              Other rules such as rule 90 will lead to symmetric and periodic
+              patterns. When starting with one middle cell, a fractal pattern
+              called a Sierpinkski triangle appears.
+            </p>
+            <figure>
+              <canvas id="rule-90" width="300" height="120"
+                      style="background: black"></canvas>
+              <figcaption>Rule 90 starting with one cell</figcaption>
+            </figure>
+          </div>
+
+          <div class="flex-responsive">
+            <p>
+              Rules may behave differently when cells are initialized with
+              random cells. Rule 106 starting with a single cell leads to only
+              a diagonal line. However, starting cells with random states
+              leads to chaotic behavior.
+            <p>
+            <figure>
+              <canvas id="1d-world-2" width="300" height="120"></canvas>
+              <figcaption>Rule 106 starting with random cells</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-light">
+        <div class="container">
+          <h2 id="two-dimensional">Two-dimensional cellular automata</h2>
+          <p>
+            The world is a 2D grid of cells. We can see how it changes over
+            time by updating the cells on the grid with new states from each
+            generation.
+          </p>
+
+          <h3 id="conways-game-of-life">Conway's Game of Life</h3>
+          <div class="flex-responsive">
+            <p>
+              Created by mathematician John Conway in 1970, this is perhaps
+              the most well-known cellular automata. Cells have two possible
+              states: live or dead. New generations of the world consider only
+              the 8 immediate neighbors of each cell.
+            </p>
+            <figure>
+              <canvas id="game-of-life" width="300" height="180"></canvas>
+            </figure>
+          </div>
+          <p style="margin-bottom: 1rem">
+            In each generation, the state of the world is generated based on
+            these rules:
+          </p>
           <ul>
-            <li><a href="#one-dimensional">One-dimensional</a>
-              <ul>
-                <li><a href="#elementary-cellular-automata">
-                  Elementary cellular automata</a></li>
-              </ul>
-            </li>
-            <li><a href="#two-dimensional">Two-dimensional</a>
-              <ul>
-                <li>
-                  <a href="#conways-game-of-life">
-                    Conway's Game of Life
-                  </a>
-                </li>
-                <li>
-                  <a href="#life-like-cellular-automata">
-                    Life-like cellular automata
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#day-and-night">
-                        Day and night
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#mazectric">
-                        Mazectric
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#anneal">
-                        Anneal
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#cyclic-cellular-automata">
-                    Cyclic cellular automata
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li><a href="#visual-experiments">Visual experiments</a>
-            <li><a href="#oscillators">Oscillators</a></li>
-            <li><a href="#about">About this page</a></li>
+            <li>A dead cell with 3 neighbors becomes live</li>
+            <li>A live cell with 2 or 3 neighbors stays live</li>
+            <li>All other live cells become dead</li>
           </ul>
-        </nav>
-        <figure>
-          <canvas width="300" height="300" id="c-first-canvas"
-                  style="margin-top: 1.6rem"></canvas>
-          <figcaption>Spiral waves forming out of randomness</figcaption>
-        </figure>
-      </section>
 
-      <section>
-        <h2 id="one-dimensional">One-dimensional cellular automata</h2>
-        <p>
-          The world is a 1D row of cells. We can see the evolution of the world
-          over time by adding new generations to the top or bottom of a grid.
-          If we do this repeatedly, we'll see a pattern scrolling vertically.
-        </p>
-      </section>
-
-      <section>
-        <h3 id="elementary-cellular-automata">Elementary cellular automata</h3>
-        <p>
-          The simplest automata are known as elementary cellular automata
-          (ECA). Each cell has 2 possible states: 0 or 1. The state of each
-          cell in the next generation depends only on 3 values: its current
-          state and the state of its two immediate neighbors.
-        </p>
-        <p>
-          Since there are 2<sup>3</sup> = 8 orientations of the 3 values,
-          and there are 2 possible states for a cell, there are 2<sup>8</sup>
-          = 256 rules for determining the new state of a cell in the next
-          generation of the world.
-        </p>
-
-        <div class="flex-responsive">
-          <p>
-            One way to view the behavior of a rule is to initialize the
-            first generation with a single 1 in the middle. Some rules such as
-            rule 30 will lead to chaotic and aperiodic patterns.
+          <h3 id="life-like-cellular-automata">Life-like cellular automata</h3>
+          <p style="margin-bottom: 1rem">
+            Cellular automata are considered Life-like if they're 2D, cells have
+            2 possible states, and change based on their 8 immediate neighbors.
+            The rules by which cell states change may differ.
+            A common notation for rules is written as Bx/Sy, where:
           </p>
-          <figure>
-            <canvas id="1d-world" width="300" height="120"></canvas>
-            <figcaption>Rule 30 starting with one cell</figcaption>
-          </figure>
-        </div>
-
-        <div class="flex-responsive">
+          <ul>
+            <li>B = Birth - dead cells with these numbers of neighbors become live</li>
+            <li>S = Survival - live cells with these numbers of neighbors stay live</li>
+            <li>x and y are strings of digits from 1 to 8
+          </ul>
           <p>
-            Other rules such as rule 90 will lead to symmetric and periodic
-            patterns. When starting with one middle cell, a fractal pattern
-            called a Sierpinkski triangle appears.
+            For example, the rules of the Game of Life can be written as: B3/S23
           </p>
-          <figure>
-            <canvas id="rule-90" width="300" height="120"
-                    style="background: black"></canvas>
-            <figcaption>Rule 90 starting with one cell</figcaption>
-          </figure>
-        </div>
 
-        <div class="flex-responsive">
-          <p>
-            Rules may behave differently when cells are initialized with random
-            cells. Rule 106 starting with a single cell leads to only a diagonal
-            line. However, starting cells with random states leads to chaotic behavior.
-          <p>
-          <figure>
-            <canvas id="1d-world-2" width="300" height="120"></canvas>
-            <figcaption>Rule 106 starting with random cells</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section>
-        <h2 id="two-dimensional">Two-dimensional cellular automata</h2>
-        <p>
-          The world is a 2D grid of cells. We can see how it changes over
-          time by updating the cells on the grid with new states from each
-          generation.
-        </p>
-      </section>
-
-      <section>
-        <h3 id="conways-game-of-life">Conway's Game of Life</h3>
-        <div class="flex-responsive">
-          <p>
-            Created by mathematician John Conway in 1970, this is perhaps
-            the most well-known cellular automata. Cells have two possible
-            states: live or dead. New generations of the world consider only
-            the 8 immediate neighbors of each cell.
+          <h4 id="day-and-night">Day and Night</h4>
+          <div class="flex-responsive">
+            <div>
+              <p>
+                In Day and Night, each cell has two possible states: on or off.
+                The on and off states in the world are symmetric. If the state
+                of all cells in the world are inverted, the future world is the
+                inverted version of the original.
+              </p>
+              <p>
+                Since this follows similar rules as the Game of Life, it's
+                considered a Life-like cellular automata.
+              </p>
+            </div>
+            <figure>
+              <canvas id="c-day-and-night" width="300" height="240"></canvas>
+            </figure>
+          </div>
+          <p style="margin-bottom: 1rem">
+            New generations of Day and Night worlds follow these rules:
           </p>
-          <figure>
-            <canvas id="game-of-life" width="300" height="180"></canvas>
-          </figure>
-        </div>
-        <p style="margin-bottom: 1rem">
-          In each generation, the state of the world is generated based on
-          these rules:
-        </p>
-        <ul>
-          <li>A dead cell with 3 neighbors becomes live</li>
-          <li>A live cell with 2 or 3 neighbors stays live</li>
-          <li>All other live cells become dead</li>
-        </ul>
-      </section>
+          <ul>
+            <li>An off cell with 3, 6, 7, or 8 neighbors becomes on</li>
+            <li>An on cell with 3, 4, 6, 7, or 8 neighbors becomes off</li>
+            <li>All other on cells become off</li>
+          </ul>
+          <p>The rules can be written as: B3678/S34678
 
-      <section>
-        <h3 id="life-like-cellular-automata">Life-like cellular automata</h3>
-        <p style="margin-bottom: 1rem">
-          Cellular automata are considered Life-like if they're 2D, cells have
-          2 possible states, and change based on their 8 immediate neighbors.
-          The rules by which cell states change may differ.
-          A common notation for rules is written as Bx/Sy, where:
-        </p>
-        <ul>
-          <li>B = Birth - dead cells with these numbers of neighbors become live</li>
-          <li>S = Survival - live cells with these numbers of neighbors stay live</li>
-          <li>x and y are strings of digits from 1 to 8
-        </ul>
-        <p>
-          For example, the rules of the Game of Life can be written as: B3/S23
-        </P.
-      </section>
-
-      <section>
-        <h4 id="day-and-night">Day and Night</h4>
-        <div class="flex-responsive">
-          <div>
-            <p>
-              In Day and Night, each cell has two possible states: on or off.
-              The on and off states in the world are symmetric. If the state
-              of all cells in the world are inverted, the future world is the
-              inverted version of the original.
-            </p>
-            <p>
-              Since this follows similar rules as the Game of Life, it's
-              considered a Life-like cellular automata.
-            </p>
+          <h4 id="mazectric">Mazectric</h4>
+          <div class="flex-responsive">
+            <div>
+              <p>
+                Also a Life-like cellular automata, this is an example of a maze
+                generation algorithm. When initialized with random values in the
+                center, cells will expand outwards towards the edges until a
+                steady state is reached.
+              </p>
+              <p>
+                In some cases, oscillator patterns will appear, where 2x2 cells
+                will continuously switch between on and off states.
+              </p>
+            </div>
+            <figure>
+              <canvas id="c-mazectric" width="300" height="300"></canvas>
+            </figure>
           </div>
-          <figure>
-            <canvas id="c-day-and-night" width="300" height="240"></canvas>
-          </figure>
-        </div>
-        <p style="margin-bottom: 1rem">
-          New generations of Day and Night worlds follow these rules:
-        </p>
-        <ul>
-          <li>An off cell with 3, 6, 7, or 8 neighbors becomes on</li>
-          <li>An on cell with 3, 4, 6, 7, or 8 neighbors becomes off</li>
-          <li>All other on cells become off</li>
-        </ul>
-        <p>The rules can be written as: B3678/S34678
-      </section>
 
-      <section>
-        <h4 id="mazectric">Mazectric</h4>
-        <div class="flex-responsive">
-          <div>
-            <p>
-              Also a Life-like cellular automata, this is an example of a maze
-              generation algorithm. When initialized with random values in the
-              center, cells will expand outwards towards the edges until a
-              steady state is reached.
-            </p>
-            <p>
-              In some cases, oscillator patterns will appear, where 2x2 cells
-              will continuously switch between on and off states.
-            </p>
+          <h4 id="anneal">Anneal</h4>
+          <div class="flex-responsive">
+            <div>
+              <p>
+                When starting with random values, blobs will quickly group
+                together. As time passes, a single blob may form or the world
+                will fade towards nothingness. This is a variant of the Vichniac
+                majority voting rule. As blobs fade away, their edges approximate
+                the curve-shortening flow or geometric heat flow.
+              </p>
+              <p>
+                The rules can be written as: B4678/S35678
+              </p>
+            </div>
+            <figure>
+              <canvas id="c-anneal" width="300" height="300"></canvas>
+            </figure>
           </div>
-          <figure>
-            <canvas id="c-mazectric" width="300" height="300"></canvas>
-          </figure>
-        </div>
-      </section>
 
-      <section>
-        <h4 id="anneal">Anneal</h4>
-        <div class="flex-responsive">
-          <div>
-            <p>
-              When starting with random values, blobs will quickly group
-              together. As time passes, a single blob may form or the world
-              will fade towards nothingness. This is a variant of the Vichniac
-              majority voting rule. As blobs fade away, their edges approximate
-              the curve-shortening flow or geometric heat flow.
-            </p>
-            <p>
-              The rules can be written as: B4678/S35678
-            </p>
+          <h3 id="cyclic-cellular-automata">Cyclic cellular automata</h3>
+          <div class="flex-responsive">
+            <div>
+              <p>
+                These are multi-state systems where the state of a cell changes
+                if enough neighboring cells are in a state that win over it.
+                Systems with 3 states are also known as "Rock, paper, scissors".
+                For example, if a scissors cell is surrounded by enough rock
+                cells, then the scissors cell becomes a rock in the next
+                generation.
+              </p>
+              <p>
+                When initialized with random values, this system can reach a
+                steady state of spiral waves.
+              </p>
+            </div>
+            <figure>
+              <canvas id="c-cyclic" width="300" height="300"></canvas>
+              <figcaption>3 states - Rock, paper, scissors</figcaption>
+            </figure>
           </div>
-          <figure>
-            <canvas id="c-anneal" width="300" height="300"></canvas>
-          </figure>
         </div>
       </section>
 
-      <section>
-        <h3 id="cyclic-cellular-automata">Cyclic cellular automata</h3>
-        <div class="flex-responsive">
-          <div>
-            <p>
-              These are multi-state systems where the state of a cell changes
-              if enough neighboring cells are in a state that win over it.
-              Systems with 3 states are also known as "Rock, paper, scissors".
-              For example, if a scissors cell is surrounded by enough rock
-              cells, then the scissors cell becomes a rock in the next
-              generation.
-            </p>
-            <p>
-              When initialized with random values, this system can reach a
-              steady state of spiral waves.
-            </p>
+      <section class="bg-dark">
+        <div class="container">
+          <h2 id="visual-experiments">Visual experiments</h2>
+          <p>
+            These are experiments that combine or expand upon the above ideas
+            just for fun.
+          </p>
+
+          <h3 id="trails-in-2d">Trails in 2D</h3>
+          <div class="flex-responsive">
+            <div>
+              <p>
+                If we instead slowly transition cells from live to dead over
+                many generations, moving patterns in the world will leave trails
+                behind them as they fade.
+              </p>
+              <p>
+                This concept can be used to view the speed at which patterns
+                travel.
+              </p>
+            </div>
+            <figure>
+              <canvas id="c-game-of-life-trails" width="300" height="240">
+              </canvas>
+            </figure>
           </div>
-          <figure>
-            <canvas id="c-cyclic" width="300" height="300"></canvas>
-            <figcaption>3 states - Rock, paper, scissors</figcaption>
-          </figure>
-        </div>
-      </section>
 
-      <section>
-        <h2 id="visual-experiments">Visual experiments</h2>
-        <p>
-          These are experiments that combine or expand upon the above ideas
-          just for fun.
-        </p>
-      </section>
-
-      <section>
-        <h3 id="trails-in-2d">Trails in 2D</h3>
-        <div class="flex-responsive">
-          <div>
-            <p>
-              If we instead slowly transition cells from live to dead over
-              many generations, moving patterns in the world will leave trails
-              behind them as they fade.
-            </p>
-            <p>
-              This concept can be used to view the speed at which patterns
-              travel.
-            </p>
+          <h3 id="eca-and-game-of-life">Elementary automaton + Game of Life</h3>
+          <div class="flex-responsive">
+            <div>
+              <p>
+                The bottom half of the world is a chaotic elementary cellular
+                automaton. The top half of the world starts off empty and follows
+                the rules of Game of Life.
+              </p>
+              <p>
+                As each generation of the ECA reaches the middle, it influences
+                the edge of the top half of the world, which spawns new life.
+              </p>
+            </div>
+            <figure>
+              <canvas id="combined-world" width="300" height="300"></canvas>
+            </figure>
           </div>
-          <figure>
-            <canvas id="c-game-of-life-trails" width="300" height="240"></canvas>
-          </figure>
-        </div>
-      </section>
 
-      <section>
-        <h3 id="eca-and-game-of-life">Elementary automaton + Game of Life</h3>
-        <div class="flex-responsive">
-          <div>
-            <p>
-              The bottom half of the world is a chaotic elementary cellular
-              automaton. The top half of the world starts off empty and follows
-              the rules of Game of Life.
-            </p>
-            <p>
-              As each generation of the ECA reaches the middle, it influences
-              the edge of the top half of the world, which spawns new life.
-            </p>
+          <h3 id="two-eca-and-game-of-life">
+            2x elementary automata + Game of Life
+          </h3>
+          <div class="flex-responsive">
+            <div>
+              <p>
+                The top and bottom fourths of the world are two different
+                elementary cellular automata. The middle half of the world
+                follows the rules of the Game of Life.
+              </p>
+              <p>
+                Since the top ECA generates symmetric patterns, it starts off
+                also creating symmetric patterns in the middle. As cells start
+                clashing, the symmetry is lost.
+              <p>
+            </div>
+            <figure>
+              <canvas id="three-combined-world" width="300" height="300"></canvas>
+            </figure>
           </div>
-          <figure>
-            <canvas id="combined-world" width="300" height="300"></canvas>
-          </figure>
         </div>
       </section>
 
-      <section>
-        <h3 id="two-eca-and-game-of-life">
-          2x elementary automata + Game of Life
-        </h3>
-        <div class="flex-responsive">
-          <div>
-            <p>
-              The top and bottom fourths of the world are two different
-              elementary cellular automata. The middle half of the world
-              follows the rules of the Game of Life.
-            </p>
-            <p>
-              Since the top ECA generates symmetric patterns, it starts off
-              also creating symmetric patterns in the middle. As cells start
-              clashing, the symmetry is lost.
-            <p>
+      <section class="bg-light">
+        <div class="container">
+          <h2 id="oscillators">Oscillators</h2>
+          <p>
+            Oscillators are patterns that always return to their initial state.
+            In the Game of Life, glider guns are oscillators that continuously
+            generate gliders. Gliders travel across space at a constant speed and
+            can be combined with other constructs to create logic gates. Logic
+            gates can be used to create computers.
+          </p>
+          <div class="flex-responsive" style="justify-content: flex-start">
+            <figure>
+              <canvas width="180" height="120" id="gol-glider"></canvas>
+              <figcaption>Gosper glider gun</figcaption>
+            </figure>
+            <figure>
+              <canvas width="180" height="120" id="gol-simkin-glider"></canvas>
+              <figcaption>Simkin glider gun</figcaption>
+            </figure>
           </div>
-          <figure>
-            <canvas id="three-combined-world" width="300" height="300"></canvas>
-          </figure>
+          <p>
+            Some Life-like automata are Turing complete, meaning they can
+            simulate any real-world computer. The Game of Life and other
+            Life-like automata can be implemented in the Game of Life
+            using a construct called an OTCA metapixel.
+          </p>
         </div>
       </section>
 
-      <section>
-        <h2 id="oscillators">Oscillators</h2>
-        <p>
-          Oscillators are patterns that always return to their initial state.
-          In the Game of Life, glider guns are oscillators that continuously
-          generate gliders. Gliders travel across space at a constant speed and
-          can be combined with other constructs to create logic gates. Logic
-          gates can be used to create computers.
-        </p>
-        <div class="flex-responsive" style="justify-content: flex-start">
-          <figure>
-            <canvas width="180" height="120" id="gol-glider"></canvas>
-            <figcaption>Gosper glider gun</figcaption>
-          </figure>
-          <figure>
-            <canvas width="180" height="120" id="gol-simkin-glider"></canvas>
-            <figcaption>Simkin glider gun</figcaption>
-          </figure>
+      <section class="bg-dark">
+        <div class="container">
+          <h2 id="about">About this page</h3>
+          <p>
+            This page is a work in progress. Animations are written in plain
+            javascript and use the canvas API for rendering. All source code is
+            <a href="https://github.com/linrock/cellular-automata">
+              publicly available here</a>.
+          </p>
+
+          <h3 id="resources">Resources</h3>
+          <ul>
+            <li><a href="https://en.wikipedia.org/wiki/Cellular_automaton"
+                   target="_blank">Wikipedia - Cellular automaton</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+                   target="_blank">Wikipedia - Conway's Game of Life</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Life-like_cellular_automaton"
+                   target="_blank">Wikipedia - Life-like cellular automaton</a></li>
+
+            <li><a href="https://en.wikipedia.org/wiki/Category:Cellular_automaton_rules"
+                   target="_blank">Wikipedia - Cellular automaton rules</a></li>
+            <li><a href="https://www.conwaylife.com/wiki/OTCA_metapixel"
+                   target="_blank">OTCA metapixel</a></li>
+          </ul>
         </div>
-        <p>
-          Some Life-like automata are Turing complete, meaning they can
-          simulate any real-world computer. The Game of Life and other
-          Life-like automata can be implemented in the Game of Life
-          using a construct called an OTCA metapixel.
-        </p>
       </section>
-
-      <section>
-        <h2 id="about">About this page</h3>
-        <p>
-          This page is a work in progress. Animations are written in plain
-          javascript and use the canvas API for rendering. All source code is
-          <a href="https://github.com/linrock/cellular-automata">
-            publicly available here</a>.
-        </p>
-      </section>
-
-      <section>
-        <h3 id="resources">Resources</h3>
-        <ul>
-          <li><a href="https://en.wikipedia.org/wiki/Cellular_automaton"
-                 target="_blank">Wikipedia - Cellular automaton</a></li>
-          <li><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
-                 target="_blank">Wikipedia - Conway's Game of Life</a></li>
-          <li><a href="https://en.wikipedia.org/wiki/Life-like_cellular_automaton"
-                 target="_blank">Wikipedia - Life-like cellular automaton</a></li>
-
-          <li><a href="https://en.wikipedia.org/wiki/Category:Cellular_automaton_rules"
-                 target="_blank">Wikipedia - Cellular automaton rules</a></li>
-          <li><a href="https://www.conwaylife.com/wiki/OTCA_metapixel"
-                 target="_blank">OTCA metapixel</a></li>
-      </section>
-
     </main>
 
     <footer>
-      <nav>
-        <a href="https://robotmoon.com">home</a>
-        <a href="https://github.com/linrock/cellular-automata">source code</a>
-      </nav>
+      <div class="container">
+        <nav>
+          <a href="https://robotmoon.com">home</a>
+          <a href="https://github.com/linrock/cellular-automata">source code</a>
+        </nav>
+      </div>
     </footer>
 
     <script src="js/lib/eca.js"></script>

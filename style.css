@@ -83,13 +83,26 @@ sup {
 }
 
 main {
-  max-width: 600px;
-  padding: 0 1rem;
-  margin: auto;
+  width: 100%;
+  padding: 0;
 }
 
 section {
-  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+}
+
+.bg-dark {
+  background: #141414;
+}
+
+.bg-light {
+  background: #242424;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 0 1rem;
 }
 
 figure {
@@ -113,6 +126,9 @@ figcaption {
 }
 
 @media only screen and (max-width: 600px) {
+  .container {
+    width: auto;
+  }
   .flex-responsive {
     display: block;
   }
@@ -121,10 +137,6 @@ figcaption {
   }
   .flex-responsive canvas {
     width: 100%;
-  }
-  .half-width-square {
-    width: auto;
-    height: auto;
   }
 }
 
@@ -144,7 +156,6 @@ small {
 
 footer {
   width: 100%;
-  margin-top: 4rem;
   padding: 1rem 0;
   background: #1f1f1f;
 }
