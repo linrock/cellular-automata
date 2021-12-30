@@ -112,7 +112,7 @@
       return world;
     };
   });
-  anim.drawPixel = function(x, y, value) {
+  anim.drawCell = function(x, y, value) {
     if (!value) {
       return;
     }

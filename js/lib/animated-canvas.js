@@ -43,13 +43,17 @@ class AnimatedCanvas {
     this.canvas.style.background = color;
   }
 
-  drawPixel(x, y, value) {
+  fillCell(x, y) {
+    this.ctx.fillRect(
+      x * this.cellSize,
+      y * this.cellSize,
+      this.cellSize,
+      this.cellSize);
+  }
+
+  drawCell(x, y, value) {
     if (value) {
-      this.ctx.fillRect(
-        x * this.cellSize,
-        y * this.cellSize,
-        this.cellSize,
-        this.cellSize);
+      this.fillCell(x, y);
     }
   }
 
@@ -58,7 +62,7 @@ class AnimatedCanvas {
       this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
       for (let x = 0; x < this.numCellsX; x++) {
         for (let y = 0; y < this.numCellsY; y++) {
-          this.drawPixel(x, y, world[y][x]);
+          this.drawCell(x, y, world[y][x]);
         }
       }
     });
