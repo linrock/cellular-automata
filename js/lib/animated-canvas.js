@@ -12,15 +12,39 @@ class AnimatedCanvas {
   numCellsX;
   numCellsY;
 
-  constructor(canvasId, cellSize, initAnimContext) {
+  constructor(canvasId, options = {}) {
+    const {
+      cellSize,
+      init,
+      foregroundColor,
+      backgroundColor,
+      drawWorld,
+      drawCell,
+    } = options;
     const canvas = document.getElementById(canvasId);
     this.canvas = canvas;
     this.canvasWidth = canvas.width;
     this.canvasHeight = canvas.height;
     this.ctx = canvas.getContext('2d');
-    this.cellSize = cellSize;
+    if (cellSize) {
+      this.cellSize = cellSize;
+    } else {
+      throw new Error('cellSize is required!');
+    }
     this.numCellsX = this.canvasWidth / cellSize;
     this.numCellsY = this.canvasHeight / cellSize;
+    if (foregroundColor) {
+      this.foregroundColor = foregroundColor;
+    }
+    if (backgroundColor) {
+      this.backgroundColor = backgroundColor;
+    }
+    if (drawWorld) {
+      this.drawWorld = drawWorld.bind(this);
+    }
+    if (drawCell) {
+      this.drawCell = drawCell.bind(this);
+    }
     canvas.addEventListener('play', () => this.isAnimating = true);
     canvas.addEventListener('pause', () => this.isAnimating = false);
     canvas.addEventListener('click', () => {
@@ -29,10 +53,10 @@ class AnimatedCanvas {
       requestAnimationFrame(() => {
         this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
       });
-      this.updateWorld = initAnimContext(this.numCellsX, this.numCellsY);
+      this.updateWorld = init(this.numCellsX, this.numCellsY);
       this.isAnimating = true;
     });
-    this.updateWorld = initAnimContext(this.numCellsX, this.numCellsY);
+    this.updateWorld = init(this.numCellsX, this.numCellsY);
   }
 
   set foregroundColor(color) {

@@ -1,26 +1,29 @@
 {
   function createEcaAnimatedCanvas(canvasId, ruleNum, initMethod) {
-    return new AnimatedCanvas(canvasId, 3, (numX, numY) => {
-      // initialize an elementary cellular automaton
-      const eca = new ECA(numX, ruleNum, initMethod);
+    return new AnimatedCanvas(canvasId, {
+      cellSize: 3,
+      init: (numX, numY) => {
+        // initialize an elementary cellular automaton
+        const eca = new ECA(numX, ruleNum, initMethod);
 
-      // initialize an empty world
-      const world = [];
-      for (let i = 0; i < numY; i++) {
-        world.push(new Array(numX).fill(0));
-      }
+        // initialize an empty world
+        const world = [];
+        for (let i = 0; i < numY; i++) {
+          world.push(new Array(numX).fill(0));
+        }
 
-      // the first ECA generation is the bottom row of the world
-      world.push(eca.cells);
-      world.shift();
-
-      // add new generations of the ECA to the bottom
-      return () => {
-        eca.calculateNextGeneration();
+        // the first ECA generation is the bottom row of the world
         world.push(eca.cells);
         world.shift();
-        return world;
-      };
+
+        // add new generations of the ECA to the bottom
+        return () => {
+          eca.calculateNextGeneration();
+          world.push(eca.cells);
+          world.shift();
+          return world;
+        };
+      }
     });
   }
 
