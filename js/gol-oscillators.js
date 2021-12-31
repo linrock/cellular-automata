@@ -83,9 +83,9 @@
       '#5dfdcb',
     ];
     anim.canvas.addEventListener('click', () => {
-      anim.setForegroundColor(colors[++colorIndex % colors.length]);
+      anim.foregroundColor = colors[++colorIndex % colors.length];
     });
-    anim.setForegroundColor(colors[0]);
+    anim.foregroundColor = colors[0];
 
     // render at around 2 fps
     setInterval(() => {
@@ -100,8 +100,8 @@
       gol.drawPixels(gosperGliderGun, 2, 2);
       return () => gol.calculateNewWorld();
     });
-    anim.setForegroundColor('#5dfdcb');
-    anim.setBackgroundColor('#02020a');
+    anim.foregroundColor = '#5dfdcb';
+    anim.backgroundColor = '#02020a';
     window.animatedCanvases.push(anim);
   }
   {
@@ -113,8 +113,8 @@
     // anim.setBackgroundColor('#1a1423');
     // anim.setForegroundColor('#39FF14');
     // anim.setForegroundColor('#cef9f2'); // very light blue
-    anim.setBackgroundColor('rgb(15, 8, 26)');
-    anim.setForegroundColor('#5c7aff'); // periwinkle
+    anim.backgroundColor = 'rgb(15, 8, 26)';
+    anim.foregroundColor = '#5c7aff'; // periwinkle
     window.animatedCanvases.push(anim);
   }
   {
@@ -128,8 +128,8 @@
 
       return () => gol.calculateNewWorld();
     });
-    anim.setForegroundColor('#ffa600');
-    anim.setBackgroundColor('rgb(15, 8, 26)');
+    anim.foregroundColor = '#ffa600';
+    anim.backgroundColor = 'rgb(15, 8, 26)';
     // window.animatedCanvases.push(anim);
     setInterval(() => {
       if (anim.isAnimating) {

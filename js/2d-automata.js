@@ -6,8 +6,8 @@
     gol.S = [2, 3];
     return () => gol.calculateNewWorld();
   });
-  anim.setForegroundColor('rgb(112, 160, 48)');
-  anim.setBackgroundColor('rgb(3, 14, 1)');
+  anim.foregroundColor = 'rgb(112, 160, 48)';
+  anim.backgroundColor = 'rgb(3, 14, 1)';
   // anim.setForegroundColor('#9dfff9');
   // anim.setBackgroundColor('#003f59');
   window.animatedCanvases.push(anim);
@@ -21,11 +21,11 @@
     return () => gol.calculateNewWorld();
   });
   // anim.setForegroundColor('#ffd449');
-  anim.setForegroundColor('#fff44f');
+  anim.foregroundColor = '#fff44f';
   // anim.setForegroundColor('#29b6f6');
   // anim.setBackgroundColor('#000437');
   // anim.setBackgroundColor('#1a0c3e');
-  anim.setBackgroundColor('#110829');
+  anim.backgroundColor = '#110829';
   window.animatedCanvases.push(anim);
 }
 {
@@ -49,8 +49,8 @@
   // anim.setBackgroundColor('#dddbf1');
   // anim.setForegroundColor('#b2ff98');
   // anim.setBackgroundColor('#372772');
-  anim.setForegroundColor('#eee');
-  anim.setBackgroundColor('#111');
+  anim.foregroundColor = '#eee';
+  anim.backgroundColor = '#111';
   window.animatedCanvases.push(anim);
 }
 {
@@ -67,8 +67,8 @@
     gol.S = [3, 5, 6, 7, 8];
     return () => gol.calculateNewWorld();
   });
-  anim.setForegroundColor('rgb(239, 120, 47)');
-  anim.setBackgroundColor('rgb(40, 30, 28)');
+  anim.foregroundColor = 'rgb(239, 120, 47)';
+  anim.backgroundColor = 'rgb(40, 30, 28)';
   window.animatedCanvases.push(anim);
 }
 {
@@ -98,7 +98,7 @@
       }
     });
   };
-  anim.setBackgroundColor('#1a1423');
+  anim.backgroundColor = '#1a1423';
   window.animatedCanvases.push(anim);
 }
 {
@@ -137,6 +137,6 @@
       }
     });
   };
-  anim.setBackgroundColor(bgColor);
+  anim.backgroundColor = bgColor;
   window.animatedCanvases.push(anim);
 }

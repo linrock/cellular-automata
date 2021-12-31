@@ -93,6 +93,6 @@
     }
     this.fillCell(x, y);
   }
-  anim.setBackgroundColor(bgColor);
+  anim.backgroundColor = bgColor;
   window.animatedCanvases.push(anim);
 }

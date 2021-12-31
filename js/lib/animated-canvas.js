@@ -35,20 +35,19 @@ class AnimatedCanvas {
     this.updateWorld = initAnimContext(this.numCellsX, this.numCellsY);
   }
 
-  setForegroundColor(color) {
+  set foregroundColor(color) {
     this.ctx.fillStyle = color;
   }
 
-  setBackgroundColor(color) {
+  set backgroundColor(color) {
     this.canvas.style.background = color;
   }
 
   fillCell(x, y) {
     this.ctx.fillRect(
-      x * this.cellSize,
-      y * this.cellSize,
-      this.cellSize,
-      this.cellSize);
+      x * this.cellSize, y * this.cellSize,
+      this.cellSize, this.cellSize
+    );
   }
 
   drawCell(x, y, value) {

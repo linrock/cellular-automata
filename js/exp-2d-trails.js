@@ -78,6 +78,6 @@
       }
     }
   };
-  anim.setBackgroundColor(bgColor);
+  anim.backgroundColor = bgColor;
   window.animatedCanvases.push(anim);
 }

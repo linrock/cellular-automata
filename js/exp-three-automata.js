@@ -131,6 +131,6 @@
     }
     this.fillCell(x, y);
   }
-  anim.setBackgroundColor('#0c0b0b');
+  anim.backgroundColor = '#0c0b0b';
   window.animatedCanvases.push(anim);
 }
