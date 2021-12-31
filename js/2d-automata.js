@@ -4,8 +4,7 @@
     cellSize: 3,
     init: (numX, numY) => {
       const gol = new GOL(numX, numY, () => Math.random() > 0.8 ? 1 : 0);
-      gol.B = [3];
-      gol.S = [2, 3];
+      gol.rulestring = 'B3/S23';
       return () => gol.calculateNewWorld();
     },
     foregroundColor: 'rgb(112, 160, 48)',
@@ -17,8 +16,7 @@
     cellSize: 3,
     init: (numX, numY) => {
       const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
-      gol.B = [3, 6, 7, 8];
-      gol.S = [3, 4, 6, 7, 8];
+      gol.rulestring = 'B3678/S34678';
       return () => gol.calculateNewWorld();
     },
     foregroundColor: '#fff44f',
@@ -39,8 +37,7 @@
         }
         return Math.random() > 0.5 ? 1 : 0;
       });
-      gol.B = [3];
-      gol.S = [1, 2, 3, 4, 5];
+      gol.rulestring = 'B3/S12345';
       return () => gol.calculateNewWorld();
     },
     foregroundColor: '#eee',
@@ -51,15 +48,10 @@
   window.animatedCanvases.push(new AnimatedCanvas('c-anneal', {
     cellSize: 3,
     init: (numX, numY) => {
-      let gol;
       // hack to help the animation converge towards one blob more frequently
-      if (Math.random() > 0.5) {
-        gol = new GOL(numX, numY, () => Math.random() > 0.45 ? 1 : 0);
-      } else {
-        gol = new GOL(numX, numY, () => Math.random() > 0.55 ? 1 : 0);
-      }
-      gol.B = [4, 6, 7, 8];
-      gol.S = [3, 5, 6, 7, 8];
+      const thresh = Math.random > 0.5 ? 0.45 : 0.55;
+      const gol = new GOL(numX, numY, () => Math.random() > thresh ? 1 : 0);
+      gol.rulestring = 'B4678/S35678';
       return () => gol.calculateNewWorld();
     },
     foregroundColor: 'rgb(239, 120, 47)',

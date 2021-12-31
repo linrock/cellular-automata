@@ -21,6 +21,13 @@ class GOL {
     }
   }
 
+  // assumes notation format: B3/S23
+  set rulestring(bsRulestring) {
+    const [b, s] = bsRulestring.split('/');
+    this.B = b.slice(1).split('').map(Number);
+    this.S = s.slice(1).split('').map(Number);
+  }
+
   // for manually converting arrays of strings into pixels
   drawPixels(pixels, shiftX = 0, shiftY = 0) {
     pixels.forEach((row, y) => {
