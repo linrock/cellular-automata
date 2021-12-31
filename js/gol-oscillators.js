@@ -87,6 +87,7 @@
     });
     anim.setForegroundColor(colors[0]);
 
+    // render at around 2 fps
     setInterval(() => {
       if (anim.isAnimating) {
         anim.updateAndDrawWorld();

@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width">
     <title>An overview of cellular automata</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="js/main.js"></script>
   </head>
@@ -47,23 +50,6 @@
                     <a href="#life-like-cellular-automata">
                       Life-like cellular automata
                     </a>
-                    <ul>
-                      <li>
-                        <a href="#day-and-night">
-                          Day and night
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#mazectric">
-                          Mazectric
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#anneal">
-                          Anneal
-                        </a>
-                      </li>
-                    </ul>
                   </li>
                   <li>
                     <a href="#cyclic-cellular-automata">
@@ -72,7 +58,7 @@
                   </li>
                 </ul>
               </li>
-              <li><a href="#visual-experiments">Visual experiments</a>
+              <li><a href="#Experiments">Experiments</a>
               <li><a href="#oscillators">Oscillators</a></li>
               <li><a href="#about">About</a></li>
             </ul>
@@ -136,8 +122,8 @@
           <div class="flex-responsive">
             <p>
               Rules may behave differently when cells are initialized with
-              random cells. Rule 106 starting with a single cell leads to only
-              a diagonal line. However, starting cells with random states
+              random states. Rule 106 starting with a single cell leads to only
+              a diagonal line. However, initial cells with random states
               leads to chaotic behavior.
             <p>
             <figure>
@@ -162,7 +148,7 @@
             <p>
               Created by mathematician John Conway in 1970, this is perhaps
               the most well-known cellular automata. Cells have two possible
-              states: live or dead. New generations of the world consider only
+              states: live or dead. New generations of the world consider
               the 8 immediate neighbors of each cell.
             </p>
             <figure>
@@ -287,10 +273,9 @@
 
       <section class="bg-dark">
         <div class="container">
-          <h2 id="visual-experiments">Visual experiments</h2>
+          <h2 id="experiments">Experiments</h2>
           <p>
-            These are experiments that combine or expand upon the above ideas
-            just for fun.
+            These animations combine or expand upon the above ideas just for fun.
           </p>
 
           <h3 id="trails-in-2d">Trails in 2D</h3>
@@ -302,8 +287,8 @@
                 leave trails behind them as they fade.
               </p>
               <p>
-                This concept can be used for effects and to visualize the
-                speed at which patterns travel.
+                This concept can be used to visualize the speed at which
+                patterns travel.
               </p>
             </div>
             <figure>
@@ -367,10 +352,10 @@
           </div>
 
           <p>
-            In the Game of Life, glider guns are oscillators that continuously
-            generate gliders. Gliders travel across space at a constant speed and
-            can be combined with other constructs to create logic gates. Logic
-            gates can be used to create computers.
+            Glider guns are oscillators that continuously generate gliders.
+            Gliders travel across space at a constant speed and can be used
+            to transmit information. Many glider guns can be arranged together
+            to create logic gates. Logic gates can be used to create computers.
           </p>
           <div class="flex-responsive" style="justify-content: flex-start">
             <figure>
@@ -383,10 +368,8 @@
             </figure>
           </div>
           <p>
-            Some Life-like automata are Turing complete, meaning they can
-            simulate any real-world computer. The Game of Life and other
-            Life-like automata can be implemented in the Game of Life
-            using a construct called an OTCA metapixel.
+            The Game of Life and other Life-like automata can be implemented
+            in the Game of Life using a construct called an OTCA metapixel.
           </p>
         </div>
       </section>
@@ -398,7 +381,7 @@
             This page is a work in progress. Animations are written in plain
             javascript and use the canvas API for rendering. All source code is
             <a href="https://github.com/linrock/cellular-automata">
-              publicly available here</a>.
+              available here</a>.
           </p>
 
           <h3 id="resources">Resources and inspiration</h3>
