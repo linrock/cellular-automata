@@ -3,7 +3,7 @@
   const ANIM_UPDATE_INTERVAL_MS = 50;
 
   // frequency of toggling all animation play/pause statuses
-  const VIZ_POLL_INTERVAL_MS = 500;
+  const VIZ_POLL_INTERVAL_MS = 200;
 
   const PLAY_EVENT = new CustomEvent('play');
   const PAUSE_EVENT = new CustomEvent('pause');
