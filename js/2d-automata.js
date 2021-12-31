@@ -91,7 +91,7 @@
 
   // cyclic tri-state animation at the top of the page
   {
-    const bgColor = 'rgb(82, 17, 7)';
+    const backgroundColor = 'rgb(82, 17, 7)';
     const darkColor = '#d75302';
     const lightColor = '#fac000';
 
@@ -127,7 +127,7 @@
           }
         });
       },
-      backgroundColor: bgColor,
+      backgroundColor,
     }));
   }
 }

@@ -1,5 +1,5 @@
 {
-  function createEcaAnimatedCanvas(canvasId, ruleNum, initMethod) {
+  function createEcaAnimCanvas(canvasId, ruleNum, initMethod, options) {
     return new AnimatedCanvas(canvasId, {
       cellSize: 3,
       init: (numX, numY) => {
@@ -23,22 +23,22 @@
           world.shift();
           return world;
         };
-      }
+      },
+      ...options,
     });
   }
 
-  const anim1 = createEcaAnimatedCanvas('1d-world', 30, 'one_middle');
-  anim1.foregroundColor = '#5c7aff';
-  // anim1.setBackgroundColor('#1b065e');
-  anim1.backgroundColor = '#111';
-  window.animatedCanvases.push(anim1);
+  window.animatedCanvases.push(createEcaAnimCanvas('1d-world', 30, 'one_middle', {
+    foregroundColor: '#5c7aff',
+    backgroundColor: '#111',
+  }));
 
-  const anim2 = createEcaAnimatedCanvas('rule-90', 90, 'one_middle');
-  anim2.foregroundColor = 'yellow';
-  window.animatedCanvases.push(anim2);
+  window.animatedCanvases.push(createEcaAnimCanvas('rule-90', 90, 'one_middle', {
+    foregroundColor: 'yellow',
+  }));
 
-  const anim3 = createEcaAnimatedCanvas('1d-world-2', 106, 'random');
-  anim3.foregroundColor = 'rgb(68,182,239)';  // light blue
-  anim3.backgroundColor = '#1d0b3b';
-  window.animatedCanvases.push(anim3);
+  window.animatedCanvases.push(createEcaAnimCanvas('1d-world-2', 106, 'random', {
+    foregroundColor: 'rgb(68,182,239)',  // light blue
+    backgroundColor: '#1d0b3b',
+  }));
 }
