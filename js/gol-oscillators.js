@@ -76,7 +76,16 @@
       gol.drawPixels(octagon);
       return () => gol.calculateNewWorld();
     });
-    anim.setForegroundColor('#ffa600');
+    let colorIndex = 0;
+    const colors = [
+      '#ffa600',
+      'rgb(92, 122, 255)',
+      '#5dfdcb',
+    ];
+    anim.canvas.addEventListener('click', () => {
+      anim.setForegroundColor(colors[++colorIndex % colors.length]);
+    });
+    anim.setForegroundColor(colors[0]);
 
     setInterval(() => {
       if (anim.isAnimating) {
