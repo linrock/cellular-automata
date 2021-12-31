@@ -41,10 +41,8 @@ class GOL {
 
   // method of deciding the new state of the current cell
   newCellRule(state, numLiveNeighbors) {
-    if (state)  {
-      return this.S.includes(numLiveNeighbors);
-    }
-    return this.B.includes(numLiveNeighbors);
+    return state ? this.S.includes(numLiveNeighbors)
+                 : this.B.includes(numLiveNeighbors);
   }
 
   // naive way of calculating the next generation of the world

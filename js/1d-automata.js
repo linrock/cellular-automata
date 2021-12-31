@@ -1,6 +1,6 @@
 {
-  function createEcaAnimCanvas(canvasId, ruleNum, initMethod, options) {
-    return new AnimatedCanvas(canvasId, {
+  const createEcaAnimCanvas = (canvasId, ruleNum, initMethod, options) =>
+    new AnimatedCanvas(canvasId, {
       cellSize: 3,
       init: (numX, numY) => {
         // initialize an elementary cellular automaton
@@ -26,7 +26,6 @@
       },
       ...options,
     });
-  }
 
   window.animatedCanvases.push(createEcaAnimCanvas('1d-world', 30, 'one_middle', {
     foregroundColor: '#5c7aff',
