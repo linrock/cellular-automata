@@ -119,6 +119,7 @@
       return () => gol.calculateNewWorld();
     });
     anim.setForegroundColor('#ffa600');
+    anim.setBackgroundColor('rgb(15, 8, 26)');
     // window.animatedCanvases.push(anim);
     setInterval(() => {
       if (anim.isAnimating) {
