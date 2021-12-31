@@ -1,6 +1,6 @@
 {
   // standard Game of Life simulation with random initial values
-  const anim = new AnimatedCanvas('game-of-life', 3, (numX, numY) => {
+  const anim = new AnimatedCanvas('c-game-of-life', 3, (numX, numY) => {
     const gol = new GOL(numX, numY, () => Math.random() > 0.8 ? 1 : 0);
     gol.B = [3];
     gol.S = [2, 3];

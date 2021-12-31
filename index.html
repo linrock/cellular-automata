@@ -145,19 +145,23 @@
 
           <h3 id="conways-game-of-life">Conway's Game of Life</h3>
           <div class="flex-responsive">
-            <p>
-              Created by mathematician John Conway in 1970, this is perhaps
-              the most well-known cellular automata. Cells have two possible
-              states: live or dead. New generations of the world consider
-              the 8 immediate neighbors of each cell.
-            </p>
+            <div>
+              <p>
+                Created by mathematician John Conway in 1970, this is perhaps
+                the most well-known cellular automata.
+              </p>
+              <p>
+                Cells have 2 possible states: live or dead. In new generations
+                of the world, the state of each cell depends on its 8 immediate
+                neighboring cells.
+              </p>
+            </div>
             <figure>
-              <canvas id="game-of-life" width="300" height="180"></canvas>
+              <canvas id="c-game-of-life" width="300" height="260"></canvas>
             </figure>
           </div>
           <p style="margin-bottom: 1rem">
-            In each generation, the state of the world is generated based on
-            these rules:
+            New worlds are generated based on these rules:
           </p>
           <ul>
             <li>A dead cell with 3 neighbors becomes live</li>
@@ -167,20 +171,37 @@
 
           <h3 id="life-like-cellular-automata">Life-like cellular automata</h3>
           <p style="margin-bottom: 1rem">
-            Cellular automata are considered Life-like if they're 2D, cells have
-            2 possible states, and change based on their 8 immediate neighbors.
-            The rules by which cell states change may differ.
-            A common notation for rules is written as Bx/Sy, where:
+            Cellular automata are considered Life-like if they're similar to
+            the Gmae of Life: 2D, cells have 2 possible states and change based
+            on their 8 immediate neighbors. A common notation for the rules by
+            which cells change is a string in the format of
+            <strong>Bx/Sy</strong>, where:
           </p>
           <ul>
-            <li>B = Birth - dead cells with these numbers of neighbors become live</li>
-            <li>S = Survival - live cells with these numbers of neighbors stay live</li>
-            <li>x and y are strings of digits from 1 to 8
+            <li>
+              <strong>B</strong> = Birth -
+              dead cells with these numbers of neighbors become live
+            </li>
+            <li>
+              <strong>S</strong> = Survival -
+              live cells with these numbers of neighbors stay live
+            </li>
+            <li>
+              <strong>x</strong> and <strong>y</strong> are strings of digits from 1 to 8
+            </li>
           </ul>
           <p>
-            For example, the rules of the Game of Life can be written as: B3/S23
+            The rulestring of the Game of Life can be written as:
+            <strong>B3/S23</strong>
           </p>
-
+          <p style="margin-bottom: 1rem">
+            Ssome examples of how changing the rules affects the world:
+          </p>
+          <ul>
+            <li><a href="#day-and-night">Day and Night</a></li>
+            <li><a href="#mazectric">Mazectric</a></li>
+            <li><a href="#anneal">Anneal</a></li>
+          </ul>
           <h4 id="day-and-night">Day and Night</h4>
           <div class="flex-responsive">
             <div>
@@ -207,7 +228,10 @@
             <li>An on cell with 3, 4, 6, 7, or 8 neighbors becomes off</li>
             <li>All other on cells become off</li>
           </ul>
-          <p>The rules can be written as: B3678/S34678
+          <p>
+            The rulestring is:
+            <strong>B3678/S34678</strong>
+          </p>
 
           <h4 id="mazectric">Mazectric</h4>
           <div class="flex-responsive">
@@ -222,6 +246,7 @@
                 In some cases, oscillator patterns will appear, where 2x2 cells
                 will continuously switch between on and off states.
               </p>
+              <p>The rulestring is: <strong>B3/S12345</strong>
             </div>
             <figure>
               <canvas id="c-mazectric" width="300" height="300"></canvas>
@@ -239,7 +264,7 @@
                 the curve-shortening flow or geometric heat flow.
               </p>
               <p>
-                The rules can be written as: B4678/S35678
+                The rulestring is: <strong>B4678/S35678</strong>
               </p>
             </div>
             <figure>

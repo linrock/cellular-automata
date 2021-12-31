@@ -30,6 +30,10 @@ canvas:hover {
   cursor: pointer;
 }
 
+strong {
+  color: #ffd472;
+}
+
 h1 {
   color: #ffb574;
   font-size: 2rem;
