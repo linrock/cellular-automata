@@ -24,6 +24,7 @@ header {
 
 canvas {
   background: #222;
+  transition: opacity 0.25s;
 }
 
 canvas:hover {

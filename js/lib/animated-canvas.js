@@ -45,8 +45,18 @@ class AnimatedCanvas {
     if (drawCell) {
       this.drawCell = drawCell.bind(this);
     }
-    canvas.addEventListener('play', () => this.isAnimating = true);
-    canvas.addEventListener('pause', () => this.isAnimating = false);
+    // fade canvases in as they become visible
+    canvas.style.opacity = 0.1;
+    canvas.addEventListener('play', () => {
+      this.isAnimating = true;
+      if (!this.canvasInitialized) {
+        this.canvasInitialized = true;
+        this.canvas.style.opacity = 1;
+      }
+    });
+    canvas.addEventListener('pause', () => {
+      this.isAnimating = false;
+    });
     canvas.addEventListener('click', () => {
       // click to clear the canvas and start over
       this.isAnimating = false;
