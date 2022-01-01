@@ -85,6 +85,7 @@
         return () => gol.calculateNewWorld();
       },
       foregroundColor: colors[0],
+      drawWorldDiff: true,
       maxFps: 2,
     });
     anim.canvas.addEventListener('click', () => {
@@ -99,6 +100,7 @@
       gol.drawPixels(gosperGliderGun, 2, 2);
       return () => gol.calculateNewWorld();
     },
+    drawWorldDiff: true,
     backgroundColor: '#02020a',
     foregroundColor: '#5dfdcb',
   });
@@ -110,6 +112,7 @@
       gol.drawPixels(simkinGliderGun, 8, 12);
       return () => gol.calculateNewWorld();
     },
+    drawWorldDiff: true,
     backgroundColor: 'rgb(15, 8, 26)',
     foregroundColor: '#5c7aff', // periwinkle
   });
@@ -127,6 +130,7 @@
 
         return () => gol.calculateNewWorld();
       },
+      drawWorldDiff: true,
       foregroundColor: '#ffa600',
       backgroundColor: 'rgb(15, 8, 26)',
       maxFps: 5,
