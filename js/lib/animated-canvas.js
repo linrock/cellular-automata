@@ -101,7 +101,7 @@ class AnimatedCanvas {
     }
   }
 
-  drawWorld(world) {
+  drawWorld(world, worldDiff) {
     requestAnimationFrame(() => {
       this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
       for (let x = 0; x < this.numCellsX; x++) {
@@ -121,6 +121,7 @@ class AnimatedCanvas {
       return;
     }
     this.lastRenderAt = now;
-    this.drawWorld(this.updateWorld());
+    const [newWorld, worldDiff] = this.updateWorld();
+    this.drawWorld(newWorld, worldDiff);
   }
 }

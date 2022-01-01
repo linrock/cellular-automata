@@ -43,6 +43,19 @@
       gol.rulestring = 'B3/S12345';
       return () => gol.calculateNewWorld();
     },
+    drawWorld: function(world, worldDiff) {
+      if (!worldDiff.length) {
+        return;
+      }
+      requestAnimationFrame(() => {
+        this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+        for (let x = 0; x < this.numCellsX; x++) {
+          for (let y = 0; y < this.numCellsY; y++) {
+            this.drawCell(x, y, world[y][x]);
+          }
+        }
+      });
+    },
     foregroundColor: '#eee',
     backgroundColor: '#111',
   });
@@ -78,7 +91,6 @@
   CA.animate('c-diamoeba', {
     cellSize: 3,
     init: (numX, numY) => {
-      // hack to make the animation converge to one blob more often
       const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
       gol.rulestring = 'B35678/S5678';
       return () => gol.calculateNewWorld();

@@ -76,6 +76,6 @@ class Cyclic {
       }
     }
     this.world = newWorld;
-    return newWorld;
+    return [newWorld, []];
   }
 }

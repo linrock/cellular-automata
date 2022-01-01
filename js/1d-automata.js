@@ -21,7 +21,7 @@
           eca.calculateNextGeneration();
           world.push(eca.cells);
           world.shift();
-          return world;
+          return [world, []];
         };
       },
       ...options,

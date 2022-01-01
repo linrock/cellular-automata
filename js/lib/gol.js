@@ -48,6 +48,7 @@ class GOL {
   // naive way of calculating the next generation of the world
   calculateNewWorld() {
     const newWorld = [];
+    const worldDiff = [];
     for (let y = 0; y < this.numCellsY; y++) {
       newWorld.push([]);
       for (let x = 0; x < this.numCellsX; x++) {
@@ -69,9 +70,12 @@ class GOL {
             (this.world[y + 1][x + 1] ? 1 : 0);
         }
         newWorld[y][x] = this.newCellRule(this.world[y][x], numLiveNeighbors);
+        if (this.world[y][x] !== newWorld[y][x]) {
+          worldDiff.push([x, y, newWorld[y][x]]);
+        }
       }
     }
     this.world = newWorld;
-    return newWorld;
+    return [newWorld, worldDiff];
   }
 }
