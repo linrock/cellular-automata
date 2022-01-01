@@ -172,7 +172,7 @@
           <h3 id="life-like-cellular-automata">Life-like cellular automata</h3>
           <p style="margin-bottom: 1rem">
             Cellular automata are considered Life-like if they're similar to
-            the Gmae of Life: 2D, cells have 2 possible states and change based
+            the Game of Life: 2D, cells have 2 possible states and change based
             on their 8 immediate neighbors. A common notation for the rules by
             which cells change is a string in the format of
             <strong>Bx/Sy</strong>, where:
@@ -199,7 +199,8 @@
           </p>
           <ul>
             <li><a href="#day-and-night">Day and Night</a> - behaves the same after inverting the world</li>
-            <li><a href="#mazectric">Mazectric</a> - expands outwards and generates mazes</li>
+            <li><a href="#maze">Maze</a> - expands outwards and generates maze-like paths</li>
+            <li><a href="#mazectric">Mazectric</a> - similar to Maze, with shimmering edges and straigher corridors</li>
             <li><a href="#anneal">Anneal</a> - the world converges towards the state of the majority</li>
           </ul>
           <h4 id="day-and-night">Day and Night</h4>
@@ -233,20 +234,36 @@
             <strong>B3678/S34678</strong>
           </p>
 
-          <h4 id="mazectric">Mazectric</h4>
+          <h4 id="maze">Maze</h4>
           <div class="flex-responsive">
             <div>
               <p>
-                Also a Life-like cellular automata, this is an example of a maze
-                generation algorithm. When initialized with random values in the
-                center, cells will expand outwards towards the edges until a
-                steady state is reached.
+                This is an example of a maze generation algorithm. When
+                initialized with random values in the center, cells will expand
+                outwards towards the edges until a steady state is reached.
               </p>
               <p>
                 In some cases, oscillator patterns will appear, where 2x2 cells
                 will continuously switch between on and off states.
               </p>
               <p>The rulestring is: <strong>B3/S12345</strong>
+            </div>
+            <figure>
+              <canvas id="c-maze" width="300" height="300"></canvas>
+            </figure>
+          </div>
+
+
+          <h4 id="mazectric">Mazectric</h4>
+          <div class="flex-responsive">
+            <div>
+              <p>
+                This is similar to Maze. The edges of the expanding maze will
+                have transient oscillators and appear to shimmer. Stable
+                oscillators are more common and corridors will tend to be
+                straighter compared to Maze.
+              </p>
+              <p>The rulestring is: <strong>B3/S1234</strong>
             </div>
             <figure>
               <canvas id="c-mazectric" width="300" height="300"></canvas>

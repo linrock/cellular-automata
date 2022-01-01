@@ -3,8 +3,8 @@
   window.animatedCanvases.push(new AnimatedCanvas('c-game-of-life', {
     cellSize: 3,
     init: (numX, numY) => {
-      const gol = new GOL(numX, numY, () => Math.random() > 0.8 ? 1 : 0);
-      gol.rulestring = 'B3/S23';
+      const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
+      // gol.rulestring = 'B3/S23';
       return () => gol.calculateNewWorld();
     },
     foregroundColor: 'rgb(112, 160, 48)',
@@ -23,12 +23,13 @@
     backgroundColor: '#110829',
   }));
 
-  // Mazetric simulation - variant of Game of Life
-  window.animatedCanvases.push(new AnimatedCanvas('c-mazectric', {
+  // Maze simulation - variant of Game of Life
+  window.animatedCanvases.push(new AnimatedCanvas('c-maze', {
     cellSize: 3,
     init: (numX, numY) => {
       const gol = new GOL(numX, numY, (x, y) => {
-        // initialize only the middle half of the canvas with random numbers
+        // initialize only the middle half of the canvas with
+        // random numbers
         if (x < numX / 3 || x > 2 * numX / 3) {
           return 0;
         }
@@ -44,11 +45,33 @@
     backgroundColor: '#111',
   }));
 
+  // Mazetric simulation - variant of Game of Life
+  window.animatedCanvases.push(new AnimatedCanvas('c-mazectric', {
+    cellSize: 3,
+    init: (numX, numY) => {
+      const gol = new GOL(numX, numY, (x, y) => {
+        // initialize only the middle half of the canvas with
+        // random numbers
+        if (x < numX / 3 || x > 2 * numX / 3) {
+          return 0;
+        }
+        if (y < numY / 3 || y > 2 * numY / 3) {
+          return 0;
+        }
+        return Math.random() > 0.5 ? 1 : 0;
+      });
+      gol.rulestring = 'B3/S1234';
+      return () => gol.calculateNewWorld();
+    },
+    foregroundColor: '#fbfb8f',
+    backgroundColor: '#111',
+  }));
+
   // Anneal - variation of majority voting
   window.animatedCanvases.push(new AnimatedCanvas('c-anneal', {
     cellSize: 3,
     init: (numX, numY) => {
-      // hack to help the animation converge towards one blob more frequently
+      // hack to make the animation converge to one blob more often
       const thresh = Math.random > 0.5 ? 0.45 : 0.55;
       const gol = new GOL(numX, numY, () => Math.random() > thresh ? 1 : 0);
       gol.rulestring = 'B4678/S35678';
