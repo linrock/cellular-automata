@@ -3,7 +3,7 @@
   CA.animate('c-game-of-life', {
     cellSize: 3,
     init: (numX, numY) => {
-      const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
+      const gol = new LL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
       // gol.rulestring = 'B3/S23';
       return () => gol.calculateNewWorld();
     },
@@ -16,9 +16,9 @@
   CA.animate('c-day-and-night', {
     cellSize: 3,
     init: (numX, numY) => {
-      const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
-      gol.rulestring = 'B3678/S34678';
-      return () => gol.calculateNewWorld();
+      const ll = new LL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
+      ll.rulestring = 'B3678/S34678';
+      return () => ll.calculateNewWorld();
     },
     drawWorldDiff: true,
     foregroundColor: '#fff44f',
@@ -41,9 +41,9 @@
   CA.animate('c-maze', {
     cellSize: 3,
     init: (numX, numY) => {
-      const gol = new GOL(numX, numY, centerThirdInit(numX, numY));
-      gol.rulestring = 'B3/S12345';
-      return () => gol.calculateNewWorld();
+      const ll = new LL(numX, numY, centerThirdInit(numX, numY));
+      ll.rulestring = 'B3/S12345';
+      return () => ll.calculateNewWorld();
     },
     drawWorldDiff: true,
     foregroundColor: '#eee',
@@ -54,9 +54,9 @@
   CA.animate('c-mazectric', {
     cellSize: 3,
     init: (numX, numY) => {
-      const gol = new GOL(numX, numY, centerThirdInit(numX, numY));
-      gol.rulestring = 'B3/S1234';
-      return () => gol.calculateNewWorld();
+      const ll = new LL(numX, numY, centerThirdInit(numX, numY));
+      ll.rulestring = 'B3/S1234';
+      return () => ll.calculateNewWorld();
     },
     drawWorldDiff: true,
     foregroundColor: '#fbfb8f',
@@ -69,9 +69,9 @@
     init: (numX, numY) => {
       // hack to make the animation converge to one blob more often
       const thresh = Math.random > 0.5 ? 0.45 : 0.55;
-      const gol = new GOL(numX, numY, () => Math.random() > thresh ? 1 : 0);
-      gol.rulestring = 'B4678/S35678';
-      return () => gol.calculateNewWorld();
+      const ll = new LL(numX, numY, () => Math.random() > thresh ? 1 : 0);
+      ll.rulestring = 'B4678/S35678';
+      return () => ll.calculateNewWorld();
     },
     drawWorldDiff: true,
     foregroundColor: 'rgb(239, 120, 47)',
@@ -83,9 +83,9 @@
   CA.animate('c-diamoeba', {
     cellSize: 3,
     init: (numX, numY) => {
-      const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
-      gol.rulestring = 'B35678/S5678';
-      return () => gol.calculateNewWorld();
+      const ll = new LL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
+      ll.rulestring = 'B35678/S5678';
+      return () => ll.calculateNewWorld();
     },
     drawWorldDiff: true,
     foregroundColor: 'rgb(23, 120, 225)',
@@ -97,10 +97,7 @@
   CA.animate('c-cyclic', {
     cellSize: 3,
     init: (numX, numY) => {
-      const cyc = new Cyclic(numX, numY, () => {
-        const rand = Math.random();
-        return rand > 0.667 ? 2 : (rand > 0.333 ? 1 : 0);
-      });
+      const cyc = new Cyclic(numX, numY, () => ~~(Math.random() * 3));
       return () => cyc.calculateNewWorld();
     },
     drawWorld: function(world, worldDiff) {

@@ -1,5 +1,5 @@
-// Game of Life - two-dimensional
-class GOL {
+// 2D life-like, defaults to Game of Life
+class LL {
   numCellsX = -1;
   numCellsY = -1;
   world = [];

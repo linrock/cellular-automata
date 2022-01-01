@@ -80,7 +80,7 @@
     const anim = CA.animate('gol-octagon', {
       cellSize: 3,
       init: (numX, numY) => {
-        const gol = new GOL(numX, numY);
+        const gol = new LL(numX, numY);
         gol.drawPixels(octagon);
         return () => gol.calculateNewWorld();
       },
@@ -96,7 +96,7 @@
   CA.animate('gol-glider', {
     cellSize: 3,
     init: (numX, numY) => {
-      const gol = new GOL(numX, numY);
+      const gol = new LL(numX, numY);
       gol.drawPixels(gosperGliderGun, 2, 2);
       return () => gol.calculateNewWorld();
     },
@@ -108,7 +108,7 @@
   CA.animate('gol-simkin-glider', {
     cellSize: 3,
     init: (numX, numY) => {
-      const gol = new GOL(numX, numY);
+      const gol = new LL(numX, numY);
       gol.drawPixels(simkinGliderGun, 8, 12);
       return () => gol.calculateNewWorld();
     },
@@ -121,7 +121,7 @@
     CA.animate('gol-oscillators', {
       cellSize: 3,
       init: (numX, numY) => {
-        const gol = new GOL(numX, numY);
+        const gol = new LL(numX, numY);
 
         gol.drawPixels(octagon, 5, 6);
         gol.drawPixels(figureEight, 28, 7);
