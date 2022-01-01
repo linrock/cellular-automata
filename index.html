@@ -169,6 +169,39 @@
             <li>All other live cells become dead</li>
           </ul>
 
+          <h4 id="oscillators">Oscillators</h4>
+          <p>
+            Oscillators are patterns that always return to their initial state.
+          <p>
+
+          <div class="flex-responsive">
+            <figure>
+              <canvas width="300" height="60" id="gol-oscillators"></canvas>
+              <figcaption>Some oscillators in the Game of Life</figcaption>
+            </figure>
+          </div>
+
+          <p>
+            Glider guns are oscillators that continuously generate gliders.
+            Gliders travel across space at a constant speed and can be used
+            to transmit information. Many glider guns can be arranged together
+            to create logic gates. Logic gates can be used to create computers.
+          </p>
+          <div class="flex-responsive" style="justify-content: flex-start">
+            <figure>
+              <canvas width="180" height="120" id="gol-glider"></canvas>
+              <figcaption>Gosper glider gun</figcaption>
+            </figure>
+            <figure>
+              <canvas width="180" height="120" id="gol-simkin-glider"></canvas>
+              <figcaption>Simkin glider gun</figcaption>
+            </figure>
+          </div>
+          <p>
+            The Game of Life and other Life-like automata can be implemented
+            in the Game of Life using a construct called an OTCA metapixel.
+          </p>
+
           <h3 id="life-like-cellular-automata">Life-like cellular automata</h3>
           <p style="margin-bottom: 1rem">
             Cellular automata are considered Life-like if they're similar to
@@ -198,11 +231,16 @@
             Ssome examples of how changing the rules affects the world:
           </p>
           <ul>
-            <li><a href="#day-and-night">Day and Night</a> - behaves the same after inverting the world</li>
-            <li><a href="#maze">Maze</a> - expands outwards and generates maze-like paths</li>
-            <li><a href="#mazectric">Mazectric</a> - similar to Maze, with shimmering edges and straigher corridors</li>
-            <li><a href="#anneal">Anneal</a> - the world converges towards the state of the majority</li>
-            <li><a href="#diamoeba">Diamoeba</a> - diamond amoeba-like shapes with moving edges</li>
+            <li><a href="#day-and-night">Day and Night</a>
+              - behaves the same after inverting the world</li>
+            <li><a href="#maze">Maze</a>
+              - expands outwards and generates maze-like paths</li>
+            <li><a href="#mazectric">Mazectric</a>
+              - similar to Maze, with shimmering edges and straigher corridors</li>
+            <li><a href="#anneal">Anneal</a>
+              - the world converges towards the state of the majority</li>
+            <li><a href="#diamoeba">Diamoeba</a>
+              - diamond amoeba-like shapes with moving edges</li>
           </ul>
           <h4 id="day-and-night">Day and Night</h4>
           <div class="flex-responsive">
@@ -399,43 +437,9 @@
       </section>
 
       <section>
-        <div class="container">
-          <h2 id="oscillators">Oscillators</h2>
-          <p>
-            Oscillators are patterns that always return to their initial state.
-          <p>
-
-          <div class="flex-responsive">
-            <figure>
-              <canvas width="300" height="60" id="gol-oscillators"></canvas>
-              <figcaption>Some oscillators in the Game of Life</figcaption>
-            </figure>
-          </div>
-
-          <p>
-            Glider guns are oscillators that continuously generate gliders.
-            Gliders travel across space at a constant speed and can be used
-            to transmit information. Many glider guns can be arranged together
-            to create logic gates. Logic gates can be used to create computers.
-          </p>
-          <div class="flex-responsive" style="justify-content: flex-start">
-            <figure>
-              <canvas width="180" height="120" id="gol-glider"></canvas>
-              <figcaption>Gosper glider gun</figcaption>
-            </figure>
-            <figure>
-              <canvas width="180" height="120" id="gol-simkin-glider"></canvas>
-              <figcaption>Simkin glider gun</figcaption>
-            </figure>
-          </div>
-          <p>
-            The Game of Life and other Life-like automata can be implemented
-            in the Game of Life using a construct called an OTCA metapixel.
-          </p>
-        </div>
       </section>
 
-      <section class="bg-dark">
+      <section>
         <div class="container">
           <h2 id="about">About this page</h3>
           <p>
