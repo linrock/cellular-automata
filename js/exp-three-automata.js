@@ -16,7 +16,7 @@
   let boundTopY;
   let boundBottomY;
 
-  window.animatedCanvases.push(new AnimatedCanvas('three-combined-world', {
+  CA.animate('three-combined-world', {
     cellSize: 3,
     init: (numX, numY) => {
       const ecaTop = new ECA(numX, RULE_NUM_TOP, 'one_middle');
@@ -136,5 +136,5 @@
       this.fillCell(x, y);
     },
     backgroundColor,
-  }));
+  });
 }

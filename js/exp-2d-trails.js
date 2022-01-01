@@ -7,7 +7,7 @@
   const fadeColor1 = '#5C8B6B';
   const fadeColor2 = '#355852';
 
-  window.animatedCanvases.push(new AnimatedCanvas('c-game-of-life-trails', {
+  CA.animate('c-game-of-life-trails', {
     cellSize: 3,
     init: (numX, numY) => {
       // initialize the world with random numbers
@@ -81,5 +81,5 @@
       }
     },
     backgroundColor,
-  }));
+  });
 }

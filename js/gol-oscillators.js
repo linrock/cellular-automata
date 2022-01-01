@@ -98,7 +98,7 @@
     }, 500);
   }
 
-  window.animatedCanvases.push(new AnimatedCanvas('gol-glider', {
+  CA.animate('gol-glider', {
     cellSize: 3,
     init: (numX, numY) => {
       const gol = new GOL(numX, numY);
@@ -107,9 +107,9 @@
     },
     backgroundColor: '#02020a',
     foregroundColor: '#5dfdcb',
-  }));
+  });
 
-  window.animatedCanvases.push(new AnimatedCanvas('gol-simkin-glider', {
+  CA.animate('gol-simkin-glider', {
     cellSize: 3,
     init: (numX, numY) => {
       const gol = new GOL(numX, numY);
@@ -118,7 +118,7 @@
     },
     backgroundColor: 'rgb(15, 8, 26)',
     foregroundColor: '#5c7aff', // periwinkle
-  }));
+  });
 
   {
     const anim = new AnimatedCanvas('gol-oscillators', {

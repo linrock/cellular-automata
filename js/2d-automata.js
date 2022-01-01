@@ -1,6 +1,6 @@
 {
   // standard Game of Life simulation with random initial values
-  window.animatedCanvases.push(new AnimatedCanvas('c-game-of-life', {
+  CA.animate('c-game-of-life', {
     cellSize: 3,
     init: (numX, numY) => {
       const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
@@ -9,10 +9,10 @@
     },
     foregroundColor: 'rgb(112, 160, 48)',
     backgroundColor: 'rgb(3, 14, 1)',
-  }));
+  });
 
   // Day and Night simulation - variant of Game of Life
-  window.animatedCanvases.push(new AnimatedCanvas('c-day-and-night', {
+  CA.animate('c-day-and-night', {
     cellSize: 3,
     init: (numX, numY) => {
       const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
@@ -21,7 +21,7 @@
     },
     foregroundColor: '#fff44f',
     backgroundColor: '#110829',
-  }));
+  });
 
   const centerThirdInit = (numX, numY) => (x, y) => {
     // initialize only the middle half of the canvas with
@@ -36,7 +36,7 @@
   };
 
   // Maze simulation - variant of Game of Life
-  window.animatedCanvases.push(new AnimatedCanvas('c-maze', {
+  CA.animate('c-maze', {
     cellSize: 3,
     init: (numX, numY) => {
       const gol = new GOL(numX, numY, centerThirdInit(numX, numY));
@@ -45,10 +45,10 @@
     },
     foregroundColor: '#eee',
     backgroundColor: '#111',
-  }));
+  });
 
   // Mazetric simulation - variant of Game of Life
-  window.animatedCanvases.push(new AnimatedCanvas('c-mazectric', {
+  CA.animate('c-mazectric', {
     cellSize: 3,
     init: (numX, numY) => {
       const gol = new GOL(numX, numY, centerThirdInit(numX, numY));
@@ -57,10 +57,10 @@
     },
     foregroundColor: '#fbfb8f',
     backgroundColor: '#111',
-  }));
+  });
 
   // Anneal - variation of majority voting
-  window.animatedCanvases.push(new AnimatedCanvas('c-anneal', {
+  CA.animate('c-anneal', {
     cellSize: 3,
     init: (numX, numY) => {
       // hack to make the animation converge to one blob more often
@@ -71,11 +71,11 @@
     },
     foregroundColor: 'rgb(239, 120, 47)',
     backgroundColor: 'rgb(40, 30, 28)',
-  }));
+  });
 
 
   // Diamoeba
-  window.animatedCanvases.push(new AnimatedCanvas('c-diamoeba', {
+  CA.animate('c-diamoeba', {
     cellSize: 3,
     init: (numX, numY) => {
       // hack to make the animation converge to one blob more often
@@ -85,11 +85,11 @@
     },
     foregroundColor: 'rgb(23, 120, 225)',
     backgroundColor: 'rgb(15, 4, 36)',
-  }));
+  });
 
   // cyclic tri-state cellular automata with random initial state
   // AKA rock paper scissors
-  window.animatedCanvases.push(new AnimatedCanvas('c-cyclic', {
+  CA.animate('c-cyclic', {
     cellSize: 3,
     init: (numX, numY) => {
       const cyc = new Cyclic(numX, numY, () => {
@@ -116,7 +116,7 @@
       });
     },
     backgroundColor: '#1a1423',
-  }));
+  });
 
   // cyclic tri-state animation at the top of the page
   {
@@ -127,7 +127,7 @@
     const randThresh1 = 3/4;
     const randThresh2 = 1/3;
 
-    window.animatedCanvases.push(new AnimatedCanvas('c-first-canvas', {
+    CA.animate('c-first-canvas', {
       cellSize: 3,
       init: (numX, numY) => {
         const cyc = new Cyclic(numX, numY, () => {
@@ -157,6 +157,6 @@
         });
       },
       backgroundColor,
-    }));
+    });
   }
 }

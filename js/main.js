@@ -9,13 +9,20 @@
   const PAUSE_EVENT = new CustomEvent('pause');
 
   // centralize all animated canvases in one place
-  window.animatedCanvases = [];
+  const animatedCanvases = [];
 
   function updateAndDrawAllAnimations() {
     requestAnimationFrame(() => {
       animatedCanvases.forEach((anim) => anim.updateAndDrawWorld());
     });
   }
+
+  // a convenient global for creating animated canvases
+  window.CA = {
+    animate: (canvasId, options) => {
+      animatedCanvases.push(new AnimatedCanvas(canvasId, options));
+    },
+  };
 
   function updateAndDrawAllAnimationsForever() {
     updateAndDrawAllAnimations();

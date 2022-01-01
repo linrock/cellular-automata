@@ -10,7 +10,7 @@
   const fadeColor1 = '#ff9000';
   const fadeColor2 = 'rgb(84, 6, 0)';
 
-  window.animatedCanvases.push(new AnimatedCanvas('combined-world', {
+  CA.animate('combined-world', {
     cellSize: 3,
     init: (numX, numY) => {
       const RULE_NUM = 30;
@@ -96,5 +96,5 @@
       this.fillCell(x, y);
     },
     backgroundColor,
-  }));
+  });
 }
