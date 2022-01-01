@@ -146,21 +146,23 @@
         cyc.winRand = 4;
         return () => cyc.calculateNewWorld();
       },
-      drawWorld: function(world) {
+      drawWorld: function(world, worldDiff) {
         requestAnimationFrame(() => {
-          this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-          for (let x = 0; x < this.numCellsX; x++) {
-            for (let y = 0; y < this.numCellsY; y++) {
-              if (world[y][x]) {
-                if (world[y][x] === 2) {
-                  this.ctx.fillStyle = darkColor;
-                } else if (world[y][x] === 1) {
-                  this.ctx.fillStyle = lightColor;
-                }
-                this.fillCell(x, y);
+          worldDiff.forEach(([x, y, value]) => {
+            if (value) {
+              if (value === 2) {
+                this.ctx.fillStyle = darkColor;
+              } else if (value === 1) {
+                this.ctx.fillStyle = lightColor;
               }
+              this.drawCell(x, y, value);
+            } else {
+              this.ctx.clearRect(
+                x * this.cellSize, y * this.cellSize,
+                this.cellSize, this.cellSize,
+              );
             }
-          }
+          });
         });
       },
       backgroundColor,
