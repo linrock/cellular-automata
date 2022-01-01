@@ -60,7 +60,7 @@
           }
         }
         world = newWorld;
-        return world;
+        return [world, []];
       };
     },
     drawWorld: function(world) {

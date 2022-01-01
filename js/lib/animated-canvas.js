@@ -21,6 +21,7 @@ class AnimatedCanvas {
       foregroundColor,
       backgroundColor,
       drawWorld,
+      drawWorldDiff,
       drawCell,
       maxFps,
     } = options;
@@ -47,6 +48,9 @@ class AnimatedCanvas {
     }
     if (drawCell) {
       this.drawCell = drawCell.bind(this);
+    }
+    if (drawWorldDiff) {
+      this.drawWorldDiff = drawWorldDiff;
     }
     this.maxFps = maxFps || this.MAX_FPS;
     // fade canvases in as they become visible
@@ -102,6 +106,25 @@ class AnimatedCanvas {
   }
 
   drawWorld(world, worldDiff) {
+    if (this.drawWorldDiff) {
+      if (!worldDiff.length) {
+        return;
+      }
+      requestAnimationFrame(() => {
+        worldDiff.forEach(([x, y, value]) => {
+          if (value) {
+            this.drawCell(x, y, value);
+          } else {
+            this.ctx.clearRect(
+              x * this.cellSize, y * this.cellSize,
+              this.cellSize, this.cellSize,
+            );
+          }
+        });
+      });
+      return;
+    }
+    // default to re-drawing the entire world
     requestAnimationFrame(() => {
       this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
       for (let x = 0; x < this.numCellsX; x++) {

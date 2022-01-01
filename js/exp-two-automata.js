@@ -74,7 +74,7 @@
           }
         }
         world = newWorld;
-        return world;
+        return [world, []];
       }
     },
     drawCell: function(x, y, value) {

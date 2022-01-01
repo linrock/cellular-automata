@@ -43,23 +43,7 @@
       gol.rulestring = 'B3/S12345';
       return () => gol.calculateNewWorld();
     },
-    drawWorld: function(world, worldDiff) {
-      if (!worldDiff.length) {
-        return;
-      }
-      requestAnimationFrame(() => {
-        worldDiff.forEach(([x, y, value]) => {
-          if (value) {
-            this.drawCell(x, y, value);
-          } else {
-            this.ctx.clearRect(
-              x * this.cellSize, y * this.cellSize,
-              this.cellSize, this.cellSize,
-            );
-          }
-        });
-      });
-    },
+    drawWorldDiff: true,
     foregroundColor: '#eee',
     backgroundColor: '#111',
   });
@@ -72,6 +56,7 @@
       gol.rulestring = 'B3/S1234';
       return () => gol.calculateNewWorld();
     },
+    drawWorldDiff: true,
     foregroundColor: '#fbfb8f',
     backgroundColor: '#111',
   });
@@ -86,6 +71,7 @@
       gol.rulestring = 'B4678/S35678';
       return () => gol.calculateNewWorld();
     },
+    drawWorldDiff: true,
     foregroundColor: 'rgb(239, 120, 47)',
     backgroundColor: 'rgb(40, 30, 28)',
   });

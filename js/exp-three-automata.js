@@ -113,7 +113,7 @@
         let newWorld = calculateNewWorld1d(world);
         newWorld = calculateNewWorld2d(newWorld);
         world = newWorld;
-        return world;
+        return [world, []];
       };
     },
     drawCell: function(x, y, value) {
