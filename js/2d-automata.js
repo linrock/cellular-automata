@@ -148,12 +148,19 @@
       },
       drawWorld: function(world, worldDiff) {
         requestAnimationFrame(() => {
+          let fillStyle;
           worldDiff.forEach(([x, y, value]) => {
             if (value) {
               if (value === 2) {
-                this.ctx.fillStyle = darkColor;
+                if (fillStyle !== darkColor) {
+                  this.ctx.fillStyle = darkColor;
+                  fillStyle = darkColor;
+                }
               } else if (value === 1) {
-                this.ctx.fillStyle = lightColor;
+                if (fillStyle !== lightColor) {
+                  this.ctx.fillStyle = lightColor;
+                  fillStyle = lightColor;
+                }
               }
               this.drawCell(x, y, value);
             } else {
