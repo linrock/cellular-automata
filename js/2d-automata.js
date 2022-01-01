@@ -81,6 +81,20 @@
     backgroundColor: 'rgb(40, 30, 28)',
   }));
 
+
+  // Diamoeba
+  window.animatedCanvases.push(new AnimatedCanvas('c-diamoeba', {
+    cellSize: 3,
+    init: (numX, numY) => {
+      // hack to make the animation converge to one blob more often
+      const gol = new GOL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
+      gol.rulestring = 'B35678/S5678';
+      return () => gol.calculateNewWorld();
+    },
+    foregroundColor: 'rgb(239, 120, 47)',
+    backgroundColor: 'rgb(40, 30, 28)',
+  }));
+
   // cyclic tri-state cellular automata with random initial state
   // AKA rock paper scissors
   window.animatedCanvases.push(new AnimatedCanvas('c-cyclic', {
