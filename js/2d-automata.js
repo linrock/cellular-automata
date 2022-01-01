@@ -91,8 +91,8 @@
       gol.rulestring = 'B35678/S5678';
       return () => gol.calculateNewWorld();
     },
-    foregroundColor: 'rgb(239, 120, 47)',
-    backgroundColor: 'rgb(40, 30, 28)',
+    foregroundColor: 'rgb(23, 120, 225)',
+    backgroundColor: 'rgb(15, 4, 36)',
   }));
 
   // cyclic tri-state cellular automata with random initial state
