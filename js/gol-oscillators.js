@@ -87,7 +87,6 @@
     ];
     let colorIndex = 0;
     const anim = CA.animate('gol-octagon', {
-      cellSize: 3,
       init: initGolWithPixels([[octagon]]),
       foregroundColor: colors[0],
       drawWorldDiff: true,
@@ -99,7 +98,6 @@
   }
 
   CA.animate('gol-glider', {
-    cellSize: 3,
     init: initGolWithPixels([[gosperGliderGun, 2, 2]]),
     drawWorldDiff: true,
     backgroundColor: '#02020a',
@@ -107,7 +105,6 @@
   });
 
   CA.animate('gol-simkin-glider', {
-    cellSize: 3,
     init: initGolWithPixels([[simkinGliderGun, 8, 12]]),
     drawWorldDiff: true,
     backgroundColor: 'rgb(15, 8, 26)',
@@ -116,7 +113,6 @@
 
   {
     CA.animate('gol-oscillators', {
-      cellSize: 3,
       init: initGolWithPixels([
         [octagon, 5, 6],
         [figureEight, 28, 7],

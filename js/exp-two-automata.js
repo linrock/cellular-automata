@@ -11,7 +11,6 @@
   const fadeColor2 = 'rgb(84, 6, 0)';
 
   CA.animate('combined-world', {
-    cellSize: 3,
     init: (numX, numY) => {
       const RULE_NUM = 30;
       const eca = new ECA(numX, RULE_NUM, 'one_middle');

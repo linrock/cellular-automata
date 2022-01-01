@@ -1,7 +1,6 @@
 {
   // standard Game of Life simulation with random initial values
   CA.animate('c-game-of-life', {
-    cellSize: 3,
     init: (numX, numY) => {
       const gol = new LL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
       // gol.rulestring = 'B3/S23';
@@ -14,7 +13,6 @@
 
   // Day and Night simulation - variant of Game of Life
   CA.animate('c-day-and-night', {
-    cellSize: 3,
     init: (numX, numY) => {
       const ll = new LL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
       ll.rulestring = 'B3678/S34678';
@@ -39,7 +37,6 @@
 
   // Maze simulation - variant of Game of Life
   CA.animate('c-maze', {
-    cellSize: 3,
     init: (numX, numY) => {
       const ll = new LL(numX, numY, centerThirdInit(numX, numY));
       ll.rulestring = 'B3/S12345';
@@ -52,7 +49,6 @@
 
   // Mazetric simulation - variant of Game of Life
   CA.animate('c-mazectric', {
-    cellSize: 3,
     init: (numX, numY) => {
       const ll = new LL(numX, numY, centerThirdInit(numX, numY));
       ll.rulestring = 'B3/S1234';
@@ -65,7 +61,6 @@
 
   // Anneal - variation of majority voting
   CA.animate('c-anneal', {
-    cellSize: 3,
     init: (numX, numY) => {
       // hack to make the animation converge to one blob more often
       const thresh = Math.random > 0.5 ? 0.45 : 0.55;
@@ -81,7 +76,6 @@
 
   // Diamoeba
   CA.animate('c-diamoeba', {
-    cellSize: 3,
     init: (numX, numY) => {
       const ll = new LL(numX, numY, () => Math.random() > 0.5 ? 1 : 0);
       ll.rulestring = 'B35678/S5678';
@@ -95,7 +89,6 @@
   // cyclic tri-state cellular automata with random initial state
   // AKA rock paper scissors
   CA.animate('c-cyclic', {
-    cellSize: 3,
     init: (numX, numY) => {
       const cyc = new Cyclic(numX, numY, () => ~~(Math.random() * 3));
       return () => cyc.calculateNewWorld();
@@ -132,7 +125,6 @@
     const randThresh2 = 1/3;
 
     CA.animate('c-first-canvas', {
-      cellSize: 3,
       init: (numX, numY) => {
         const cyc = new Cyclic(numX, numY, () => {
           const rand = Math.random();

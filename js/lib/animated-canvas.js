@@ -1,5 +1,6 @@
 class AnimatedCanvas {
   MAX_FPS = 25;
+  CELL_SIZE = 3;
 
   isAnimating = false;
   lastRenderAt = +new Date();
@@ -30,13 +31,9 @@ class AnimatedCanvas {
     this.canvasWidth = canvas.width;
     this.canvasHeight = canvas.height;
     this.ctx = canvas.getContext('2d');
-    if (cellSize) {
-      this.cellSize = cellSize;
-    } else {
-      throw new Error('cellSize is required!');
-    }
-    this.numCellsX = this.canvasWidth / cellSize;
-    this.numCellsY = this.canvasHeight / cellSize;
+    this.cellSize = cellSize || this.CELL_SIZE;
+    this.numCellsX = this.canvasWidth / this.cellSize;
+    this.numCellsY = this.canvasHeight / this.cellSize;
     if (foregroundColor) {
       this.foregroundColor = foregroundColor;
     }

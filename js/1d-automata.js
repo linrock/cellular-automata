@@ -1,7 +1,6 @@
 {
   const createEcaAnimCanvas = (canvasId, ruleNum, initMethod, options) =>
     CA.animate(canvasId, {
-      cellSize: 3,
       init: (numX, numY) => {
         // initialize an elementary cellular automaton
         const eca = new ECA(numX, ruleNum, initMethod);

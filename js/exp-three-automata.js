@@ -17,7 +17,6 @@
   let boundBottomY;
 
   CA.animate('three-combined-world', {
-    cellSize: 3,
     init: (numX, numY) => {
       const ecaTop = new ECA(numX, RULE_NUM_TOP, 'one_middle');
       const ecaBottom = new ECA(numX, RULE_NUM_BOTTOM, 'one_middle');

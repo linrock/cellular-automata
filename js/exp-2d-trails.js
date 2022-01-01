@@ -8,7 +8,6 @@
   const fadeColor2 = '#355852';
 
   CA.animate('c-game-of-life-trails', {
-    cellSize: 3,
     init: (numX, numY) => {
       // initialize the world with random numbers
       let world = [];
