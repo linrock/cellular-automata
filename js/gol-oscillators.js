@@ -77,7 +77,7 @@
       '#5dfdcb',
     ];
     let colorIndex = 0;
-    const anim = new AnimatedCanvas('gol-octagon', {
+    const anim = CA.animate('gol-octagon', {
       cellSize: 3,
       init: (numX, numY) => {
         const gol = new GOL(numX, numY);
@@ -85,17 +85,11 @@
         return () => gol.calculateNewWorld();
       },
       foregroundColor: colors[0],
+      maxFps: 2,
     });
     anim.canvas.addEventListener('click', () => {
       anim.foregroundColor = colors[++colorIndex % colors.length];
     });
-
-    // render at around 2 fps
-    setInterval(() => {
-      if (anim.isAnimating) {
-        anim.updateAndDrawWorld();
-      }
-    }, 500);
   }
 
   CA.animate('gol-glider', {
@@ -121,7 +115,7 @@
   });
 
   {
-    const anim = new AnimatedCanvas('gol-oscillators', {
+    CA.animate('gol-oscillators', {
       cellSize: 3,
       init: (numX, numY) => {
         const gol = new GOL(numX, numY);
@@ -135,13 +129,7 @@
       },
       foregroundColor: '#ffa600',
       backgroundColor: 'rgb(15, 8, 26)',
+      maxFps: 5,
     });
-
-    // window.animatedCanvases.push(anim);
-    setInterval(() => {
-      if (anim.isAnimating) {
-        anim.updateAndDrawWorld();
-      }
-    }, 200);
   }
 }

@@ -1,6 +1,6 @@
 (() => {
   // time to wait between rendering animation frames
-  const ANIM_UPDATE_INTERVAL_MS = 50;
+  const ANIM_UPDATE_INTERVAL_MS = 20;
 
   // frequency of toggling all animation play/pause statuses
   const VIZ_POLL_INTERVAL_MS = 200;
@@ -20,7 +20,9 @@
   // a convenient global for creating animated canvases
   window.CA = {
     animate: (canvasId, options) => {
-      animatedCanvases.push(new AnimatedCanvas(canvasId, options));
+      const ac = new AnimatedCanvas(canvasId, options);
+      animatedCanvases.push(ac);
+      return ac;
     },
   };
 

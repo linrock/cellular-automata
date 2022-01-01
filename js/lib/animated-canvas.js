@@ -1,6 +1,8 @@
 class AnimatedCanvas {
-  UPDATE_INTERVAL_MS = 50;
+  MAX_FPS = 25;
+
   isAnimating = false;
+  lastRenderAt = +new Date();
   updateWorld = () => {};
 
   canvas;
@@ -20,6 +22,7 @@ class AnimatedCanvas {
       backgroundColor,
       drawWorld,
       drawCell,
+      maxFps,
     } = options;
     const canvas = document.getElementById(canvasId);
     this.canvas = canvas;
@@ -45,6 +48,7 @@ class AnimatedCanvas {
     if (drawCell) {
       this.drawCell = drawCell.bind(this);
     }
+    this.maxFps = maxFps || this.MAX_FPS;
     // fade canvases in as they become visible
     canvas.style.opacity = 0.1;
     canvas.addEventListener('play', () => {
@@ -66,7 +70,14 @@ class AnimatedCanvas {
       this.updateWorld = init(this.numCellsX, this.numCellsY);
       this.isAnimating = true;
     });
+    // canvas.addEventListener('mousemove', (e) => {
+    //   console.log(`mousemove: ${e.offsetX} ${e.offsetY}`);
+    // });
     this.updateWorld = init(this.numCellsX, this.numCellsY);
+  }
+
+  set maxFps(maxFps) {
+    this.minTimePerFrame = 1000 / maxFps;
   }
 
   set foregroundColor(color) {
@@ -102,8 +113,14 @@ class AnimatedCanvas {
   }
 
   updateAndDrawWorld() {
-    if (this.isAnimating) {
-      this.drawWorld(this.updateWorld());
+    if (!this.isAnimating) {
+      return;
     }
+    const now = +new Date();
+    if (now - this.lastRenderAt < this.minTimePerFrame) {
+      return;
+    }
+    this.lastRenderAt = now;
+    this.drawWorld(this.updateWorld());
   }
 }
