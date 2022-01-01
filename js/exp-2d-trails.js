@@ -23,6 +23,7 @@
       // naive way of calculating the next iteration of the world
       return () => {
         const newWorld = [];
+        const worldDiff = [];
         for (let y = 0; y < numY; y++) {
           newWorld.push([]);
           for (let x = 0; x < numX; x++) {
@@ -57,28 +58,41 @@
                 newWorld[y][x] = Math.max(0, newWorld[y][x] - 1);
               }
             }
+            if (newWorld[y][x] !== world[y][x]) {
+              worldDiff.push([x, y, newWorld[y][x]]);
+            }
           }
         }
         world = newWorld;
-        return [world, []];
+        return [world, worldDiff];
       };
     },
-    drawWorld: function(world) {
-      this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-      for (let y = 0; y < this.numCellsY; y++) {
-        for (let x = 0; x < this.numCellsX; x++) {
-          if (world[y][x] !== 0) {
-            if (world[y][x] === CELL_LIVE) {
-              this.ctx.fillStyle = liveColor;
-            } else if (world[y][x] > CELL_TRANSITION) {
-              this.ctx.fillStyle = fadeColor1;
+    drawWorld: function(world, worldDiff) {
+      let fillStyle;
+      requestAnimationFrame(() => {
+        worldDiff.forEach(([x, y, value]) => {
+          if (value) {
+            let newFillStyle;
+            if (value === CELL_LIVE) {
+              newFillStyle = liveColor;
+            } else if (value > CELL_TRANSITION) {
+              newFillStyle = fadeColor1;
             } else {
-              this.ctx.fillStyle = fadeColor2;
+              newFillStyle = fadeColor2;
             }
-            this.fillCell(x, y);
+            if (newFillStyle !== fillStyle) {
+              fillStyle = newFillStyle;
+              this.ctx.fillStyle = newFillStyle;
+            }
+            this.drawCell(x, y, value);
+          } else {
+            this.ctx.clearRect(
+              x * this.cellSize, y * this.cellSize,
+              this.cellSize, this.cellSize,
+            );
           }
-        }
-      }
+        });
+      });
     },
     backgroundColor,
   });
