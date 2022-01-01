@@ -70,6 +70,13 @@
     '11               1 1',
     '                 11',
   ];
+
+  const initGolWithPixels = (pixels, offX, offY) => (numX, numY) => {
+    const gol = new LL(numX, numY);
+    gol.drawPixels(pixels, offX, offY);
+    return () => gol.calculateNewWorld();
+  };
+
   {
     const colors = [
       '#ffa600',
@@ -79,11 +86,7 @@
     let colorIndex = 0;
     const anim = CA.animate('gol-octagon', {
       cellSize: 3,
-      init: (numX, numY) => {
-        const gol = new LL(numX, numY);
-        gol.drawPixels(octagon);
-        return () => gol.calculateNewWorld();
-      },
+      init: initGolWithPixels(octagon),
       foregroundColor: colors[0],
       drawWorldDiff: true,
       maxFps: 2,
@@ -95,11 +98,7 @@
 
   CA.animate('gol-glider', {
     cellSize: 3,
-    init: (numX, numY) => {
-      const gol = new LL(numX, numY);
-      gol.drawPixels(gosperGliderGun, 2, 2);
-      return () => gol.calculateNewWorld();
-    },
+    init: initGolWithPixels(gosperGliderGun, 2, 2),
     drawWorldDiff: true,
     backgroundColor: '#02020a',
     foregroundColor: '#5dfdcb',
@@ -107,11 +106,7 @@
 
   CA.animate('gol-simkin-glider', {
     cellSize: 3,
-    init: (numX, numY) => {
-      const gol = new LL(numX, numY);
-      gol.drawPixels(simkinGliderGun, 8, 12);
-      return () => gol.calculateNewWorld();
-    },
+    init: initGolWithPixels(simkinGliderGun, 8, 12),
     drawWorldDiff: true,
     backgroundColor: 'rgb(15, 8, 26)',
     foregroundColor: '#5c7aff', // periwinkle
