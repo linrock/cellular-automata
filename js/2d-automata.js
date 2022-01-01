@@ -23,21 +23,25 @@
     backgroundColor: '#110829',
   }));
 
+  const centerThirdInit = (numX, numY) => {
+    return (x, y) => {
+      // initialize only the middle half of the canvas with
+      // random numbers
+      if (x < numX / 3 || x > 2 * numX / 3) {
+        return 0;
+      }
+      if (y < numY / 3 || y > 2 * numY / 3) {
+        return 0;
+      }
+      return Math.random() > 0.5 ? 1 : 0;
+    };
+  }
+
   // Maze simulation - variant of Game of Life
   window.animatedCanvases.push(new AnimatedCanvas('c-maze', {
     cellSize: 3,
     init: (numX, numY) => {
-      const gol = new GOL(numX, numY, (x, y) => {
-        // initialize only the middle half of the canvas with
-        // random numbers
-        if (x < numX / 3 || x > 2 * numX / 3) {
-          return 0;
-        }
-        if (y < numY / 3 || y > 2 * numY / 3) {
-          return 0;
-        }
-        return Math.random() > 0.5 ? 1 : 0;
-      });
+      const gol = new GOL(numX, numY, centerThirdInit(numX, numY));
       gol.rulestring = 'B3/S12345';
       return () => gol.calculateNewWorld();
     },
@@ -49,17 +53,7 @@
   window.animatedCanvases.push(new AnimatedCanvas('c-mazectric', {
     cellSize: 3,
     init: (numX, numY) => {
-      const gol = new GOL(numX, numY, (x, y) => {
-        // initialize only the middle half of the canvas with
-        // random numbers
-        if (x < numX / 3 || x > 2 * numX / 3) {
-          return 0;
-        }
-        if (y < numY / 3 || y > 2 * numY / 3) {
-          return 0;
-        }
-        return Math.random() > 0.5 ? 1 : 0;
-      });
+      const gol = new GOL(numX, numY, centerThirdInit(numX, numY));
       gol.rulestring = 'B3/S1234';
       return () => gol.calculateNewWorld();
     },
