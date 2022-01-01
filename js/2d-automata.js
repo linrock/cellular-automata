@@ -48,12 +48,16 @@
         return;
       }
       requestAnimationFrame(() => {
-        this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-        for (let x = 0; x < this.numCellsX; x++) {
-          for (let y = 0; y < this.numCellsY; y++) {
-            this.drawCell(x, y, world[y][x]);
+        worldDiff.forEach(([x, y, value]) => {
+          if (value) {
+            this.drawCell(x, y, value);
+          } else {
+            this.ctx.clearRect(
+              x * this.cellSize, y * this.cellSize,
+              this.cellSize, this.cellSize,
+            );
           }
-        }
+        });
       });
     },
     foregroundColor: '#eee',

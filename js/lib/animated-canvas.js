@@ -91,7 +91,7 @@ class AnimatedCanvas {
   fillCell(x, y) {
     this.ctx.fillRect(
       x * this.cellSize, y * this.cellSize,
-      this.cellSize, this.cellSize
+      this.cellSize, this.cellSize,
     );
   }
 
