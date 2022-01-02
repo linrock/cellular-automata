@@ -85,6 +85,7 @@
             (ECA). Each cell has 2 possible states: 0 or 1. The state of each
             cell in the next generation depends only on 3 values: its current
             state and the state of its two immediate neighbors.
+            There are 2<sup>3</sup> = 8 orientations of these values.
           </p>
 
           <div class="pixel-row">
@@ -171,8 +172,7 @@
           </div>
 
           <p>
-            Since there are 2<sup>3</sup> = 8 orientations of the 3 values,
-            and there are 2 possible states for a cell, there are 2<sup>8</sup>
+            Since there are 2 possible states for a cell, there are 2<sup>8</sup>
             = 256 rules for determining the new state of a cell in the next
             generation of the world.
           </p>
