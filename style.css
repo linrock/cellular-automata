@@ -138,6 +138,25 @@ figcaption {
   justify-content: space-between;
 }
 
+.pixel-row {
+  display: flex;
+}
+.big-pixel {
+  width: 3%;
+  aspect-ratio: 1;
+  background: black;
+  font-size: 0.8rem;
+  text-align: center;
+  float: left;
+}
+.big-pixel.on {
+  color: white;
+  background: #5c7aff;
+}
+.big-pixel.transparent {
+  background: none;
+}
+
 @media only screen and (max-width: 600px) {
   .container {
     width: auto;
