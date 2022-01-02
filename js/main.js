@@ -55,6 +55,7 @@
     setTimeout(() => toggleCanvasAnimationsForever(), VIZ_POLL_INTERVAL_MS);
   }
 
+  console.log('source code: https://github.com/linrock/cellular-automata');
   toggleCanvasAnimationsForever();
   updateAndDrawAllAnimationsForever();
 })();
