@@ -24,6 +24,7 @@
       animatedCanvases.push(ac);
       return ac;
     },
+    shapes: {},
   };
 
   function updateAndDrawAllAnimationsForever() {
