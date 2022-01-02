@@ -55,7 +55,7 @@
       return () => ll.calculateNewWorld();
     },
     drawWorldDiff: true,
-    foregroundColor: '#fbfb8f',
+    foregroundColor: Math.random() < 0.5 ? '#fbfb8f' : '#66e1ff',
     backgroundColor: '#111',
   });
 
@@ -123,7 +123,15 @@
     if (Math.random() < 0.5) {
       backgroundColor = 'rgb(15, 57, 126)';
       darkColor = 'rgb(34, 120, 208)';
-      lightColor = 'rgb(151, 229, 252)';
+      lightColor = 'rgb(83, 184, 252)';
+
+      lightColor = '#7BF6FE';
+      darkColor = '#484EBC';
+      backgroundColor = '#132042';
+
+      lightColor = '#2DC6CC';
+      darkColor = '#2D9FCC';
+      backgroundColor = '#2D7FCC';
     }
 
     const randThresh1 = 3/4;
