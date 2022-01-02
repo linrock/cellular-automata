@@ -117,9 +117,14 @@
 
   // cyclic tri-state animation at the top of the page
   {
-    const backgroundColor = 'rgb(82, 17, 7)';
-    const darkColor = '#d75302';
-    const lightColor = '#fac000';
+    let backgroundColor = 'rgb(82, 17, 7)';
+    let darkColor = '#d75302';
+    let lightColor = '#fac000';
+    if (Math.random() < 0.5) {
+      backgroundColor = 'rgb(15, 57, 126)';
+      darkColor = 'rgb(34, 120, 208)';
+      lightColor = 'rgb(151, 229, 252)';
+    }
 
     const randThresh1 = 3/4;
     const randThresh2 = 1/3;
